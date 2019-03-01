@@ -1,6 +1,0 @@
---- ---
-
-# ryotrix.dev
-
-test
-
