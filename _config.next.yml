@@ -24,8 +24,8 @@ menu:
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
-  Docs:
-    default: /docs/Docs.md || fa fa-book
+  # Docs:
+  #   default: /docs/Docs.md || fa fa-book
     # Getting Started:
     #   default: /getting-started/ || fa fa-flag
     #   Installation: /installation.html || fa fa-download
