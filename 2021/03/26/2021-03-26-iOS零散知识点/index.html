@@ -23,28 +23,35 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"ryotrix.dev","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta property="og:type" content="website">
+<meta name="description" content="iOS 零散知识点RunLoop 有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;ask&#x2F;106457 12345678910NSURLComponents *url &#x3D; [[NSURLComponents alloc] initWithURL:request.URL r">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://ryotrix.dev/index.html">
+<meta property="og:url" content="https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="iOS 零散知识点RunLoop 有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;ask&#x2F;106457 12345678910NSURLComponents *url &#x3D; [[NSURLComponents alloc] initWithURL:request.URL r">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEly1goxcx5zeedj30u00fmq4q.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEly1goxgunt0cmj30ay07taa2.jpg">
+<meta property="article:published_time" content="2021-03-26T07:48:42.417Z">
+<meta property="article:modified_time" content="2021-03-26T10:17:40.340Z">
 <meta property="article:author" content="Lex">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008eGmZEly1goxcx5zeedj30u00fmq4q.jpg">
 
 
-<link rel="canonical" href="https://ryotrix.dev/">
+<link rel="canonical" href="https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>Hexo</title>
+<title> | Hexo</title>
   
 
 
@@ -139,7 +146,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -152,6 +159,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS-%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">iOS 零散知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RunLoop"><span class="nav-number">1.1.</span> <span class="nav-text">RunLoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%B2%A1%E6%9C%89%E5%8A%9E%E6%B3%95%E5%B0%86%E5%8F%82%E6%95%B0%E7%9A%84NSDictionary%E9%99%84%E5%8A%A0%E5%88%B0NSURLRequest%E8%80%8C%E4%B8%8D%E6%98%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95%E5%B0%BA%E5%AF%B8%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">获取屏幕尺寸的两种方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date-Extensions-%E5%88%A4%E6%96%AD-%E8%8E%B7%E5%8F%96%E6%97%B6%E9%97%B4%E6%88%B3-%E6%97%B6%E9%97%B4%E5%B7%AE"><span class="nav-number">1.4.</span> <span class="nav-text">Date+Extensions: 判断&#x2F;获取时间戳&#x2F;时间差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.5.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99"><span class="nav-number">1.5.2.</span> <span class="nav-text">常用正则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">简单应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">网络状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.6.1.</span> <span class="nav-text">常见状态码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B"><span class="nav-number">1.7.</span> <span class="nav-text">HTTP 请求过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL-%E5%92%8C-URI"><span class="nav-number">1.8.</span> <span class="nav-text">URL 和 URI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%A9%E6%94%BE%E5%9B%BE%E7%89%87%E9%81%BF%E5%85%8D%E5%86%85%E5%AD%98%E6%B6%88%E8%80%97%E8%BF%87%E5%A4%A7"><span class="nav-number">1.9.</span> <span class="nav-text">缩放图片避免内存消耗过大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocationManager-Combine-Version"><span class="nav-number">1.10.</span> <span class="nav-text">LocationManager - Combine Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AD%E8%A8%80"><span class="nav-number">1.11.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9B%BD%E9%99%85%E5%8C%96%E4%B8%AD%EF%BC%8C%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%9A%E5%8F%82%E6%95%B0%E4%BD%8D%E7%BD%AE%E8%B0%83%E6%95%B4"><span class="nav-number">1.12.</span> <span class="nav-text">字符串国际化中，格式化字符串多参数位置调整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-xib-%E6%97%B6%E7%9A%84-AutolLayout-%E5%92%8C-frame-%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.13.</span> <span class="nav-text">使用 xib 时的 AutolLayout 和 frame 设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8-NSKeyedArchiver-%E5%92%8C-NSKeyedUnarchiver-%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%8C%E5%85%A8%E5%A4%8D%E5%88%B6"><span class="nav-number">1.14.</span> <span class="nav-text">用 NSKeyedArchiver 和 NSKeyedUnarchiver 实现多层数据结构的完全复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.14.1.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="nav-number">1.14.2.</span> <span class="nav-text">结果：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-number">1.14.3.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%EF%BC%9A"><span class="nav-number">1.14.4.</span> <span class="nav-text">修复：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC-MRC-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.15.</span> <span class="nav-text">ARC - MRC 引用计数模式设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tintColorDidChange"><span class="nav-number">1.16.</span> <span class="nav-text">tintColorDidChange</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView-%E4%B8%8D%E8%83%BD%E6%8E%A5%E5%8F%97%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">1.17.</span> <span class="nav-text">UIView 不能接受事件处理的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%87%8D%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84-hash-%E6%96%B9%E6%B3%95"><span class="nav-number">1.18.</span> <span class="nav-text">如何重写自己的 hash 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib-%E5%8A%A8%E7%94%BB"><span class="nav-number">1.19.</span> <span class="nav-text">xib 动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ios-%E5%BC%80%E5%8F%91-loaded-the-%E2%80%9CViewController%E2%80%9D-nib-but-the-view-outlet-was-not-set-%E2%80%99"><span class="nav-number">1.20.</span> <span class="nav-text">ios 开发 loaded the “ViewController” nib but the view outlet was not set.’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-avoid-clipboard-warning-as-possibly-as-you-can"><span class="nav-number">1.21.</span> <span class="nav-text">How to avoid clipboard warning as possibly as you can</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8-GeometryReader-%E4%BC%A0%E5%85%A5%E7%9A%84-GeometryProxy-%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%8C%E5%8F%88%E4%B8%8D%E4%BC%9A%E5%9B%A0%E4%B8%BA%E5%9C%A8%E8%A7%86%E5%9B%BE%E5%B1%82%E7%BA%A7%E4%B8%AD%E5%8A%A0%E5%85%A5-GeometryReader-%E5%AF%BC%E8%87%B4%E5%8D%A0%E7%94%A8%E4%BA%86%E5%85%A8%E9%83%A8%E7%9A%84%E5%8F%AF%E7%94%A8%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%B8%83%E5%B1%80%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%E3%80%82"><span class="nav-number">1.22.</span> <span class="nav-text">怎么使用 GeometryReader 传入的 GeometryProxy 类型的参数，又不会因为在视图层级中加入 GeometryReader 导致占用了全部的可用屏幕空间，导致布局出现错误。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E5%88%B0%E9%94%AE%E7%9B%98%E9%80%9A%E7%9F%A5%E5%90%8E%E8%87%AA%E5%8A%A8%E8%B0%83%E6%95%B4-scrollview-%E7%9A%84-contentOffset"><span class="nav-number">1.23.</span> <span class="nav-text">收到键盘通知后自动调整 scrollview 的 contentOffset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E9%94%81%E6%AD%BBTip"><span class="nav-number">2.</span> <span class="nav-text">避免锁死Tip</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -194,274 +202,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/30/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/30/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-30 10:18:35" itemprop="dateCreated datePublished" datetime="2021-03-30T10:18:35+00:00">2021-03-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-macOS%20Tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-macOS%20Tips/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-26 08:04:57 / 修改时间：10:13:53" itemprop="dateCreated datePublished" datetime="2021-03-26T08:04:57+00:00">2021-03-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="macOS-Tips"><a href="#macOS-Tips" class="headerlink" title="macOS Tips"></a>macOS Tips</h1><h2 id="macOS-安全验证工具链中添加-Touch-ID-验证"><a href="#macOS-安全验证工具链中添加-Touch-ID-验证" class="headerlink" title="macOS 安全验证工具链中添加 Touch ID 验证"></a>macOS 安全验证工具链中添加 Touch ID 验证</h2><blockquote>
-<p>TIL, macOS 在 /etc/pam.d/sudo 里面增加一行 auth sufficient pam_tid.so 可以给 sudo 加上 TouchID 验证</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxdm0k6iyj30b103ywfl.jpg"></p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxdmk2iy6j30uu0e0q5i.jpg"></p>
-<h2 id="macOS-的-mds-stores-导致应用程序内存不足的故障解决记录"><a href="#macOS-的-mds-stores-导致应用程序内存不足的故障解决记录" class="headerlink" title="macOS 的 mds_stores 导致应用程序内存不足的故障解决记录"></a>macOS 的 mds_stores 导致应用程序内存不足的故障解决记录</h2><p>Apple的产品专家两三个小时后给我回电了，提供了解决办法，并将解决方法发送到了我的邮箱。 我猜这个方法应该更可靠，适合当前版本（macOS High Sierra 10.13.1），如下：</p>
-<p>您可以尝试以下方案： </p>
-<p>1）在终端中键入命令 <code>&quot;sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist”</code> </p>
-<p>2）完成后重启电脑 3）确认您的电脑未开启 Time Machine，功能的情况下，执行以下重建命令：</p>
-<p><code>sudo mdutil -i off</code> // &lt;press [return]&gt;</p>
-<p><code>sudo mdutil -E</code> // &lt;press [return]&gt; </p>
-<p><code>sudo mdutil -i on</code> // &lt;press [return]&gt;</p>
-<p> 需要等待完成重建，完成后再尝试确认是否可以解决。</p>
-<h2 id="Youtube-download"><a href="#Youtube-download" class="headerlink" title="Youtube-download"></a>Youtube-download</h2><ol>
-<li><p>安装youtube-dl</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install youtube-dl</span><br></pre></td></tr></table></figure></li>
-<li><p>安装you-get</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install you-get</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>那么需要安装的ffmpeg的库该如何安装呢？可以参看这个仓库：</p>
-<ul>
-<li>​        <a target="_blank" rel="noopener" href="https://www.luckydesigner.space/wp-content/themes/begin5.2/inc/go.php?url=https://github.com/holzschu/a-Shell-commands">https://github.com/holzschu/a-Shell-commands</a></li>
-</ul>
-<p>点击对应的链接下载，或者直接点击下载这个链接：</p>
-<ul>
-<li>​        <a target="_blank" rel="noopener" href="https://www.luckydesigner.space/wp-content/themes/begin5.2/inc/go.php?url=https://github.com/holzschu/a-Shell-commands/releases/download/0.1/ffmpeg.wasm">https://github.com/holzschu/a-Shell-commands/releases/download/0.1/ffmpeg.wasm</a></li>
-</ul>
-<p>之后打开文件这个app——File App，就会看到它已经在Download这个文件夹里面了，先留着备用。</p>
-<p>然后前往ipad本机，选择a-Shell文件夹，进入后新建一个名为bin的文件夹，如下图所示。</p>
-<p>然后将那个备用的”ffmpeg.wasm”文件，转移到该文件夹即可。</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>这样就可以实现下载视频，音频，图片之类的了。</p>
-<p>比如下载小鸡小鸡歌曲，只需要输入以下代码即可：</p>
-<p><code>youtube-dl &quot;ytsearch:小鸡小鸡&quot;</code></p>
-<p>下载完成后，就到File App里面的A-shell查看就可以了，如下图所示。</p>
-<h2 id="删除-App-的代码签名（以避免-OCSP-在签名证书校验时通过-http-80-明文发送哈希）"><a href="#删除-App-的代码签名（以避免-OCSP-在签名证书校验时通过-http-80-明文发送哈希）" class="headerlink" title="删除 App 的代码签名（以避免 OCSP 在签名证书校验时通过 http:80 明文发送哈希）"></a>删除 App 的代码签名（以避免 OCSP 在签名证书校验时通过 http:80 明文发送哈希）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">codesign --remove-signature foo.app</span><br><span class="line">codesign --remove-signature &lt;#your app’s path#&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="If-you-don’t-like-Big-Sur’s-new-title-style-and-want-to-revert-to-how-it-looks-in-Catalina"><a href="#If-you-don’t-like-Big-Sur’s-new-title-style-and-want-to-revert-to-how-it-looks-in-Catalina" class="headerlink" title="If you don’t like Big Sur’s new title style and want to revert to how it looks in Catalina:"></a>If you don’t like Big Sur’s new title style and want to revert to how it looks in Catalina:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write -g NSWindowSupportsAutomaticInlineTitle -bool false</span><br></pre></td></tr></table></figure>
-
-<p>and relaunch Finder.</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-Terminal%20Tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-Terminal%20Tips/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-26 08:01:31 / 修改时间：10:13:56" itemprop="dateCreated datePublished" datetime="2021-03-26T08:01:31+00:00">2021-03-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Terminal-Tips"><a href="#Terminal-Tips" class="headerlink" title="Terminal Tips"></a>Terminal Tips</h1><h2 id="常用系统命令"><a href="#常用系统命令" class="headerlink" title="常用系统命令"></a>常用系统命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now // 重启</span><br><span class="line">shutdown now    // 关机</span><br><span class="line"></span><br><span class="line">pmset -g                   // 显示电源管理设置信息</span><br><span class="line">sudo pmset displaysleep 15 // 设置显示器无活动15分钟后关闭</span><br><span class="line">sudo pmset sleep 30        // 计算机无活动30分钟后休眠</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
-<li>Command + L：清空一行</li>
-<li>Command + K：清空全部</li>
-</ol>
-<h2 id="使用-sudo-快速执行上一条命令"><a href="#使用-sudo-快速执行上一条命令" class="headerlink" title="使用 sudo 快速执行上一条命令"></a>使用 sudo 快速执行上一条命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo !!</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果由于你忘了使用sudo而导致命令行返回一个错误，只需输入sudo !!就可以用sudo来执行上一条指令。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -474,9 +225,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-iOS%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -500,7 +251,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="iOS-零散知识点"><a href="#iOS-零散知识点" class="headerlink" title="iOS 零散知识点"></a>iOS 零散知识点</h1><h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxcx5zeedj30u00fmq4q.jpg"></p>
+        <h1 id="iOS-零散知识点"><a href="#iOS-零散知识点" class="headerlink" title="iOS 零散知识点"></a>iOS 零散知识点</h1><h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxcx5zeedj30u00fmq4q.jpg"></p>
 <h2 id="有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？"><a href="#有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？" class="headerlink" title="有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？"></a>有没有办法将参数的<strong>NSDictionary</strong>附加到<strong>NSURLRequest</strong>而不是手动创建字符串？</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/ask/106457">https://cloud.tencent.com/developer/ask/106457</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSURLComponents *url &#x3D; [[NSURLComponents alloc] initWithURL:request.URL resolvingAgainstBaseURL:YES];</span><br><span class="line">NSMutableArray *queryItems &#x3D; NSMutableArray.new;</span><br><span class="line">[params enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSString *value, BOOL *stop) &#123;</span><br><span class="line">   [queryItems addObject:[NSURLQueryItem queryItemWithName:name </span><br><span class="line">                          value:[value stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]</span><br><span class="line">                         ]</span><br><span class="line">   ];</span><br><span class="line">&#125;];</span><br><span class="line">url.queryItems &#x3D; queryItems;</span><br><span class="line">request.URL &#x3D; url.URL;</span><br></pre></td></tr></table></figure>
 
@@ -785,7 +536,6 @@
 </li>
 </ol>
 
-      
     </div>
 
     
@@ -793,319 +543,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/26/2021-03-26-iOS%E5%BC%80%E5%8F%91Tips/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/26/2021-03-26-Terminal%20Tips/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E5%BC%80%E5%8F%91Tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-iOS%E5%BC%80%E5%8F%91Tips/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-26 07:46:58 / 修改时间：10:13:55" itemprop="dateCreated datePublished" datetime="2021-03-26T07:46:58+00:00">2021-03-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="如何解决无法删除苹果开发者证书"><a href="#如何解决无法删除苹果开发者证书" class="headerlink" title="如何解决无法删除苹果开发者证书"></a>如何解决无法删除苹果开发者证书</h2><blockquote>
-<p>I also faced the same issue today. The following steps fixed my issue.</p>
-<ol>
-<li>Download <a target="_blank" rel="noopener" href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer">https://developer.apple.com/certificationauthority/AppleWWDRCA.cer</a></li>
-<li>Double-click to install to Keychain.</li>
-<li>Then in Keychain, Select View -&gt; “Show Expired Certificates” in Keychain app.</li>
-<li>It will list all the expired certifcates.</li>
-<li>Delete “Apple Worldwide Developer Relations Certificate Authority certificates” from “login” tab</li>
-<li>And also delete it from “System” tab.</li>
-</ol>
-<p>Now you are ready go.</p>
-</blockquote>
-<h2 id="jenkins-配置安全策略admin没有Overall-Read权限"><a href="#jenkins-配置安全策略admin没有Overall-Read权限" class="headerlink" title="jenkins 配置安全策略admin没有Overall/Read权限"></a><strong>jenkins</strong> 配置安全策略<strong>admin</strong>没有<strong>Overall/Read</strong>权限</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/myNameIssls/article/details/70227838">https://blog.csdn.net/myNameIssls/article/details/70227838</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangmuming/article/details/22925987">https://blog.csdn.net/wangmuming/article/details/22925987</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021:03:26:Xcode%20%E5%B0%8F%E6%8A%80%E5%B7%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021:03:26:Xcode%20%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-26 07:39:47 / 修改时间：10:13:58" itemprop="dateCreated datePublished" datetime="2021-03-26T07:39:47+00:00">2021-03-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Xcode-小技巧"><a href="#Xcode-小技巧" class="headerlink" title="Xcode 小技巧"></a>Xcode 小技巧</h1><h2 id="在-Xcode-活跃视图显示构建时间"><a href="#在-Xcode-活跃视图显示构建时间" class="headerlink" title="在 Xcode 活跃视图显示构建时间"></a>在 Xcode 活跃视图显示构建时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程"><a href="#防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程" class="headerlink" title="防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程"></a>防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ApplePersistenceIgnoreState -bool YES</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc"><a href="#Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc" class="headerlink" title="Make Xcode’s Assistant aware of your ViewModels, Views, etc"></a>Make Xcode’s Assistant aware of your ViewModels, Views, etc</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add &quot;ViewModel&quot; &quot;View&quot; &quot;Screen&quot;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>You can check the current value of this default using defaults read com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes.</p>
-</blockquote>
-<h2 id="Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）"><a href="#Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）" class="headerlink" title="Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）"></a>Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode CodeFoldingAnimationSpeed -int 0</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/12/2021-03-12-%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/12/2021-03-12-%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-12 10:17:48 / 修改时间：10:21:49" itemprop="dateCreated datePublished" datetime="2021-03-12T10:17:48+00:00">2021-03-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ol>
-<li><p>Catch 内尽量简洁</p>
-<p>只做log和保护性操作（e.g. 回滚）</p>
-</li>
-<li><p>assert中的condition一般在assert后会通过if进行过滤</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/12/2019-12-03-App%20Store%20%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80(URL)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/12/2019-12-03-App%20Store%20%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80(URL)/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-12 10:15:39" itemprop="dateCreated datePublished" datetime="2021-03-12T10:15:39+00:00">2021-03-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>本软件尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本软件会按照本隐私权政策的规定使用和披露您的个人信息。但本软件将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本软件不会将这些信息对外披露或向第三方提供。本软件会不时更新本隐私权政策。您在同意本软件服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本软件服务使用协议不可分割的一部分。</p>
-<p>1.适用范围</p>
-<p>a)在您使用本软件网络服务，本软件自动接收并记录的您的手机上的信息，包括但不限于您的健康数据、使用的语言、访问日期和时间、软硬件特征信息及您需求的网页记录等数据；</p>
-<p>2.信息的使用</p>
-<p>a)在获得您的数据之后，本软件会将其上传至服务器，以生成您的排行榜数据，以便您能够更好地使用服务。</p>
-<p>3.信息披露</p>
-<p>a)本软件不会将您的信息披露给不受信任的第三方。</p>
-<p>b)根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；</p>
-<p>c)如您出现违反中国有关法律、法规或者相关规则的情况，需要向第三方披露；</p>
-<p>4.信息存储和交换</p>
-<p>本软件收集的有关您的信息和资料将保存在本软件及（或）其关联公司的服务器上，这些信息和资料可能传送至您所在国家、地区或本软件收集信息和资料所在地的境外并在境外被访问、存储和展示。</p>
-<p>5.信息安全</p>
-<p>a)在使用本软件网络服务进行网上交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，请您立即联络本软件客服，以便本软件采取相应措施。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
