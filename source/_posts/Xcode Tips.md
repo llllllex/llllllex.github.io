@@ -1,4 +1,4 @@
-# Xcode 小技巧
+# Xcode Tips
 
 ## 在 Xcode 活跃视图显示构建时间
 
