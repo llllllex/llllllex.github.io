@@ -1,3 +1,9 @@
+---
+title: Xcode Tips
+date: 2021-03-31 12:47:43
+tags:
+---
+
 # Xcode Tips
 
 ## 在 Xcode 活跃视图显示构建时间
