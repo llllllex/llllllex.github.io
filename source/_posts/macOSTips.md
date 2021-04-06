@@ -1,3 +1,11 @@
+---
+title: macOSTips
+date: 2021-04-06 11:15:49
+tags:
+---
+
+
+
 # macOS Tips
 
 

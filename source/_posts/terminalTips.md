@@ -1,3 +1,11 @@
+---
+title: terminalTips
+date: 2021-04-06 11:16:22
+tags:
+---
+
+
+
 # Terminal Tips
 
 ## 常用系统命令
