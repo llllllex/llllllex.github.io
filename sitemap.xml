@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ryotrix.dev/2021/03/31/Xcode-Tips/</loc>
+    <loc>https://ryotrix.dev/2021/04/06/App-Store-%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80/</loc>
     
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-04-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ryotrix.dev/2021/04/06/terminalTips/</loc>
+    
+    <lastmod>2021-04-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ryotrix.dev/2021/04/06/macOSTips/</loc>
+    
+    <lastmod>2021-04-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ryotrix.dev/2021/04/06/iosDevSnippetsAndSkills/</loc>
+    
+    <lastmod>2021-04-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ryotrix.dev/2021/04/06/iosDevTips/</loc>
+    
+    <lastmod>2021-04-06</lastmod>
     
   </url>
   
@@ -16,44 +44,16 @@
   </url>
   
   <url>
-    <loc>https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
+    <loc>https://ryotrix.dev/2021/03/31/Xcode-Tips/</loc>
     
-    <lastmod>2021-03-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ryotrix.dev/2021/03/26/2021-03-26-Terminal%20Tips/</loc>
-    
-    <lastmod>2021-03-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E5%BC%80%E5%8F%91Tips/</loc>
-    
-    <lastmod>2021-03-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ryotrix.dev/2021/03/26/2021-03-26-macOS%20Tips/</loc>
-    
-    <lastmod>2021-03-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ryotrix.dev/2021/03/12/2019-12-03-App%20Store%20%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80(URL)/</loc>
-    
-    <lastmod>2021-03-12</lastmod>
+    <lastmod>2021-03-31</lastmod>
     
   </url>
   
 
   <url>
     <loc>https://ryotrix.dev/</loc>
-    <lastmod>2021-03-31</lastmod>
+    <lastmod>2021-04-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

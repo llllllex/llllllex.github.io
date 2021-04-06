@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/31/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/App-Store-%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -217,7 +217,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/31/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">代码质量总结</a>
+          <a href="/2021/04/06/App-Store-%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80/" class="post-title-link" itemprop="url">App Store 隐私政策网址</a>
         </h2>
 
         <div class="post-meta-container">
@@ -229,7 +229,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-31 16:08:07 / 修改时间：09:04:18" itemprop="dateCreated datePublished" datetime="2021-03-31T16:08:07+00:00">2021-03-31</time>
+      <time title="创建时间：2021-04-06 03:17:13 / 修改时间：03:18:07" itemprop="dateCreated datePublished" datetime="2021-04-06T03:17:13+00:00">2021-04-06</time>
     </span>
 
   
@@ -242,24 +242,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="代码设计原则"><a href="#代码设计原则" class="headerlink" title="代码设计原则"></a>代码设计原则</h2><ol>
-<li><p>Catch 内尽量简洁</p>
-<p>只做log和保护性操作（e.g. 回滚）</p>
-</li>
-<li><p>assert中的condition一般在assert后会通过if进行过滤</p>
-</li>
-</ol>
-<h2 id="代码认知复杂度-Cognitive-Complexity"><a href="#代码认知复杂度-Cognitive-Complexity" class="headerlink" title="代码认知复杂度 Cognitive Complexity"></a>代码认知复杂度 Cognitive Complexity</h2><ol>
-<li><p>避免多层嵌套</p>
+          <p>本软件尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本软件会按照本隐私权政策的规定使用和披露您的个人信息。但本软件将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本软件不会将这些信息对外披露或向第三方提供。本软件会不时更新本隐私权政策。您在同意本软件服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本软件服务使用协议不可分割的一部分。</p>
 <ol>
-<li>提前退出（guard else return）</li>
-</ol>
+<li><p>适用范围</p>
+<p>a) 在您使用本软件网络服务，本软件自动接收并记录的您的手机上的信息，包括但不限于您的健康数据、使用的语言、访问日期和时间、软硬件特征信息及您需求的网页记录等数据；</p>
 </li>
-<li><p>条件判断避免多条并列（if A &amp;&amp; B &amp;&amp; C）</p>
+<li><p>信息的使用</p>
+<p>a)在获得您的数据之后，本软件会将其上传至服务器，以生成您的排行榜数据，以便您能够更好地使用服务。</p>
 </li>
-<li><p>分支条件避免同一级ifelse判断条件不一致</p>
-<p>e.g. </p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ❌</span></span><br><span class="line"><span class="keyword">if</span> <span class="type">A</span> <span class="operator">&amp;&amp;</span> <span class="type">B</span> &#123;</span><br><span class="line">   <span class="comment">// statement a</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="operator">!</span><span class="type">A</span> &#123;</span><br><span class="line">   <span class="comment">// statement b</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅</span></span><br><span class="line"><span class="keyword">if</span> <span class="type">A</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="type">B</span> &#123;</span><br><span class="line">      <span class="comment">// statement a</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">// statement b</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>信息披露</p>
+<p>a)本软件不会将您的信息披露给不受信任的第三方。</p>
+<p>b)根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；</p>
+<p>c)如您出现违反中国有关法律、法规或者相关规则的情况，需要向第三方披露；</p>
+</li>
+<li><p>信息存储和交换</p>
+<p>本软件收集的有关您的信息和资料将保存在本软件及（或）其关联公司的服务器上，这些信息和资料可能传送至您所在国家、地区或本软件收集信息和资料所在地的境外并在境外被访问、存储和展示。</p>
+</li>
+<li><p>信息安全</p>
+<p>a)在使用本软件网络服务进行网上交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，请您立即联络本软件客服，以便本软件采取相应措施。</p>
+</li>
 </ol>
 
       
@@ -287,7 +288,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/31/Xcode-Tips/">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/terminalTips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -300,7 +301,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/31/Xcode-Tips/" class="post-title-link" itemprop="url">Xcode Tips</a>
+          <a href="/2021/04/06/terminalTips/" class="post-title-link" itemprop="url">terminalTips</a>
         </h2>
 
         <div class="post-meta-container">
@@ -312,7 +313,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-31 12:47:43 / 修改时间：09:04:18" itemprop="dateCreated datePublished" datetime="2021-03-31T12:47:43+00:00">2021-03-31</time>
+      <time title="创建时间：2021-04-06 03:16:22 / 修改时间：03:16:39" itemprop="dateCreated datePublished" datetime="2021-04-06T03:16:22+00:00">2021-04-06</time>
     </span>
 
   
@@ -325,25 +326,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Xcode-Tips"><a href="#Xcode-Tips" class="headerlink" title="Xcode Tips"></a>Xcode Tips</h1><h2 id="在-Xcode-活跃视图显示构建时间"><a href="#在-Xcode-活跃视图显示构建时间" class="headerlink" title="在 Xcode 活跃视图显示构建时间"></a>在 Xcode 活跃视图显示构建时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES</span><br></pre></td></tr></table></figure>
+          <h1 id="Terminal-Tips"><a href="#Terminal-Tips" class="headerlink" title="Terminal Tips"></a>Terminal Tips</h1><h2 id="常用系统命令"><a href="#常用系统命令" class="headerlink" title="常用系统命令"></a>常用系统命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now // 重启</span><br><span class="line">shutdown now    // 关机</span><br><span class="line"></span><br><span class="line">pmset -g                   // 显示电源管理设置信息</span><br><span class="line">sudo pmset displaysleep 15 // 设置显示器无活动15分钟后关闭</span><br><span class="line">sudo pmset sleep 30        // 计算机无活动30分钟后休眠</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程"><a href="#防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程" class="headerlink" title="防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程"></a>防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ApplePersistenceIgnoreState -bool YES</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc"><a href="#Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc" class="headerlink" title="Make Xcode’s Assistant aware of your ViewModels, Views, etc"></a>Make Xcode’s Assistant aware of your ViewModels, Views, etc</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add &quot;ViewModel&quot; &quot;View&quot; &quot;Screen&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
+<li>Command + L：清空一行</li>
+<li>Command + K：清空全部</li>
+</ol>
+<h2 id="使用-sudo-快速执行上一条命令"><a href="#使用-sudo-快速执行上一条命令" class="headerlink" title="使用 sudo 快速执行上一条命令"></a>使用 sudo 快速执行上一条命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo !!</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>You can check the current value of this default using defaults read com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes.</p>
+<p>如果由于你忘了使用sudo而导致命令行返回一个错误，只需输入sudo !!就可以用sudo来执行上一条指令。</p>
 </blockquote>
-<h2 id="Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）"><a href="#Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）" class="headerlink" title="Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）"></a>Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode CodeFoldingAnimationSpeed -int 0</span><br></pre></td></tr></table></figure>
-
-
-
-
-
 
       
     </div>
@@ -370,7 +365,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-macOS%20Tips/">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/macOSTips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -383,7 +378,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-macOS%20Tips/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2021/04/06/macOSTips/" class="post-title-link" itemprop="url">macOSTips</a>
         </h2>
 
         <div class="post-meta-container">
@@ -395,7 +390,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-26 08:04:57 / 修改时间：10:13:53" itemprop="dateCreated datePublished" datetime="2021-03-26T08:04:57+00:00">2021-03-26</time>
+      <time title="创建时间：2021-04-06 03:15:49 / 修改时间：03:16:07" itemprop="dateCreated datePublished" datetime="2021-04-06T03:15:49+00:00">2021-04-06</time>
     </span>
 
   
@@ -475,7 +470,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-Terminal%20Tips/">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/iosDevSnippetsAndSkills/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -488,7 +483,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-Terminal%20Tips/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2021/04/06/iosDevSnippetsAndSkills/" class="post-title-link" itemprop="url">iosDevSnippetsAndSkills</a>
         </h2>
 
         <div class="post-meta-container">
@@ -500,84 +495,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-26 08:01:31 / 修改时间：10:13:56" itemprop="dateCreated datePublished" datetime="2021-03-26T08:01:31+00:00">2021-03-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Terminal-Tips"><a href="#Terminal-Tips" class="headerlink" title="Terminal Tips"></a>Terminal Tips</h1><h2 id="常用系统命令"><a href="#常用系统命令" class="headerlink" title="常用系统命令"></a>常用系统命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now // 重启</span><br><span class="line">shutdown now    // 关机</span><br><span class="line"></span><br><span class="line">pmset -g                   // 显示电源管理设置信息</span><br><span class="line">sudo pmset displaysleep 15 // 设置显示器无活动15分钟后关闭</span><br><span class="line">sudo pmset sleep 30        // 计算机无活动30分钟后休眠</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
-<li>Command + L：清空一行</li>
-<li>Command + K：清空全部</li>
-</ol>
-<h2 id="使用-sudo-快速执行上一条命令"><a href="#使用-sudo-快速执行上一条命令" class="headerlink" title="使用 sudo 快速执行上一条命令"></a>使用 sudo 快速执行上一条命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo !!</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果由于你忘了使用sudo而导致命令行返回一个错误，只需输入sudo !!就可以用sudo来执行上一条指令。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-iOS%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-26 07:48:42 / 修改时间：10:17:40" itemprop="dateCreated datePublished" datetime="2021-03-26T07:48:42+00:00">2021-03-26</time>
+      <time title="创建时间：2021-04-06 03:14:33 / 修改时间：03:15:28" itemprop="dateCreated datePublished" datetime="2021-04-06T03:14:33+00:00">2021-04-06</time>
     </span>
 
   
@@ -900,7 +818,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/26/2021-03-26-iOS%E5%BC%80%E5%8F%91Tips/">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/iosDevTips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -913,7 +831,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/26/2021-03-26-iOS%E5%BC%80%E5%8F%91Tips/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2021/04/06/iosDevTips/" class="post-title-link" itemprop="url">iosDevTips</a>
         </h2>
 
         <div class="post-meta-container">
@@ -925,7 +843,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-26 07:46:58 / 修改时间：10:13:55" itemprop="dateCreated datePublished" datetime="2021-03-26T07:46:58+00:00">2021-03-26</time>
+      <time title="创建时间：2021-04-06 03:14:07 / 修改时间：03:14:55" itemprop="dateCreated datePublished" datetime="2021-04-06T03:14:07+00:00">2021-04-06</time>
     </span>
 
   
@@ -978,7 +896,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/12/2019-12-03-App%20Store%20%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80(URL)/">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/31/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -991,7 +909,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/12/2019-12-03-App%20Store%20%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80(URL)/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2021/03/31/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">代码质量总结</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1001,8 +919,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-03-12 10:15:39" itemprop="dateCreated datePublished" datetime="2021-03-12T10:15:39+00:00">2021-03-12</time>
+      <time title="创建时间：2021-03-31 08:08:07 / 修改时间：09:03:19" itemprop="dateCreated datePublished" datetime="2021-03-31T08:08:07+00:00">2021-03-31</time>
     </span>
 
   
@@ -1015,19 +934,108 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>本软件尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本软件会按照本隐私权政策的规定使用和披露您的个人信息。但本软件将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本软件不会将这些信息对外披露或向第三方提供。本软件会不时更新本隐私权政策。您在同意本软件服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本软件服务使用协议不可分割的一部分。</p>
-<p>1.适用范围</p>
-<p>a)在您使用本软件网络服务，本软件自动接收并记录的您的手机上的信息，包括但不限于您的健康数据、使用的语言、访问日期和时间、软硬件特征信息及您需求的网页记录等数据；</p>
-<p>2.信息的使用</p>
-<p>a)在获得您的数据之后，本软件会将其上传至服务器，以生成您的排行榜数据，以便您能够更好地使用服务。</p>
-<p>3.信息披露</p>
-<p>a)本软件不会将您的信息披露给不受信任的第三方。</p>
-<p>b)根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；</p>
-<p>c)如您出现违反中国有关法律、法规或者相关规则的情况，需要向第三方披露；</p>
-<p>4.信息存储和交换</p>
-<p>本软件收集的有关您的信息和资料将保存在本软件及（或）其关联公司的服务器上，这些信息和资料可能传送至您所在国家、地区或本软件收集信息和资料所在地的境外并在境外被访问、存储和展示。</p>
-<p>5.信息安全</p>
-<p>a)在使用本软件网络服务进行网上交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，请您立即联络本软件客服，以便本软件采取相应措施。</p>
+          <h2 id="代码设计原则"><a href="#代码设计原则" class="headerlink" title="代码设计原则"></a>代码设计原则</h2><ol>
+<li><p>Catch 内尽量简洁</p>
+<p>只做log和保护性操作（e.g. 回滚）</p>
+</li>
+<li><p>assert中的condition一般在assert后会通过if进行过滤</p>
+</li>
+</ol>
+<h2 id="代码认知复杂度-Cognitive-Complexity"><a href="#代码认知复杂度-Cognitive-Complexity" class="headerlink" title="代码认知复杂度 Cognitive Complexity"></a>代码认知复杂度 Cognitive Complexity</h2><ol>
+<li><p>避免多层嵌套</p>
+<ol>
+<li>提前退出（guard else return）</li>
+</ol>
+</li>
+<li><p>条件判断避免多条并列（if A &amp;&amp; B &amp;&amp; C）</p>
+</li>
+<li><p>分支条件避免同一级ifelse判断条件不一致</p>
+<p>e.g. </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ❌</span></span><br><span class="line"><span class="keyword">if</span> <span class="type">A</span> <span class="operator">&amp;&amp;</span> <span class="type">B</span> &#123;</span><br><span class="line">   <span class="comment">// statement a</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="operator">!</span><span class="type">A</span> &#123;</span><br><span class="line">   <span class="comment">// statement b</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅</span></span><br><span class="line"><span class="keyword">if</span> <span class="type">A</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="type">B</span> &#123;</span><br><span class="line">      <span class="comment">// statement a</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">// statement b</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/31/Xcode-Tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/31/Xcode-Tips/" class="post-title-link" itemprop="url">Xcode Tips</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-31 04:47:43 / 修改时间：04:48:08" itemprop="dateCreated datePublished" datetime="2021-03-31T04:47:43+00:00">2021-03-31</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Xcode-Tips"><a href="#Xcode-Tips" class="headerlink" title="Xcode Tips"></a>Xcode Tips</h1><h2 id="在-Xcode-活跃视图显示构建时间"><a href="#在-Xcode-活跃视图显示构建时间" class="headerlink" title="在 Xcode 活跃视图显示构建时间"></a>在 Xcode 活跃视图显示构建时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程"><a href="#防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程" class="headerlink" title="防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程"></a>防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ApplePersistenceIgnoreState -bool YES</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc"><a href="#Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc" class="headerlink" title="Make Xcode’s Assistant aware of your ViewModels, Views, etc"></a>Make Xcode’s Assistant aware of your ViewModels, Views, etc</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add &quot;ViewModel&quot; &quot;View&quot; &quot;Screen&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>You can check the current value of this default using defaults read com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes.</p>
+</blockquote>
+<h2 id="Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）"><a href="#Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）" class="headerlink" title="Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）"></a>Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode CodeFoldingAnimationSpeed -int 0</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       
     </div>
