@@ -16,6 +16,16 @@ tags:
 
 
 
+
+
+## 内存 & Debug
+
+### 寄存器
+
+fp 寄存器存储了上一帧的地址，类似一个链表的起始地址，通过 fp 不断回溯可以将整个 Backtrace 函数调用栈进行串联。
+
+
+
 ## 有没有办法将参数的**NSDictionary**附加到**NSURLRequest**而不是手动创建字符串？
 
 [https://cloud.tencent.com/developer/ask/106457](https://cloud.tencent.com/developer/ask/106457)
