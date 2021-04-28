@@ -4,7 +4,9 @@ date: 2021-04-27 17:58:07
 tags:
 ---
 
-# iOS Code Tips
+# iOS Code Tips ( acknowledge )
+
+> https://nshipster.cn
 
 ## 编译器优化
 
@@ -112,4 +114,16 @@ self.completionBlock = ^{
 ```
 
 
+
+## BOOL / bool / Boolean / NSCFBoolean
+
+> https://nshipster.cn/bool/
+
+| Name         | Typedef</tt>  | Header           | True Value     | False Value     |
+| ------------ | ------------- | ---------------- | -------------- | --------------- |
+| Bool         | signed char   | objc.h           | YES            | NO              |
+| bool         | _Bool(int)    | stdbool.h        | true           | false           |
+| Boolean      | unsigned char | MacTypes.h       | TRUE           | FALSE           |
+| NSNumber     | __NSCFBoolean | Foundation.h     | @(YES)         | @(NO)           |
+| CFBooleanRef | struct        | CoreFoundation.h | kCFBooleanTrue | kCFBooleanFalse |
 

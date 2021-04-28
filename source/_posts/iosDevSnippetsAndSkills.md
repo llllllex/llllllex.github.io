@@ -717,7 +717,7 @@ struct Graph: View {
 
 
 
-# 避免锁死Tip
+## 避免锁死Tip
 
 1. dispatch_once 中不要有同步到主线程执行的方法。
 
@@ -736,3 +736,54 @@ struct Graph: View {
 8. NSUserDefaults 底层实现中存在直接或者间接的跨进程通信，在主线程同步调用容易发生卡死。➡️重度使用参考MMKV，轻度使用参考firebase自己写歌轻量的UserDefaults类
 
 9. [[UIApplication sharedApplication] openURL]接口，内部实现也存在同步的跨进程通信。➡️iOS10 及以上的系统版本使用[[UIApplication sharedApplication] openURL:options:completionHandler:]这个接口替换，此接口可以异步调起，不会造成卡死。
+
+
+
+## 测量一段代码的运行时间
+
+### 使用 包装了 `mach_absolute_time` 的 `CACurrentMediaTime()` 方法来以秒为单位测量时间
+
+> 和 `NSDate` 或 `CFAbsoluteTimeGetCurrent()` 偏移量不同的是，`mach_absolute_time()` 和 `CACurrentMediaTime()` 是基于内建时钟的，能够更精确更原子化地测量，并且不会因为外部时间变化而变化（例如时区变化、夏时制、秒突变等）
+
+
+
+```objective-c
+static size_t const count = 1000;
+static size_t const iterations = 10000;
+CFTimeInterval startTime = CACurrentMediaTime();
+{
+    for (size_t i = 0; i < iterations; i++) {
+        @autoreleasepool {
+            NSMutableArray *mutableArray = [NSMutableArray array];
+            for (size_t j = 0; j < count; j++) {
+                [mutableArray addObject:object];
+            }
+        }
+    }
+}
+CFTimeInterval endTime = CACurrentMediaTime();
+NSLog(@"Total Runtime: %g s", endTime - startTime);
+```
+
+> 这个例子中 `startTime` 和 `endTime` 之间的 block 代码是不必要的，只是为了提高可读性，让代码看起来更清晰明了：很容易能分隔开变量会发生大规模突变的代码
+
+
+
+### dispatch_benchmark
+
+```objective-c
+uint64_t t = dispatch_benchmark(iterations, ^{
+    @autoreleasepool {
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        for (size_t i = 0; i < count; i++) {
+            [mutableArray addObject:object];
+        }
+    }
+});
+NSLog(@"[[NSMutableArray array] addObject:] Avg. Runtime: %llu ns", t);
+```
+
+> 不要在提交的最终代码里包含`dispatch_benchmark`函数，这只应该用在测试或开发过程中。另外，使用instruments获取真正影响代码和程序效率的部分远比关注代码绝对运行时间更重要。
+
+
+
