@@ -127,3 +127,16 @@ self.completionBlock = ^{
 | NSNumber     | __NSCFBoolean | Foundation.h     | @(YES)         | @(NO)           |
 | CFBooleanRef | struct        | CoreFoundation.h | kCFBooleanTrue | kCFBooleanFalse |
 
+
+
+## 指针 & 和 *
+
+```objective-c
+NSString * a;
+```
+
+a: 指向NSString实例对象a的指针（在使用时，对a的操作被解读为调用实例对象的get/set和其他实例方法调用）
+
+*a: 实力对象a指向的数据
+
+&a: 指针本身（指针数据）

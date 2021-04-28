@@ -787,3 +787,42 @@ NSLog(@"[[NSMutableArray array] addObject:] Avg. Runtime: %llu ns", t);
 
 
 
+### 公共方法
+
+> 出于仅提供辅助而与具体状态无关，如果特别有用的话，可能值得使其全局可用
+
+
+
+e.g.
+
+TransactionStateMachine.h
+
+```objective-c
+typedef NS_ENUM(NSUinteger, TransactionState) {
+  TransactionOpened,
+  TransactionPending,
+  TransactionClosed
+};
+
+extern NSString * NSStringFromTransactionState(TransactionState state);
+```
+
+
+
+TransactionStateMachine.m
+
+```objective-c
+NSString * NSStringFromTransactionState(TransactionState state) {
+  switch (state) {
+    case TransactionOpened:
+      return @"Opened";
+    case TransactionPending:
+      return @"Pending";
+    case TransactionClosed:
+      return @"Closed";
+    default:
+      return nil
+  }
+}
+```
+
