@@ -121,7 +121,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a></li>
   </ul>
 </nav>
 
@@ -165,7 +165,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,128 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/27/iOSCodeTips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/27/iOSCodeTips/" class="post-title-link" itemprop="url">iOSCodeTips</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-27 17:58:07" itemprop="dateCreated datePublished" datetime="2021-04-27T17:58:07+00:00">2021-04-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-28 01:28:34" itemprop="dateModified" datetime="2021-04-28T01:28:34+00:00">2021-04-28</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="iOS-Code-Tips"><a href="#iOS-Code-Tips" class="headerlink" title="iOS Code Tips"></a>iOS Code Tips</h1><h2 id="编译器优化"><a href="#编译器优化" class="headerlink" title="编译器优化"></a>编译器优化</h2><h3 id="attribute"><a href="#attribute" class="headerlink" title="__attribute__"></a><code>__attribute__</code></h3><p>方法签名后，通过<code>__attribute__((&lt;#标志#&gt;))</code>来进行注释。</p>
+<h4 id="pure-和-const"><a href="#pure-和-const" class="headerlink" title="pure 和 const"></a>pure 和 const</h4><p>e.g. 1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pure 代表该函数除了使用了传入参数和&#x2F;或全局变量外没有其他副作用。</span><br><span class="line">- (NSString *)todayDisplayedText __attribute__((pure));</span><br></pre></td></tr></table></figure>
+
+<p>e.g. 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; const 表明该函数出了传入参数外不依赖于任何东西，这个函数的结果可以被缓存起来。后面调用时若参数相同，可以直接返回缓存的结果。</span><br><span class="line">&#x2F;&#x2F; 在这个示例中，一个数的平方值计算总是固定的，不依赖于其他变量或指针。</span><br><span class="line">int square(int n) __attribute__((const));</span><br></pre></td></tr></table></figure>
+
+<h4 id="unused"><a href="#unused" class="headerlink" title="unused"></a>unused</h4><blockquote>
+<p>当对一个函数增加了这个声明时，意味着这个函数可能不被使用，GCC不会对这个函数产生警告。</p>
+</blockquote>
+<p>使用 <code>__unused</code> 关键字可以达到同样的效果，可以在方法实现中声明没有被使用的参数。通过了解这个上下文，编译器可以进行相应的优化。你更可能会在 delegate 的方法实现里使用 <code>__unused</code>，因为 protocols 为了支持更多可能的用例经常会提供必要的参数之外的上下文。</p>
+<h4 id="availability"><a href="#availability" class="headerlink" title="availability"></a>availability</h4><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void f(void) __attribute__((availability(macosx, introduced&#x3D;10.4, deprecated&#x3D;10.6, obsolited&#x3D;10.7)));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>availability 属性是一个用逗号分隔的列表，第一项是平台名称，然后是可选的生命周期当中重要的里程碑时间，最后是额外信息。</p>
+</blockquote>
+<ul>
+<li>availability 声明被引入的第一个版本</li>
+<li>deprecated 声明被废弃的第一个版本，意味着用户应当从这个 API 迁移到另外的方法</li>
+<li>obsoleted 声明被废弃的第一个版本，意味着被彻底删除不能使用了</li>
+<li>unavailable 声明在这个平台上从来就是不可用的</li>
+<li>message 额外的文本信息，Clang 在对于废弃和淘汰声明给出警告或者错误的时候会提供这些信息，可以用于指导用户进行 API 替换</li>
+</ul>
+<blockquote>
+<p>在同一个声明上可以添加多个可用性属性，它们可能是针对不同平台的。只有当前和目标平台对应的平台可用性属性会发挥作用，其他的属性会被忽略掉。如果没有和当前目标苹果对应的可用性属性，整个可用性属性会被忽略。</p>
+</blockquote>
+<h5 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h5><ul>
+<li><code>ios</code>: 苹果 iOS 操作系统。最低的部署目标通过 <code>-mios-version-min=*version*</code>或者 <code>-miphoneos-version-min=*version*</code> 命令行参数指定。</li>
+<li><code>macosx</code>: 苹果 OS X 操作系统。最低的部署目标通过 <code>-mmacosx-version-min=*version*</code> 命令行参数指定。</li>
+</ul>
+<h4 id="overloadable"><a href="#overloadable" class="headerlink" title="overloadable"></a>overloadable</h4><blockquote>
+<p>Clang 在 C 语言中提供了 C++ 函数重载支持，通过 <code>overloadable</code> 这个属性实现。例如我们要提供多个不同重载版本的 <code>tgsin</code> 函数，它会调用合适的标准库函数，分别提供对 <code>float</code>，<code>double</code> 和 <code>long double</code> 精度的值计算 <code>sine</code>值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;math.h&gt;</span><br><span class="line">float __attribute__((overloadable)) tgsin(float x) &#123; return sinf(x); &#125;</span><br><span class="line">double __attribute__((overloadable)) tgsin(double x) &#123;return sin(x); &#125;</span><br><span class="line">long double __attribute__((overloadable)) tgsin(long double x) &#123; return sinl(x); &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意:  <code>overloadable</code>只能用于函数。你可以通过使用 <code>id</code> 和 <code>void *</code> 这种泛型的返回值和参数类型，在一定程度上实现方法声明的重载。</p>
+<h2 id="pragma-代码整理"><a href="#pragma-代码整理" class="headerlink" title="#pragma 代码整理"></a>#pragma 代码整理</h2><h3 id="pragma-mark-lt-标签文本-gt"><a href="#pragma-mark-lt-标签文本-gt" class="headerlink" title="#pragma mark - &lt;#标签文本#&gt;"></a>#pragma mark - &lt;#标签文本#&gt;</h3><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - &lt;#title#&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="pragma-GCC-warning-“-lt-警告文本-gt-”"><a href="#pragma-GCC-warning-“-lt-警告文本-gt-”" class="headerlink" title="#pragma GCC warning “&lt;#警告文本#&gt;”"></a>#pragma GCC warning “&lt;#警告文本#&gt;”</h3><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma GCC warning &quot;TODO: implemente here&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="pragma-clang-diagnostic-push-ignored-“”-pop"><a href="#pragma-clang-diagnostic-push-ignored-“”-pop" class="headerlink" title="#pragma clang diagnostic push / ignored “” / pop"></a>#pragma clang diagnostic push / ignored “” / pop</h3><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Warc-retain-cycles&quot;</span><br><span class="line">&#x2F;&#x2F; 需要被忽略参数循环饮用警告的代码</span><br><span class="line">&#x2F;*</span><br><span class="line">self.completionBlock &#x3D; ^&#123;</span><br><span class="line">	&#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br><span class="line">*&#x2F;</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -235,7 +357,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-16 08:33:10" itemprop="dateModified" datetime="2021-04-16T08:33:10+00:00">2021-04-16</time>
+        <time title="修改时间：2021-04-28 01:28:34" itemprop="dateModified" datetime="2021-04-28T01:28:34+00:00">2021-04-28</time>
       </span>
 
   
@@ -326,7 +448,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-16 08:33:10" itemprop="dateModified" datetime="2021-04-16T08:33:10+00:00">2021-04-16</time>
+        <time title="修改时间：2021-04-28 01:28:34" itemprop="dateModified" datetime="2021-04-28T01:28:34+00:00">2021-04-28</time>
       </span>
 
   
@@ -1025,7 +1147,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-16 08:33:10" itemprop="dateModified" datetime="2021-04-16T08:33:10+00:00">2021-04-16</time>
+        <time title="修改时间：2021-04-28 01:28:34" itemprop="dateModified" datetime="2021-04-28T01:28:34+00:00">2021-04-28</time>
       </span>
 
   

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ryotrix.dev","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="iOS Code Tips编译器优化__attribute__方法签名后，通过__attribute__((&lt;#标志#&gt;))来进行注释。 pure 和 conste.g. 1 12&#x2F;&#x2F; pure 代表该函数除了使用了传入参数和&#x2F;或全局变量外没有其他副作用。- (NSString *)todayDisplayedText __attribute__((pur">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOSCodeTips">
+<meta property="og:url" content="https://ryotrix.dev/2021/04/27/iOSCodeTips/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="iOS Code Tips编译器优化__attribute__方法签名后，通过__attribute__((&lt;#标志#&gt;))来进行注释。 pure 和 conste.g. 1 12&#x2F;&#x2F; pure 代表该函数除了使用了传入参数和&#x2F;或全局变量外没有其他副作用。- (NSString *)todayDisplayedText __attribute__((pur">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-27T17:58:07.000Z">
+<meta property="article:modified_time" content="2021-04-28T01:28:34.988Z">
+<meta property="article:author" content="Lex">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ryotrix.dev/2021/04/27/iOSCodeTips/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>iOSCodeTips | Hexo</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hexo</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS-Code-Tips"><span class="nav-number">1.</span> <span class="nav-text">iOS Code Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">编译器优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute"><span class="nav-number">1.1.1.</span> <span class="nav-text">__attribute__</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pure-%E5%92%8C-const"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">pure 和 const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unused"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">unused</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#availability"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">availability</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">支持的平台</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#overloadable"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">overloadable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pragma-%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">#pragma 代码整理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pragma-mark-lt-%E6%A0%87%E7%AD%BE%E6%96%87%E6%9C%AC-gt"><span class="nav-number">1.2.1.</span> <span class="nav-text">#pragma mark - &lt;#标签文本#&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pragma-GCC-warning-%E2%80%9C-lt-%E8%AD%A6%E5%91%8A%E6%96%87%E6%9C%AC-gt-%E2%80%9D"><span class="nav-number">1.2.2.</span> <span class="nav-text">#pragma GCC warning “&lt;#警告文本#&gt;”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pragma-clang-diagnostic-push-ignored-%E2%80%9C%E2%80%9D-pop"><span class="nav-number">1.2.3.</span> <span class="nav-text">#pragma clang diagnostic push &#x2F; ignored “” &#x2F; pop</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lex</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/27/iOSCodeTips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOSCodeTips
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-27 17:58:07" itemprop="dateCreated datePublished" datetime="2021-04-27T17:58:07+00:00">2021-04-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-28 01:28:34" itemprop="dateModified" datetime="2021-04-28T01:28:34+00:00">2021-04-28</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="iOS-Code-Tips"><a href="#iOS-Code-Tips" class="headerlink" title="iOS Code Tips"></a>iOS Code Tips</h1><h2 id="编译器优化"><a href="#编译器优化" class="headerlink" title="编译器优化"></a>编译器优化</h2><h3 id="attribute"><a href="#attribute" class="headerlink" title="__attribute__"></a><code>__attribute__</code></h3><p>方法签名后，通过<code>__attribute__((&lt;#标志#&gt;))</code>来进行注释。</p>
+<h4 id="pure-和-const"><a href="#pure-和-const" class="headerlink" title="pure 和 const"></a>pure 和 const</h4><p>e.g. 1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pure 代表该函数除了使用了传入参数和&#x2F;或全局变量外没有其他副作用。</span><br><span class="line">- (NSString *)todayDisplayedText __attribute__((pure));</span><br></pre></td></tr></table></figure>
+
+<p>e.g. 2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; const 表明该函数出了传入参数外不依赖于任何东西，这个函数的结果可以被缓存起来。后面调用时若参数相同，可以直接返回缓存的结果。</span><br><span class="line">&#x2F;&#x2F; 在这个示例中，一个数的平方值计算总是固定的，不依赖于其他变量或指针。</span><br><span class="line">int square(int n) __attribute__((const));</span><br></pre></td></tr></table></figure>
+
+<h4 id="unused"><a href="#unused" class="headerlink" title="unused"></a>unused</h4><blockquote>
+<p>当对一个函数增加了这个声明时，意味着这个函数可能不被使用，GCC不会对这个函数产生警告。</p>
+</blockquote>
+<p>使用 <code>__unused</code> 关键字可以达到同样的效果，可以在方法实现中声明没有被使用的参数。通过了解这个上下文，编译器可以进行相应的优化。你更可能会在 delegate 的方法实现里使用 <code>__unused</code>，因为 protocols 为了支持更多可能的用例经常会提供必要的参数之外的上下文。</p>
+<h4 id="availability"><a href="#availability" class="headerlink" title="availability"></a>availability</h4><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void f(void) __attribute__((availability(macosx, introduced&#x3D;10.4, deprecated&#x3D;10.6, obsolited&#x3D;10.7)));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>availability 属性是一个用逗号分隔的列表，第一项是平台名称，然后是可选的生命周期当中重要的里程碑时间，最后是额外信息。</p>
+</blockquote>
+<ul>
+<li>availability 声明被引入的第一个版本</li>
+<li>deprecated 声明被废弃的第一个版本，意味着用户应当从这个 API 迁移到另外的方法</li>
+<li>obsoleted 声明被废弃的第一个版本，意味着被彻底删除不能使用了</li>
+<li>unavailable 声明在这个平台上从来就是不可用的</li>
+<li>message 额外的文本信息，Clang 在对于废弃和淘汰声明给出警告或者错误的时候会提供这些信息，可以用于指导用户进行 API 替换</li>
+</ul>
+<blockquote>
+<p>在同一个声明上可以添加多个可用性属性，它们可能是针对不同平台的。只有当前和目标平台对应的平台可用性属性会发挥作用，其他的属性会被忽略掉。如果没有和当前目标苹果对应的可用性属性，整个可用性属性会被忽略。</p>
+</blockquote>
+<h5 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h5><ul>
+<li><code>ios</code>: 苹果 iOS 操作系统。最低的部署目标通过 <code>-mios-version-min=*version*</code>或者 <code>-miphoneos-version-min=*version*</code> 命令行参数指定。</li>
+<li><code>macosx</code>: 苹果 OS X 操作系统。最低的部署目标通过 <code>-mmacosx-version-min=*version*</code> 命令行参数指定。</li>
+</ul>
+<h4 id="overloadable"><a href="#overloadable" class="headerlink" title="overloadable"></a>overloadable</h4><blockquote>
+<p>Clang 在 C 语言中提供了 C++ 函数重载支持，通过 <code>overloadable</code> 这个属性实现。例如我们要提供多个不同重载版本的 <code>tgsin</code> 函数，它会调用合适的标准库函数，分别提供对 <code>float</code>，<code>double</code> 和 <code>long double</code> 精度的值计算 <code>sine</code>值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;math.h&gt;</span><br><span class="line">float __attribute__((overloadable)) tgsin(float x) &#123; return sinf(x); &#125;</span><br><span class="line">double __attribute__((overloadable)) tgsin(double x) &#123;return sin(x); &#125;</span><br><span class="line">long double __attribute__((overloadable)) tgsin(long double x) &#123; return sinl(x); &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意:  <code>overloadable</code>只能用于函数。你可以通过使用 <code>id</code> 和 <code>void *</code> 这种泛型的返回值和参数类型，在一定程度上实现方法声明的重载。</p>
+<h2 id="pragma-代码整理"><a href="#pragma-代码整理" class="headerlink" title="#pragma 代码整理"></a>#pragma 代码整理</h2><h3 id="pragma-mark-lt-标签文本-gt"><a href="#pragma-mark-lt-标签文本-gt" class="headerlink" title="#pragma mark - &lt;#标签文本#&gt;"></a>#pragma mark - &lt;#标签文本#&gt;</h3><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - &lt;#title#&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="pragma-GCC-warning-“-lt-警告文本-gt-”"><a href="#pragma-GCC-warning-“-lt-警告文本-gt-”" class="headerlink" title="#pragma GCC warning “&lt;#警告文本#&gt;”"></a>#pragma GCC warning “&lt;#警告文本#&gt;”</h3><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma GCC warning &quot;TODO: implemente here&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="pragma-clang-diagnostic-push-ignored-“”-pop"><a href="#pragma-clang-diagnostic-push-ignored-“”-pop" class="headerlink" title="#pragma clang diagnostic push / ignored “” / pop"></a>#pragma clang diagnostic push / ignored “” / pop</h3><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Warc-retain-cycles&quot;</span><br><span class="line">&#x2F;&#x2F; 需要被忽略参数循环饮用警告的代码</span><br><span class="line">&#x2F;*</span><br><span class="line">self.completionBlock &#x3D; ^&#123;</span><br><span class="line">	&#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br><span class="line">*&#x2F;</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/06/ARM%E5%8F%8A%E6%B1%87%E7%BC%96/" rel="prev" title="ARM及汇编">
+                  <i class="fa fa-chevron-left"></i> ARM及汇编
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lex</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
