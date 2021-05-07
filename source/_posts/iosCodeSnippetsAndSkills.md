@@ -998,3 +998,38 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 }
 ```
 
+
+
+## 数据持久化
+
+### `NSKeyedArchiver`和`NSKeyedUnarchiver`
+
+e.g.
+
+```objective-c
+// 1. 获取存储路径
+NSURL *path = [NSBundle.mainBundle resourceURL];
+path = [path URLByAppendingPathComponent:@"Documents"];
+
+// 2. 存储
+NSDate *timestamp = [NSDate date];
+NSData *storeData = [NSKeyedArchiver archivedDataWithRootObject:timestamp requiringSecureCoding:NO error:nil];
+[storeData writeToURL:path options:NSDataWritingFileProtectionCompleteUnlessOpen error:nil];
+
+// 3. 取出数据
+NSDate *date = [NSKeyedUnarchiver unarchivedObjectOfClass:NSDate.class fromData:[NSData dataWithContentsOfURL:path] error:nil];
+```
+
+
+
+## 确定文件是否存在
+
+```objective-c
+NSFileManager *fileManager = [NSFileManager defaultManager];
+NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+NSString *filePath = [documentsPath stringByAppendingPathComponent:@"file.txt"];
+BOOL fileExists = [fileManager fileExistsAtPath:filePath];
+```
+
+
+
