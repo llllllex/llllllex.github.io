@@ -826,3 +826,175 @@ NSString * NSStringFromTransactionState(TransactionState state) {
 }
 ```
 
+
+
+## 使用 CFStringTransform 正则化用户生产的内容
+
+字符串变换的一个更实际的应用是正则化不可预知的用户输入。即使你的应用并不单独处理其他语言，你也应当能智能地处理用户向你的应用输入的任何内容。
+
+例如，你想在设备上建立一个可搜索的电影索引，它包含世界各地的人的问候：
+
+- 首先，应用 `kCFStringTransformToLatin` 变换将所有非英文文本转换为拉丁字母表示。
+
+> Hello! こんにちは! สวัสดี! مرحبا! 您好! → Hello! kon’nichiha! s̄wạs̄dī! mrḥbạ! nín hǎo!
+
+- 然后，应用 `kCFStringTransformStripCombiningMarks` 变换来去除变音符和重音。
+
+> Hello! kon’nichiha! s̄wạs̄dī! mrḥbạ! nín hǎo! → Hello! kon’nichiha! swasdi! mrhba! nin hao!
+
+- 最后，用 `CFStringLowercase` 转为小写，并用[`CFStringTokenizer`](https://developer.apple.com/library/mac/#documentation/CoreFoundation/Reference/CFStringTokenizerRef/Reference/reference.html) 分词用作文本的索引。
+
+> (hello, kon’nichiha, swasdi, mrhba, nin, hao)
+
+通过对用户输入的文本使用同样的变换，你就可以实现一个通用的搜索，无论搜索文本或内容是什么语言！
+
+
+
+## CoreMotion 和 CoreLocation组合使用时一些移动速度范围指导值
+
+- 步行速度通常最高能达到 2.5 米每秒（5.6 mph, 9 km/h）
+- 跑步速度范围从 2.5 到 7.5 米每秒（5.6 – 16.8 mph, 9 – 27 km/h）
+- 骑行速度范围从 3 到 12 米每秒（6.7 – 26.8 mph, 10.8 – 43.2 km/h）
+- 汽车的速度可以超过 100 米每秒（220 mph, 360 km/h）
+
+### 或者，你可能会使用位置数据来改变 UI，取决于现在的位置是否在一片水域。
+
+```objective-c
+if currentLocation.intersects(waterRegion) {
+    if activity.walking {
+        print("🏊‍")
+    } else if activity.automotive {
+        print("🚢")
+    }
+}
+```
+
+
+
+## 使用 keyPath 时避免拼写错误
+
+```objective-c
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if ([object isKindOfClass:[NSOperation class]]) {
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(isFinished))]) {
+
+        }
+    } else if (...) {
+        // ...
+    }
+}
+```
+
+
+
+### removeObserver时，避免因尚未注册导致的崩溃
+
+> 使用 @try / @catch 块包裹 remove 语句
+
+```objective-c
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(isFinished))]) {
+        if ([object isFinished]) {
+          @try {
+              [object removeObserver:self forKeyPath:NSStringFromSelector(@selector(isFinished))];
+          }
+          @catch (NSException * __unused exception) {}
+        }
+    }
+}
+```
+
+
+
+> 当然，这个例子中没有处理一个捕获的异常，这其实是一种妥协的方式。因此，只有当面对连续不断的崩溃并且不能通过一般的措施（竞争条件或者来自父类的非法行为）补救才会用这种方式。
+
+
+
+## 断言和断言处理器
+
+### 两套断言宏
+
+1. 一般断言：`NSAssert` / `NSCAssert`
+2. 参数化断言：`NSParameterAssert` / `NSCParameterAssert`
+
+#### 使用方法：
+
+> 方法或函数应当在代码最开始处使用 `NSParameterAssert` / `NSCParameterAssert` 来强制输入的值满足先验条件，这是一条金科玉律；其他情况下使用 `NSAssert` / `NSCAssert`。
+
+#### 区别：
+
+>  C 和 Objective-C 的断言：`NSAssert` 应当只用于 Objective-C 环境中（即方法实现中），而 `NSCAssert` 应当只用于 C 环境中（即函数中）。
+
+#### Also:
+
+> `NSAssert`和`NSCAssert`有多参数变体，从`NSAssert1`到`NSAssert5`，他们各自使用不同数量的参数用于`printf`风格的格式化字符串。
+
+### `NSAssertionHandler`
+
+> `NSAssertionHandler` 提供了一套优雅地处理断言失败的方式来保留珍贵的现实世界的使用信息......但是不要在生产环境中使用`NSAssertionHandler`......基础类库中的断言处理只可远观不可亵玩。
+
+> `NSAssertionHandler` 是一个很直接的类，带有两个需要在子类中实现的方法：`-handleFailureInMethod:...` （当 `NSAssert` / `NSParameterAssert` 失败时调用）和 `-handleFailureInFunction:...` （当 `NSCAssert` / `NSCParameterAssert` 失败时调用）。
+
+e.g.
+
+LoggingAssertionHander.h
+
+```objective-c
+@interface LoggingAssertionHandler: NSAssertionHandler
+@end
+```
+
+LoggingAssertionHandler.m
+
+```objective-c
+@implementation LoggingAssertionHandler
+
+- (void)handleFailureInMethod:(SEL)selector
+                       object:(id)object
+                         file:(NSString *)fileName
+                   lineNumber:(NSInteger)line
+                  description:(NSString *)format, ...
+{
+  NSLog(@"NSAssert Failure: Method %@ for object %@ in %@#%i", NSStringFromSelector(selector), object, fileName, line);
+}
+
+- (void)handleFailureInFunction:(NSString *)functionName
+                           file:(NSString *)fileName
+                     lineNumber:(NSInteger)line
+                    description:(NSString *)format, ...
+{
+  NSLog(@"NSCAssert Failure: Function (%@) in %@#%i", functionName, fileName, line);
+}
+
+@end
+```
+
+>每个线程都可以指定断言处理器。想设置一个 `NSAssertionHandler` 的子类来处理失败的断言，在线程的 `threadDictionary` 对象中设置 `NSAssertionHandlerKey` 字段即可。
+>
+>大部分情况下，你只需在 `-application:didFinishLaunchingWithOptions:` 中设置当前线程的断言处理器。
+
+e.g.
+
+AppDelegate.m
+
+```objective-c
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  NSAssertionHandler *assertionHandler = [[LoggingAssertionHandler alloc] init];
+  [[[NSThread currentThread] threadDictionary] setValue:assertionHandler
+                                                 forKey:NSAssertionHandlerKey];
+  // ...
+
+  return YES;
+}
+```
+
