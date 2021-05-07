@@ -235,7 +235,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-28 06:23:45" itemprop="dateModified" datetime="2021-04-28T06:23:45+00:00">2021-04-28</time>
+        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
       </span>
 
   
@@ -357,6 +357,7 @@
 <p>a: 指向NSString实例对象a的指针（在使用时，对a的操作被解读为调用实例对象的get/set和其他实例方法调用）</p>
 <p>*a: 实力对象a指向的数据</p>
 <p>&amp;a: 指针本身（指针数据）</p>
+<h2 id="XIB-布局问题"><a href="#XIB-布局问题" class="headerlink" title="XIB 布局问题"></a>XIB 布局问题</h2><p>通过xib 加载的文档在viewDidLoad中加载的时候并不会去布局frame ，只是拿到xib 中设置的大小属性，只有在 viewDidLayoutSubViews 里才会去根据布局去确定控件的最终尺寸(不过添加view 的操作不能放在这里，因为这个方法会调用多次)</p>
 
       
     </div>
@@ -414,7 +415,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-28 06:23:45" itemprop="dateModified" datetime="2021-04-28T06:23:45+00:00">2021-04-28</time>
+        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
       </span>
 
   
@@ -505,7 +506,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-28 06:23:45" itemprop="dateModified" datetime="2021-04-28T06:23:45+00:00">2021-04-28</time>
+        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
       </span>
 
   
@@ -827,6 +828,87 @@
 
 <p>TransactionStateMachine.m</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NSString * NSStringFromTransactionState(TransactionState state) &#123;</span><br><span class="line">  switch (state) &#123;</span><br><span class="line">    case TransactionOpened:</span><br><span class="line">      return @&quot;Opened&quot;;</span><br><span class="line">    case TransactionPending:</span><br><span class="line">      return @&quot;Pending&quot;;</span><br><span class="line">    case TransactionClosed:</span><br><span class="line">      return @&quot;Closed&quot;;</span><br><span class="line">    default:</span><br><span class="line">      return nil</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用-CFStringTransform-正则化用户生产的内容"><a href="#使用-CFStringTransform-正则化用户生产的内容" class="headerlink" title="使用 CFStringTransform 正则化用户生产的内容"></a>使用 CFStringTransform 正则化用户生产的内容</h2><p>字符串变换的一个更实际的应用是正则化不可预知的用户输入。即使你的应用并不单独处理其他语言，你也应当能智能地处理用户向你的应用输入的任何内容。</p>
+<p>例如，你想在设备上建立一个可搜索的电影索引，它包含世界各地的人的问候：</p>
+<ul>
+<li>首先，应用 <code>kCFStringTransformToLatin</code> 变换将所有非英文文本转换为拉丁字母表示。</li>
+</ul>
+<blockquote>
+<p>Hello! こんにちは! สวัสดี! مرحبا! 您好! → Hello! kon’nichiha! s̄wạs̄dī! mrḥbạ! nín hǎo!</p>
+</blockquote>
+<ul>
+<li>然后，应用 <code>kCFStringTransformStripCombiningMarks</code> 变换来去除变音符和重音。</li>
+</ul>
+<blockquote>
+<p>Hello! kon’nichiha! s̄wạs̄dī! mrḥbạ! nín hǎo! → Hello! kon’nichiha! swasdi! mrhba! nin hao!</p>
+</blockquote>
+<ul>
+<li>最后，用 <code>CFStringLowercase</code> 转为小写，并用<a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/#documentation/CoreFoundation/Reference/CFStringTokenizerRef/Reference/reference.html"><code>CFStringTokenizer</code></a> 分词用作文本的索引。</li>
+</ul>
+<blockquote>
+<p>(hello, kon’nichiha, swasdi, mrhba, nin, hao)</p>
+</blockquote>
+<p>通过对用户输入的文本使用同样的变换，你就可以实现一个通用的搜索，无论搜索文本或内容是什么语言！</p>
+<h2 id="CoreMotion-和-CoreLocation组合使用时一些移动速度范围指导值"><a href="#CoreMotion-和-CoreLocation组合使用时一些移动速度范围指导值" class="headerlink" title="CoreMotion 和 CoreLocation组合使用时一些移动速度范围指导值"></a>CoreMotion 和 CoreLocation组合使用时一些移动速度范围指导值</h2><ul>
+<li>步行速度通常最高能达到 2.5 米每秒（5.6 mph, 9 km/h）</li>
+<li>跑步速度范围从 2.5 到 7.5 米每秒（5.6 – 16.8 mph, 9 – 27 km/h）</li>
+<li>骑行速度范围从 3 到 12 米每秒（6.7 – 26.8 mph, 10.8 – 43.2 km/h）</li>
+<li>汽车的速度可以超过 100 米每秒（220 mph, 360 km/h）</li>
+</ul>
+<h3 id="或者，你可能会使用位置数据来改变-UI，取决于现在的位置是否在一片水域。"><a href="#或者，你可能会使用位置数据来改变-UI，取决于现在的位置是否在一片水域。" class="headerlink" title="或者，你可能会使用位置数据来改变 UI，取决于现在的位置是否在一片水域。"></a>或者，你可能会使用位置数据来改变 UI，取决于现在的位置是否在一片水域。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if currentLocation.intersects(waterRegion) &#123;</span><br><span class="line">    if activity.walking &#123;</span><br><span class="line">        print(&quot;🏊‍&quot;)</span><br><span class="line">    &#125; else if activity.automotive &#123;</span><br><span class="line">        print(&quot;🚢&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用-keyPath-时避免拼写错误"><a href="#使用-keyPath-时避免拼写错误" class="headerlink" title="使用 keyPath 时避免拼写错误"></a>使用 keyPath 时避免拼写错误</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">                      ofObject:(id)object</span><br><span class="line">                        change:(NSDictionary *)change</span><br><span class="line">                       context:(void *)context</span><br><span class="line">&#123;</span><br><span class="line">    if ([object isKindOfClass:[NSOperation class]]) &#123;</span><br><span class="line">        if ([keyPath isEqualToString:NSStringFromSelector(@selector(isFinished))]) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if (...) &#123;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="removeObserver时，避免因尚未注册导致的崩溃"><a href="#removeObserver时，避免因尚未注册导致的崩溃" class="headerlink" title="removeObserver时，避免因尚未注册导致的崩溃"></a>removeObserver时，避免因尚未注册导致的崩溃</h3><blockquote>
+<p>使用 @try / @catch 块包裹 remove 语句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">                      ofObject:(id)object</span><br><span class="line">                        change:(NSDictionary *)change</span><br><span class="line">                       context:(void *)context</span><br><span class="line">&#123;</span><br><span class="line">    if ([keyPath isEqualToString:NSStringFromSelector(@selector(isFinished))]) &#123;</span><br><span class="line">        if ([object isFinished]) &#123;</span><br><span class="line">          @try &#123;</span><br><span class="line">              [object removeObserver:self forKeyPath:NSStringFromSelector(@selector(isFinished))];</span><br><span class="line">          &#125;</span><br><span class="line">          @catch (NSException * __unused exception) &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>当然，这个例子中没有处理一个捕获的异常，这其实是一种妥协的方式。因此，只有当面对连续不断的崩溃并且不能通过一般的措施（竞争条件或者来自父类的非法行为）补救才会用这种方式。</p>
+</blockquote>
+<h2 id="断言和断言处理器"><a href="#断言和断言处理器" class="headerlink" title="断言和断言处理器"></a>断言和断言处理器</h2><h3 id="两套断言宏"><a href="#两套断言宏" class="headerlink" title="两套断言宏"></a>两套断言宏</h3><ol>
+<li>一般断言：<code>NSAssert</code> / <code>NSCAssert</code></li>
+<li>参数化断言：<code>NSParameterAssert</code> / <code>NSCParameterAssert</code></li>
+</ol>
+<h4 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h4><blockquote>
+<p>方法或函数应当在代码最开始处使用 <code>NSParameterAssert</code> / <code>NSCParameterAssert</code> 来强制输入的值满足先验条件，这是一条金科玉律；其他情况下使用 <code>NSAssert</code> / <code>NSCAssert</code>。</p>
+</blockquote>
+<h4 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h4><blockquote>
+<p> C 和 Objective-C 的断言：<code>NSAssert</code> 应当只用于 Objective-C 环境中（即方法实现中），而 <code>NSCAssert</code> 应当只用于 C 环境中（即函数中）。</p>
+</blockquote>
+<h4 id="Also"><a href="#Also" class="headerlink" title="Also:"></a>Also:</h4><blockquote>
+<p><code>NSAssert</code>和<code>NSCAssert</code>有多参数变体，从<code>NSAssert1</code>到<code>NSAssert5</code>，他们各自使用不同数量的参数用于<code>printf</code>风格的格式化字符串。</p>
+</blockquote>
+<h3 id="NSAssertionHandler"><a href="#NSAssertionHandler" class="headerlink" title="NSAssertionHandler"></a><code>NSAssertionHandler</code></h3><blockquote>
+<p><code>NSAssertionHandler</code> 提供了一套优雅地处理断言失败的方式来保留珍贵的现实世界的使用信息……但是不要在生产环境中使用<code>NSAssertionHandler</code>……基础类库中的断言处理只可远观不可亵玩。</p>
+</blockquote>
+<blockquote>
+<p><code>NSAssertionHandler</code> 是一个很直接的类，带有两个需要在子类中实现的方法：<code>-handleFailureInMethod:...</code> （当 <code>NSAssert</code> / <code>NSParameterAssert</code> 失败时调用）和 <code>-handleFailureInFunction:...</code> （当 <code>NSCAssert</code> / <code>NSCParameterAssert</code> 失败时调用）。</p>
+</blockquote>
+<p>e.g.</p>
+<p>LoggingAssertionHander.h</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface LoggingAssertionHandler: NSAssertionHandler</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>LoggingAssertionHandler.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@implementation LoggingAssertionHandler</span><br><span class="line"></span><br><span class="line">- (void)handleFailureInMethod:(SEL)selector</span><br><span class="line">                       object:(id)object</span><br><span class="line">                         file:(NSString *)fileName</span><br><span class="line">                   lineNumber:(NSInteger)line</span><br><span class="line">                  description:(NSString *)format, ...</span><br><span class="line">&#123;</span><br><span class="line">  NSLog(@&quot;NSAssert Failure: Method %@ for object %@ in %@#%i&quot;, NSStringFromSelector(selector), object, fileName, line);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)handleFailureInFunction:(NSString *)functionName</span><br><span class="line">                           file:(NSString *)fileName</span><br><span class="line">                     lineNumber:(NSInteger)line</span><br><span class="line">                    description:(NSString *)format, ...</span><br><span class="line">&#123;</span><br><span class="line">  NSLog(@&quot;NSCAssert Failure: Function (%@) in %@#%i&quot;, functionName, fileName, line);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>每个线程都可以指定断言处理器。想设置一个 <code>NSAssertionHandler</code> 的子类来处理失败的断言，在线程的 <code>threadDictionary</code> 对象中设置 <code>NSAssertionHandlerKey</code> 字段即可。</p>
+<p>大部分情况下，你只需在 <code>-application:didFinishLaunchingWithOptions:</code> 中设置当前线程的断言处理器。</p>
+</blockquote>
+<p>e.g.</p>
+<p>AppDelegate.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application</span><br><span class="line">didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">  NSAssertionHandler *assertionHandler &#x3D; [[LoggingAssertionHandler alloc] init];</span><br><span class="line">  [[[NSThread currentThread] threadDictionary] setValue:assertionHandler</span><br><span class="line">                                                 forKey:NSAssertionHandlerKey];</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">  return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -1229,7 +1311,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-04-28 06:23:45" itemprop="dateModified" datetime="2021-04-28T06:23:45+00:00">2021-04-28</time>
+        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
       </span>
 
   
