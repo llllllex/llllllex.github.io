@@ -121,7 +121,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">10</span></a></li>
   </ul>
 </nav>
 
@@ -165,7 +165,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,482 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/05/07/iOSErrorCodeList/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/07/iOSErrorCodeList/" class="post-title-link" itemprop="url">iOSErrorCodeList</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-07 17:20:50 / 修改时间：10:21:12" itemprop="dateCreated datePublished" datetime="2021-05-07T17:20:50+00:00">2021-05-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="iOSErrorCodeList"><a href="#iOSErrorCodeList" class="headerlink" title="iOSErrorCodeList"></a>iOSErrorCodeList</h1><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-1 <code>NSURLErrorUnknown</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">1 <code>kCFHostErrorHostNotFound</code></td>
+<td align="left">Indicates that the DNS lookup failed.</td>
+</tr>
+<tr>
+<td align="left">2 <code>kCFHostErrorUnknown</code></td>
+<td align="left">An unknown error occurred (a name server failure, for example). For additional information, query the kCFGetAddrInfoFailureKey to get the value returned from getaddrinfo; lookup in netdb.h</td>
+</tr>
+<tr>
+<td align="left">100 <code>kCFSOCKSErrorUnknownClientVersion</code></td>
+<td align="left">The SOCKS server rejected access because it does not support connections with the requested SOCKS version.Query kCFSOCKSStatusCodeKey to recover the status code returned by the server.</td>
+</tr>
+<tr>
+<td align="left">101 <code>kCFSOCKSErrorUnsupportedServerVersion</code></td>
+<td align="left">The version of SOCKS requested by the server is not supported. Query kCFSOCKSStatusCodeKey to recover the status code returned by the server.  Query the kCFSOCKSVersionKey to find the version requested by the server.</td>
+</tr>
+</tbody></table>
+<h2 id="Sock4-Errors"><a href="#Sock4-Errors" class="headerlink" title="Sock4 Errors"></a>Sock4 Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">110 <code>kCFSOCKS4ErrorRequestFailed</code></td>
+<td align="left">Request rejected or failed by the server.</td>
+</tr>
+<tr>
+<td align="left">111 <code>kCFSOCKS4ErrorIdentdFailed</code></td>
+<td align="left">Request rejected because SOCKS server cannot connect to identd on the client.</td>
+</tr>
+<tr>
+<td align="left">112 <code>kCFSOCKS4ErrorIdConflict</code></td>
+<td align="left">Request rejected because the client program and identd report different user-ids.</td>
+</tr>
+<tr>
+<td align="left">113 <code>kCFSOCKS4ErrorUnknownStatusCode</code></td>
+<td align="left">The status code returned by the server is unknown.</td>
+</tr>
+</tbody></table>
+<h2 id="Socks5-Errors"><a href="#Socks5-Errors" class="headerlink" title="Socks5 Errors"></a>Socks5 Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">120 <code>kCFSOCKS5ErrorBadState</code></td>
+<td align="left">The stream is not in a state that allows the requested operation.</td>
+</tr>
+<tr>
+<td align="left">121 <code>kCFSOCKS5ErrorBadResponseAddr</code></td>
+<td align="left">The address type returned is not supported.</td>
+</tr>
+<tr>
+<td align="left">122 <code>kCFSOCKS5ErrorBadCredentials</code></td>
+<td align="left">The SOCKS server refused the client connection because of bad login credentials.</td>
+</tr>
+<tr>
+<td align="left">123 <code>kCFSOCKS5ErrorUnsupportedNegotiationMethod</code></td>
+<td align="left">The requested method is not supported. Query kCFSOCKSNegotiationMethodKey to find the method requested.</td>
+</tr>
+<tr>
+<td align="left">124 <code>kCFSOCKS5ErrorNoAcceptableMethod</code></td>
+<td align="left">The client and server could not find a mutually agreeable authentication method.</td>
+</tr>
+</tbody></table>
+<h2 id="FTP-Errors"><a href="#FTP-Errors" class="headerlink" title="FTP Errors"></a>FTP Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">200 <code>kCFFTPErrorUnexpectedStatusCode</code></td>
+<td align="left">The server returned an unexpected status code. Query the kCFFTPStatusCodeKey to get the status code returned by the server</td>
+</tr>
+</tbody></table>
+<h2 id="HTTP-Errors"><a href="#HTTP-Errors" class="headerlink" title="HTTP Errors"></a>HTTP Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">300 <code>kCFErrorHTTPAuthenticationTypeUnsupported</code></td>
+<td align="left">The client and server could not agree on a supported authentication type.</td>
+</tr>
+<tr>
+<td align="left">301 <code>kCFErrorHTTPBadCredentials</code></td>
+<td align="left">The credentials provided for an authenticated connection were rejected by the server.</td>
+</tr>
+<tr>
+<td align="left">302 <code>kCFErrorHTTPConnectionLost</code></td>
+<td align="left">The connection to the server was dropped. This usually indicates a highly overloaded server.</td>
+</tr>
+<tr>
+<td align="left">303 <code>kCFErrorHTTPParseFailure</code></td>
+<td align="left">The HTTP server response could not be parsed.</td>
+</tr>
+<tr>
+<td align="left">304 <code>kCFErrorHTTPRedirectionLoopDetected</code></td>
+<td align="left">Too many HTTP redirects occurred before reaching a page that did not redirect the client to another page. This usually indicates a redirect loop.</td>
+</tr>
+<tr>
+<td align="left">305 <code>kCFErrorHTTPBadURL</code></td>
+<td align="left">The requested URL could not be retrieved.</td>
+</tr>
+<tr>
+<td align="left">306 <code>kCFErrorHTTPProxyConnectionFailure</code></td>
+<td align="left">A connection could not be established to the HTTP proxy.</td>
+</tr>
+<tr>
+<td align="left">307 <code>kCFErrorHTTPBadProxyCredentials</code></td>
+<td align="left">The authentication credentials provided for logging into the proxy were rejected.</td>
+</tr>
+<tr>
+<td align="left">308 <code>kCFErrorPACFileError</code></td>
+<td align="left">An error occurred with the proxy autoconfiguration file.</td>
+</tr>
+<tr>
+<td align="left">309 <code>kCFErrorPACFileAuth</code></td>
+<td align="left">The authentication credentials provided by the proxy autoconfiguration file were rejected.</td>
+</tr>
+<tr>
+<td align="left">310 <code>kCFErrorHTTPSProxyConnectionFailure</code></td>
+<td align="left">A connection could not be established to the HTTPS proxy.</td>
+</tr>
+<tr>
+<td align="left">311 <code>kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod</code></td>
+<td align="left">The HTTPS proxy returned an unexpected status code, such as a 3xx redirect.</td>
+</tr>
+</tbody></table>
+<h2 id="CFURLConnection-amp-CFURLProtocol-Errors"><a href="#CFURLConnection-amp-CFURLProtocol-Errors" class="headerlink" title="CFURLConnection &amp; CFURLProtocol Errors"></a>CFURLConnection &amp; CFURLProtocol Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-998 <code>kCFURLErrorUnknown</code></td>
+<td align="left">An unknown error occurred.</td>
+</tr>
+<tr>
+<td align="left">-999 <code>kCFURLErrorCancelled</code> <code>NSURLErrorCancelled</code></td>
+<td align="left">The connection was cancelled.</td>
+</tr>
+<tr>
+<td align="left">-1000 <code>kCFURLErrorBadURL</code> <code>NSURLErrorBadURL</code></td>
+<td align="left">The connection failed due to a malformed URL.</td>
+</tr>
+<tr>
+<td align="left">-1001 <code>kCFURLErrorTimedOut</code> <code>NSURLErrorTimedOut</code></td>
+<td align="left">The connection timed out.</td>
+</tr>
+<tr>
+<td align="left">-1002 <code>kCFURLErrorUnsupportedURL</code> <code>NSURLErrorUnsupportedURL</code></td>
+<td align="left">The connection failed due to an unsupported URL scheme.</td>
+</tr>
+<tr>
+<td align="left">-1003 <code>kCFURLErrorCannotFindHost</code> <code>NSURLErrorCannotFindHost</code></td>
+<td align="left">The connection failed because the host could not be found.</td>
+</tr>
+<tr>
+<td align="left">-1004 <code>kCFURLErrorCannotConnectToHost</code> <code>NSURLErrorCannotConnectToHost</code></td>
+<td align="left">The connection failed because a connection cannot be made to the host.</td>
+</tr>
+<tr>
+<td align="left">-1005 <code>kCFURLErrorNetworkConnectionLost</code> <code>NSURLErrorNetworkConnectionLost</code></td>
+<td align="left">The connection failed because the network connection was lost.</td>
+</tr>
+<tr>
+<td align="left">-1006 <code>kCFURLErrorDNSLookupFailed</code> <code>NSURLErrorDNSLookupFailed</code></td>
+<td align="left">The connection failed because the DNS lookup failed.</td>
+</tr>
+<tr>
+<td align="left">-1007 <code>kCFURLErrorHTTPTooManyRedirects</code> <code>NSURLErrorHTTPTooManyRedirects</code></td>
+<td align="left">The HTTP connection failed due to too many redirects.</td>
+</tr>
+<tr>
+<td align="left">-1008 <code>kCFURLErrorResourceUnavailable</code> <code>NSURLErrorResourceUnavailable</code></td>
+<td align="left">The connection’s resource is unavailable.</td>
+</tr>
+<tr>
+<td align="left">-1009 <code>kCFURLErrorNotConnectedToInternet</code> <code>NSURLErrorNotConnectedToInternet</code></td>
+<td align="left">The connection failed because the device is not connected to the internet.</td>
+</tr>
+<tr>
+<td align="left">-1010 <code>kCFURLErrorRedirectToNonExistentLocation</code> <code>NSURLErrorRedirectToNonExistentLocation</code></td>
+<td align="left">The connection was redirected to a nonexistent location.</td>
+</tr>
+<tr>
+<td align="left">-1011 <code>kCFURLErrorBadServerResponse</code> <code>NSURLErrorBadServerResponse</code></td>
+<td align="left">The connection received an invalid server response.</td>
+</tr>
+<tr>
+<td align="left">-1012 <code>kCFURLErrorUserCancelledAuthentication</code> <code>NSURLErrorUserCancelledAuthentication</code></td>
+<td align="left">The connection failed because the user cancelled required authentication.</td>
+</tr>
+<tr>
+<td align="left">-1013 <code>kCFURLErrorUserAuthenticationRequired</code> <code>NSURLErrorUserAuthenticationRequired</code></td>
+<td align="left">The connection failed because authentication is required.</td>
+</tr>
+<tr>
+<td align="left">-1014 <code>kCFURLErrorZeroByteResource</code> <code>NSURLErrorZeroByteResource</code></td>
+<td align="left">The resource retrieved by the connection is zero bytes.</td>
+</tr>
+<tr>
+<td align="left">-1015 <code>kCFURLErrorCannotDecodeRawData</code> <code>NSURLErrorCannotDecodeRawData</code></td>
+<td align="left">The connection cannot decode data encoded with a known content encoding.</td>
+</tr>
+<tr>
+<td align="left">-1016 <code>kCFURLErrorCannotDecodeContentData</code> <code>NSURLErrorCannotDecodeContentData</code></td>
+<td align="left">The connection cannot decode data encoded with an unknown content encoding.</td>
+</tr>
+<tr>
+<td align="left">-1017 <code>kCFURLErrorCannotParseResponse</code> <code>NSURLErrorCannotParseResponse</code></td>
+<td align="left">The connection cannot parse the server’s response.</td>
+</tr>
+<tr>
+<td align="left">-1018 <code>kCFURLErrorInternationalRoamingOff</code></td>
+<td align="left">The connection failed because international roaming is disabled on the device.</td>
+</tr>
+<tr>
+<td align="left">-1019 <code>kCFURLErrorCallIsActive</code></td>
+<td align="left">The connection failed because a call is active.</td>
+</tr>
+<tr>
+<td align="left">-1020 <code>kCFURLErrorDataNotAllowed</code></td>
+<td align="left">The connection failed because data use is currently not allowed on the device.</td>
+</tr>
+<tr>
+<td align="left">-1021 <code>kCFURLErrorRequestBodyStreamExhausted</code></td>
+<td align="left">The connection failed because its request’s body stream was exhausted.</td>
+</tr>
+</tbody></table>
+<h2 id="File-Errors"><a href="#File-Errors" class="headerlink" title="File Errors"></a>File Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-1100 <code>kCFURLErrorFileDoesNotExist</code> <code>NSURLErrorFileDoesNotExist</code></td>
+<td align="left">The file operation failed because the file does not exist.</td>
+</tr>
+<tr>
+<td align="left">-1101 <code>kCFURLErrorFileIsDirectory</code> <code>NSURLErrorFileIsDirectory</code></td>
+<td align="left">The file operation failed because the file is a directory.</td>
+</tr>
+<tr>
+<td align="left">-1102 <code>kCFURLErrorNoPermissionsToReadFile</code> <code>NSURLErrorNoPermissionsToReadFile</code></td>
+<td align="left">The file operation failed because it does not have permission to read the file.</td>
+</tr>
+<tr>
+<td align="left">-1103 <code>kCFURLErrorDataLengthExceedsMaximum</code> <code>NSURLErrorDataLengthExceedsMaximum</code></td>
+<td align="left">The file operation failed because the file is too large.</td>
+</tr>
+</tbody></table>
+<h2 id="SSL-Errors"><a href="#SSL-Errors" class="headerlink" title="SSL Errors"></a>SSL Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-1200 <code>kCFURLErrorSecureConnectionFailed</code> <code>NSURLErrorSecureConnectionFailed</code></td>
+<td align="left">The secure connection failed for an unknown reason.</td>
+</tr>
+<tr>
+<td align="left">-1201 <code>kCFURLErrorServerCertificateHasBadDate</code> <code>NSURLErrorServerCertificateHasBadDate</code></td>
+<td align="left">The secure connection failed because the server’s certificate has an invalid date.</td>
+</tr>
+<tr>
+<td align="left">-1202 <code>kCFURLErrorServerCertificateUntrusted</code> <code>NSURLErrorServerCertificateUntrusted</code></td>
+<td align="left">The secure connection failed because the server’s certificate is not trusted.</td>
+</tr>
+<tr>
+<td align="left">-1203 <code>kCFURLErrorServerCertificateHasUnknownRoot</code> <code>NSURLErrorServerCertificateHasUnknownRoot</code></td>
+<td align="left">The secure connection failed because the server’s certificate has an unknown root.</td>
+</tr>
+<tr>
+<td align="left">-1204 <code>kCFURLErrorServerCertificateNotYetValid</code> <code>NSURLErrorServerCertificateNotYetValid</code></td>
+<td align="left">The secure connection failed because the server’s certificate is not yet valid.</td>
+</tr>
+<tr>
+<td align="left">-1205 <code>kCFURLErrorClientCertificateRejected</code> <code>NSURLErrorClientCertificateRejected</code></td>
+<td align="left">The secure connection failed because the client’s certificate was rejected.</td>
+</tr>
+<tr>
+<td align="left">-1206 <code>kCFURLErrorClientCertificateRequired</code> <code>NSURLErrorClientCertificateRequired</code></td>
+<td align="left">The secure connection failed because the server requires a client certificate.</td>
+</tr>
+</tbody></table>
+<h2 id="Download-and-File-I-O-Errors"><a href="#Download-and-File-I-O-Errors" class="headerlink" title="Download and File I/O Errors"></a>Download and File I/O Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-2000 <code>kCFURLErrorCannotLoadFromNetwork</code> <code>NSURLErrorCannotLoadFromNetwork</code></td>
+<td align="left">The connection failed because it is being required to return a cached resource, but one is not available.</td>
+</tr>
+<tr>
+<td align="left">-3000 <code>kCFURLErrorCannotCreateFile</code> <code>NSURLErrorCannotCreateFile</code></td>
+<td align="left">The file cannot be created.</td>
+</tr>
+<tr>
+<td align="left">-3001 <code>kCFURLErrorCannotOpenFile</code> <code>NSURLErrorCannotOpenFile</code></td>
+<td align="left">The file cannot be opened.</td>
+</tr>
+<tr>
+<td align="left">-3002 <code>kCFURLErrorCannotCloseFile</code> <code>NSURLErrorCannotCloseFile</code></td>
+<td align="left">The file cannot be closed.</td>
+</tr>
+<tr>
+<td align="left">-3003 <code>kCFURLErrorCannotWriteToFile</code> <code>NSURLErrorCannotWriteToFile</code></td>
+<td align="left">The file cannot be written.</td>
+</tr>
+<tr>
+<td align="left">-3004 <code>kCFURLErrorCannotRemoveFile</code> <code>NSURLErrorCannotRemoveFile</code></td>
+<td align="left">The file cannot be removed.</td>
+</tr>
+<tr>
+<td align="left">-3005 <code>kCFURLErrorCannotMoveFile</code> <code>NSURLErrorCannotMoveFile</code></td>
+<td align="left">The file cannot be moved.</td>
+</tr>
+<tr>
+<td align="left">-3006 <code>kCFURLErrorDownloadDecodingFailedMidStream</code> <code>NSURLErrorDownloadDecodingFailedMidStream</code></td>
+<td align="left">The download failed because decoding of the downloaded data failed mid-stream.</td>
+</tr>
+<tr>
+<td align="left">-3007 <code>kCFURLErrorDownloadDecodingFailedToComplete</code> <code>NSURLErrorDownloadDecodingFailedToComplete</code></td>
+<td align="left">The download failed because decoding of the downloaded data failed to complete.</td>
+</tr>
+</tbody></table>
+<h2 id="Cookie-Errors"><a href="#Cookie-Errors" class="headerlink" title="Cookie Errors"></a>Cookie Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-4000 <code>kCFHTTPCookieCannotParseCookieFile</code></td>
+<td align="left">The cookie file cannot be parsed.</td>
+</tr>
+</tbody></table>
+<h2 id="CFNetServices-Errors"><a href="#CFNetServices-Errors" class="headerlink" title="CFNetServices Errors"></a>CFNetServices Errors</h2><table>
+<thead>
+<tr>
+<th align="left">Code</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-72000L <code>kCFNetServiceErrorUnknown</code></td>
+<td align="left">An unknown error occurred.</td>
+</tr>
+<tr>
+<td align="left">-72001L <code>kCFNetServiceErrorCollision</code></td>
+<td align="left">An attempt was made to use a name that is already in use.</td>
+</tr>
+<tr>
+<td align="left">-72002L <code>kCFNetServiceErrorNotFound</code></td>
+<td align="left">Not used.</td>
+</tr>
+<tr>
+<td align="left">-72003L <code>kCFNetServiceErrorInProgress</code></td>
+<td align="left">A new search could not be started because a search is already in progress.</td>
+</tr>
+<tr>
+<td align="left">-72004L <code>kCFNetServiceErrorBadArgument</code></td>
+<td align="left">A required argument was not provided or was not valid.</td>
+</tr>
+<tr>
+<td align="left">-72005L <code>kCFNetServiceErrorCancel</code></td>
+<td align="left">The search or service was cancelled.</td>
+</tr>
+<tr>
+<td align="left">-72006L <code>kCFNetServiceErrorInvalid</code></td>
+<td align="left">Invalid data was passed to a CFNetServices function.</td>
+</tr>
+<tr>
+<td align="left">-72007L <code>kCFNetServiceErrorTimeout</code></td>
+<td align="left">A search failed because it timed out.</td>
+</tr>
+<tr>
+<td align="left">-73000L <code>kCFNetServiceErrorDNSServiceFailure</code></td>
+<td align="left">An error from DNS discovery; look at kCFDNSServiceFailureKey to get the error number and interpret using dnssd.h</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -235,7 +711,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
       </span>
 
   
@@ -415,7 +891,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
       </span>
 
   
@@ -506,7 +982,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
       </span>
 
   
@@ -911,6 +1387,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application</span><br><span class="line">didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">  NSAssertionHandler *assertionHandler &#x3D; [[LoggingAssertionHandler alloc] init];</span><br><span class="line">  [[[NSThread currentThread] threadDictionary] setValue:assertionHandler</span><br><span class="line">                                                 forKey:NSAssertionHandlerKey];</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">  return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+
+<h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><h3 id="NSKeyedArchiver和NSKeyedUnarchiver"><a href="#NSKeyedArchiver和NSKeyedUnarchiver" class="headerlink" title="NSKeyedArchiver和NSKeyedUnarchiver"></a><code>NSKeyedArchiver</code>和<code>NSKeyedUnarchiver</code></h3><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 获取存储路径</span><br><span class="line">NSURL *path &#x3D; [NSBundle.mainBundle resourceURL];</span><br><span class="line">path &#x3D; [path URLByAppendingPathComponent:@&quot;Documents&quot;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2. 存储</span><br><span class="line">NSDate *timestamp &#x3D; [NSDate date];</span><br><span class="line">NSData *storeData &#x3D; [NSKeyedArchiver archivedDataWithRootObject:timestamp requiringSecureCoding:NO error:nil];</span><br><span class="line">[storeData writeToURL:path options:NSDataWritingFileProtectionCompleteUnlessOpen error:nil];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3. 取出数据</span><br><span class="line">NSDate *date &#x3D; [NSKeyedUnarchiver unarchivedObjectOfClass:NSDate.class fromData:[NSData dataWithContentsOfURL:path] error:nil];</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="确定文件是否存在"><a href="#确定文件是否存在" class="headerlink" title="确定文件是否存在"></a>确定文件是否存在</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSFileManager *fileManager &#x3D; [NSFileManager defaultManager];</span><br><span class="line">NSString *documentsPath &#x3D; [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">NSString *filePath &#x3D; [documentsPath stringByAppendingPathComponent:@&quot;file.txt&quot;];</span><br><span class="line">BOOL fileExists &#x3D; [fileManager fileExistsAtPath:filePath];</span><br></pre></td></tr></table></figure>
+
+
+
+
       
     </div>
 
@@ -1311,7 +1798,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 02:10:51" itemprop="dateModified" datetime="2021-05-07T02:10:51+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
       </span>
 
   
