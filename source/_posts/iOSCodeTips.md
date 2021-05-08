@@ -149,3 +149,16 @@ a: 指向NSString实例对象a的指针（在使用时，对a的操作被解读�
 
 
 
+## `NSOrderedSet`
+
+### 继承关系
+
+> `NSOrderedSet` 不是 `NSSet` 的子类。
+
+`NSObject` <- `NSSet` <- `NSMutableSet`
+
+`NSObject` <- `NSOrderdSet` <- `NSMutableOrderedSet`
+
+### 注意事项
+
+因为 `NSMutableOrderedSet` 既不是 `NSSet` 也不是 `NSMutableSet`，因此需要尽可能避免对 `NSOrderedSet` 的使用。这个类的主要使用场景在 CoreData。

@@ -1022,6 +1022,60 @@ NSDate *date = [NSKeyedUnarchiver unarchivedObjectOfClass:NSDate.class fromData:
 
 
 
+## 文件写入与读取
+
+> https://nshipster.cn/nsfilemanager/
+
+进行文件的写入与读取时，不要使用 `NSBundle -xxxURL` 或 `NSBundle -xxxPath` 方法获取存储路径，可以使用 `NSSearchPathForDirectoriesInDomains` 。
+
+e.g.
+
+```objective-c
+NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+documentsPath = [documentsPath stringByAppendingPathComponent:@"store.data"];
+```
+
+### 推荐：`NSFileManager`
+
+
+
+## 使用 `NSIndexSet` 或 `NSMutableIndexSet` 配置设置项
+
+e.g.
+
+```objective-c
+static NSUInteger const PreferenceItemICloudSyncOn = 1001;
+static NSUInteger const PreferenceItemPreferredLocalCacheDataOn = 1002;
+static NSUInteger const PreferenceItemNotificationsOn = 1010;
+static NSUInteger const PreferenceItemNotificationsShowAlertOn = 1011;
+
+static NSUInteger const PreferenceItemCardStyleOn = 2001;
+static NSUInteger const PreferenceItemShowStrokeBorderOn = 2002;
+static NSUInteger const PreferenceItemHideTableViewSeparatorOn = 2003;
+
+static NSUInteger const PreferenceItemGuestModeOn = 3001;
+static NSUInteger const PreferenceItemHideSpecificFilesOn = 3002;
+
+- (NSMutableIndexSet *)openedPreferenceItems {
+    
+    if (!_openedPreferenceItems) {
+        
+      // 添加某项
+        _openedPreferenceItems = [NSMutableIndexSet indexSet];
+        [_openedPreferenceItems addIndex:PreferenceItemICloudSyncOn];
+        [_openedPreferenceItems addIndex:PreferenceItemNotificationsOn];
+        [_openedPreferenceItems addIndex:PreferenceItemHideTableViewSeparatorOn];
+        [_openedPreferenceItems addIndex:PreferenceItemHideSpecificFilesOn];
+    }
+    return _openedPreferenceItems;
+}
+
+// 移除某项
+[self.openedPreferenceItems removeIndex:PreferenceItemGuestModeOn];
+```
+
+
+
 ## 确定文件是否存在
 
 ```objective-c
