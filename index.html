@@ -227,10 +227,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-05-07 17:20:50 / 修改时间：10:21:12" itemprop="dateCreated datePublished" datetime="2021-05-07T17:20:50+00:00">2021-05-07</time>
+      <time title="创建时间：2021-05-07 17:20:50" itemprop="dateCreated datePublished" datetime="2021-05-07T17:20:50+00:00">2021-05-07</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
+      </span>
 
   
 </div>
@@ -711,7 +717,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
       </span>
 
   
@@ -834,6 +840,12 @@
 <p>*a: 实力对象a指向的数据</p>
 <p>&amp;a: 指针本身（指针数据）</p>
 <h2 id="XIB-布局问题"><a href="#XIB-布局问题" class="headerlink" title="XIB 布局问题"></a>XIB 布局问题</h2><p>通过xib 加载的文档在viewDidLoad中加载的时候并不会去布局frame ，只是拿到xib 中设置的大小属性，只有在 viewDidLayoutSubViews 里才会去根据布局去确定控件的最终尺寸(不过添加view 的操作不能放在这里，因为这个方法会调用多次)</p>
+<h2 id="NSOrderedSet"><a href="#NSOrderedSet" class="headerlink" title="NSOrderedSet"></a><code>NSOrderedSet</code></h2><h3 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h3><blockquote>
+<p><code>NSOrderedSet</code> 不是 <code>NSSet</code> 的子类。</p>
+</blockquote>
+<p><code>NSObject</code> &lt;- <code>NSSet</code> &lt;- <code>NSMutableSet</code></p>
+<p><code>NSObject</code> &lt;- <code>NSOrderdSet</code> &lt;- <code>NSMutableOrderedSet</code></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>因为 <code>NSMutableOrderedSet</code> 既不是 <code>NSSet</code> 也不是 <code>NSMutableSet</code>，因此需要尽可能避免对 <code>NSOrderedSet</code> 的使用。这个类的主要使用场景在 CoreData。</p>
 
       
     </div>
@@ -891,7 +903,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
       </span>
 
   
@@ -982,7 +994,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
       </span>
 
   
@@ -1393,6 +1405,18 @@
 
 
 
+<h2 id="文件写入与读取"><a href="#文件写入与读取" class="headerlink" title="文件写入与读取"></a>文件写入与读取</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://nshipster.cn/nsfilemanager/">https://nshipster.cn/nsfilemanager/</a></p>
+</blockquote>
+<p>进行文件的写入与读取时，不要使用 <code>NSBundle -xxxURL</code> 或 <code>NSBundle -xxxPath</code> 方法获取存储路径，可以使用 <code>NSSearchPathForDirectoriesInDomains</code> 。</p>
+<p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *documentsPath &#x3D; [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">documentsPath &#x3D; [documentsPath stringByAppendingPathComponent:@&quot;store.data&quot;];</span><br></pre></td></tr></table></figure>
+
+<h3 id="推荐：NSFileManager"><a href="#推荐：NSFileManager" class="headerlink" title="推荐：NSFileManager"></a>推荐：<code>NSFileManager</code></h3><h2 id="使用-NSIndexSet-或-NSMutableIndexSet-配置设置项"><a href="#使用-NSIndexSet-或-NSMutableIndexSet-配置设置项" class="headerlink" title="使用 NSIndexSet 或 NSMutableIndexSet 配置设置项"></a>使用 <code>NSIndexSet</code> 或 <code>NSMutableIndexSet</code> 配置设置项</h2><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">static NSUInteger const PreferenceItemICloudSyncOn &#x3D; 1001;</span><br><span class="line">static NSUInteger const PreferenceItemPreferredLocalCacheDataOn &#x3D; 1002;</span><br><span class="line">static NSUInteger const PreferenceItemNotificationsOn &#x3D; 1010;</span><br><span class="line">static NSUInteger const PreferenceItemNotificationsShowAlertOn &#x3D; 1011;</span><br><span class="line"></span><br><span class="line">static NSUInteger const PreferenceItemCardStyleOn &#x3D; 2001;</span><br><span class="line">static NSUInteger const PreferenceItemShowStrokeBorderOn &#x3D; 2002;</span><br><span class="line">static NSUInteger const PreferenceItemHideTableViewSeparatorOn &#x3D; 2003;</span><br><span class="line"></span><br><span class="line">static NSUInteger const PreferenceItemGuestModeOn &#x3D; 3001;</span><br><span class="line">static NSUInteger const PreferenceItemHideSpecificFilesOn &#x3D; 3002;</span><br><span class="line"></span><br><span class="line">- (NSMutableIndexSet *)openedPreferenceItems &#123;</span><br><span class="line">    </span><br><span class="line">    if (!_openedPreferenceItems) &#123;</span><br><span class="line">        </span><br><span class="line">      &#x2F;&#x2F; 添加某项</span><br><span class="line">        _openedPreferenceItems &#x3D; [NSMutableIndexSet indexSet];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemICloudSyncOn];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemNotificationsOn];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemHideTableViewSeparatorOn];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemHideSpecificFilesOn];</span><br><span class="line">    &#125;</span><br><span class="line">    return _openedPreferenceItems;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 移除某项</span><br><span class="line">[self.openedPreferenceItems removeIndex:PreferenceItemGuestModeOn];</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="确定文件是否存在"><a href="#确定文件是否存在" class="headerlink" title="确定文件是否存在"></a>确定文件是否存在</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSFileManager *fileManager &#x3D; [NSFileManager defaultManager];</span><br><span class="line">NSString *documentsPath &#x3D; [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">NSString *filePath &#x3D; [documentsPath stringByAppendingPathComponent:@&quot;file.txt&quot;];</span><br><span class="line">BOOL fileExists &#x3D; [fileManager fileExistsAtPath:filePath];</span><br></pre></td></tr></table></figure>
 
 
@@ -1798,7 +1822,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-07 10:21:12" itemprop="dateModified" datetime="2021-05-07T10:21:12+00:00">2021-05-07</time>
+        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
       </span>
 
   
