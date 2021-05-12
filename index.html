@@ -235,7 +235,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
+        <time title="修改时间：2021-05-12 02:46:01" itemprop="dateModified" datetime="2021-05-12T02:46:01+00:00">2021-05-12</time>
       </span>
 
   
@@ -717,7 +717,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
+        <time title="修改时间：2021-05-12 02:46:01" itemprop="dateModified" datetime="2021-05-12T02:46:01+00:00">2021-05-12</time>
       </span>
 
   
@@ -903,7 +903,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
+        <time title="修改时间：2021-05-12 02:46:01" itemprop="dateModified" datetime="2021-05-12T02:46:01+00:00">2021-05-12</time>
       </span>
 
   
@@ -994,7 +994,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
+        <time title="修改时间：2021-05-12 02:46:01" itemprop="dateModified" datetime="2021-05-12T02:46:01+00:00">2021-05-12</time>
       </span>
 
   
@@ -1007,7 +1007,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="iOS-零散知识点"><a href="#iOS-零散知识点" class="headerlink" title="iOS 零散知识点"></a>iOS 零散知识点</h1><h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxcx5zeedj30u00fmq4q.jpg"></p>
+          <h1 id="iOS-零散知识点和示例代码块"><a href="#iOS-零散知识点和示例代码块" class="headerlink" title="iOS 零散知识点和示例代码块"></a>iOS 零散知识点和示例代码块</h1><blockquote>
+<p>部分内容来源：</p>
+</blockquote>
+<h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxcx5zeedj30u00fmq4q.jpg"></p>
 <h2 id="内存-amp-Debug"><a href="#内存-amp-Debug" class="headerlink" title="内存 &amp; Debug"></a>内存 &amp; Debug</h2><h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><p>fp 寄存器存储了上一帧的地址，类似一个链表的起始地址，通过 fp 不断回溯可以将整个 Backtrace 函数调用栈进行串联。</p>
 <h2 id="有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？"><a href="#有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？" class="headerlink" title="有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？"></a>有没有办法将参数的<strong>NSDictionary</strong>附加到<strong>NSURLRequest</strong>而不是手动创建字符串？</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/ask/106457">https://cloud.tencent.com/developer/ask/106457</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSURLComponents *url &#x3D; [[NSURLComponents alloc] initWithURL:request.URL resolvingAgainstBaseURL:YES];</span><br><span class="line">NSMutableArray *queryItems &#x3D; NSMutableArray.new;</span><br><span class="line">[params enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSString *value, BOOL *stop) &#123;</span><br><span class="line">   [queryItems addObject:[NSURLQueryItem queryItemWithName:name </span><br><span class="line">                          value:[value stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]</span><br><span class="line">                         ]</span><br><span class="line">   ];</span><br><span class="line">&#125;];</span><br><span class="line">url.queryItems &#x3D; queryItems;</span><br><span class="line">request.URL &#x3D; url.URL;</span><br></pre></td></tr></table></figure>
@@ -1421,6 +1424,79 @@
 
 
 
+<h2 id="NSPredicate"><a href="#NSPredicate" class="headerlink" title="NSPredicate"></a><code>NSPredicate</code></h2><h3 id="替换符"><a href="#替换符" class="headerlink" title="替换符"></a>替换符</h3><ul>
+<li><p><code>%@</code>: 对值为字符串、数字或日期对象的替换值</p>
+</li>
+<li><p><code>%K</code>: 是key path的替换值。</p>
+<p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *ageIs33Predicate &#x3D; [NSPredicate predicateWithFormat:@&quot;%K &#x3D; %@&quot;, @&quot;age&quot;, @33];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; [&quot;Charlie Smith&quot;]</span><br><span class="line">NSLog(@&quot;Age 33: %@&quot;, [people filteredArrayUsingPredicate:ageIs33Predicate]);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p><code>$VARIABLE_NAME</code>是可以被<code>NSPredicate -predicateWithSubstitutionVariables:</code>替换的值。</p>
+<p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *namesBeginningWithLetterPredicate &#x3D; [NSPredicate predicateWithFormat:@&quot;(firstName BEGINSWITH[cd] $letter) OR (lastName BEGINSWITH[cd] $letter)&quot;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; [&quot;Alice Smith&quot;, &quot;Quentin Alberts&quot;]</span><br><span class="line">NSLog(@&quot;&#39;A&#39; Names: %@&quot;, [people filteredArrayUsingPredicate:[namesBeginningWithLetterPredicate predicateWithSubstitutionVariables:@&#123;@&quot;letter&quot;: @&quot;A&quot;&#125;]]);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="NSUndoManager"><a href="#NSUndoManager" class="headerlink" title="NSUndoManager"></a><code>NSUndoManager</code></h2><p>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController()&lt;UITextFieldDelegate&gt;</span><br><span class="line">@property (nonatomic, strong) UITextField *textField;</span><br><span class="line">@property (nonatomic, strong) UILabel *label;</span><br><span class="line">@end</span><br><span class="line">  </span><br><span class="line">@implementation ViewController</span><br><span class="line">  </span><br><span class="line">&#x2F;&#x2F;&#x2F; UI</span><br><span class="line">- (void)testMethod17 &#123;</span><br><span class="line">    </span><br><span class="line">    self.textField &#x3D; [[UITextField alloc] initWithFrame:CGRectMake(8, 84 + 20, UIScreen.mainScreen.bounds.size.width - 16, 36)];</span><br><span class="line">    self.textField.backgroundColor &#x3D; UIColor.systemFillColor;</span><br><span class="line">    self.textField.layer.cornerRadius &#x3D; 4.0;</span><br><span class="line">    UIView *left &#x3D; [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12, 0)];</span><br><span class="line">    UIView *right &#x3D; [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12, 0)];</span><br><span class="line">    self.textField.leftView &#x3D; left;</span><br><span class="line">    self.textField.rightView &#x3D; right;</span><br><span class="line">    self.textField.leftViewMode &#x3D; UITextFieldViewModeAlways;</span><br><span class="line">    self.textField.rightViewMode &#x3D; UITextFieldViewModeAlways;</span><br><span class="line">    self.textField.delegate &#x3D; self;</span><br><span class="line">    [self.view addSubview:self.textField];</span><br><span class="line">    </span><br><span class="line">    self.label &#x3D; [[UILabel alloc] initWithFrame:CGRectMake(8, 84 + 20 + 36 + 20, UIScreen.mainScreen.bounds.size.width - 16, 48)];</span><br><span class="line">    self.label.textColor &#x3D; UIColor.secondaryLabelColor;</span><br><span class="line">    [self.view addSubview:self.label];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)textFieldShouldReturn:(UITextField *)textField &#123;</span><br><span class="line">    </span><br><span class="line">    [self appendingLabelText:textField.text];</span><br><span class="line">    textField.text &#x3D; @&quot;&quot;;</span><br><span class="line">    [textField resignFirstResponder]; &#x2F;&#x2F; 回车后使 textField 放弃第一响应者，这样 viewController 可以变成第一响应者来响应手机摇动的动作，触发 undoManager 响应。</span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)appendingLabelText:(NSString *)text &#123;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 每个 controller、控件都可以有单独的 undoManager，这里为了方便只用应用默认的全局 undoManager。</span><br><span class="line">    NSUndoManager *undoManager &#x3D; UIApplication.sharedApplication.delegate.window.undoManager;</span><br><span class="line">    &#x2F;&#x2F; 在 undoManager 注册对应 actionName 被 undo 时需要调用的方法 Selector 和参数。</span><br><span class="line">    [undoManager registerUndoWithTarget:self selector:@selector(removeLastText:) object:text];</span><br><span class="line">    &#x2F;&#x2F; 注册撤销操作的名称，可以使用国际化达到更好的文本效果。</span><br><span class="line">    [undoManager setActionName:@&quot;add text&quot;];</span><br><span class="line">    if (self.label.text.length) &#123;</span><br><span class="line">        </span><br><span class="line">        self.label.text &#x3D; [NSString stringWithFormat:@&quot;%@ %@&quot;, self.label.text, text];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        self.label.text &#x3D; text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)removeLastText:(NSString *)text &#123;</span><br><span class="line">    </span><br><span class="line">    NSUndoManager *undoManager &#x3D; UIApplication.sharedApplication.delegate.window.undoManager;</span><br><span class="line">    [undoManager registerUndoWithTarget:self selector:@selector(appendingLabelText:) object:text];</span><br><span class="line">    [undoManager setActionName:@&quot;remove text&quot;];</span><br><span class="line">    if ([self.label.text containsString:text]) &#123;</span><br><span class="line">        </span><br><span class="line">        NSUInteger firstLetterLocation &#x3D; [self.label.text rangeOfString:text].location;</span><br><span class="line">        NSString *stringToRemove &#x3D; text;</span><br><span class="line">        if (firstLetterLocation &gt; 0) &#123;</span><br><span class="line">            </span><br><span class="line">            NSString *previous &#x3D; [NSString stringWithFormat:@&quot;%c&quot;, [self.label.text characterAtIndex:firstLetterLocation - 1]];</span><br><span class="line">            if ([previous isEqualToString:@&quot; &quot;]) &#123;</span><br><span class="line">                </span><br><span class="line">                stringToRemove &#x3D; [NSString stringWithFormat:@&quot; %@&quot;, text];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        self.label.text &#x3D; [self.label.text stringByReplacingOccurrencesOfString:stringToRemove withString:@&quot;&quot; options:kNilOptions range:NSMakeRange(0, self.label.text.length)];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+
+
+<p>-registerUndoWithTarget:selector:object: 这个简便方法只能接受 object 一个参数。除此之外，还有一种通过 NSInvocation 注册复杂的撤销操作的办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 [undoManager prepareWithInvocationTarget:self] 之后，可以直接调用进行撤销操作时需要调用的方法，并传入相应参数。</span><br><span class="line">[[undoManager prepareWithInvocationTarget:self] removeLastText:text];</span><br><span class="line">[undoManager setActionName:@&quot;add text&quot;];</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="UIKeyCommand"><a href="#UIKeyCommand" class="headerlink" title="UIKeyCommand"></a><code>UIKeyCommand</code></h2><blockquote>
+<p>为了使 iPad 更高效的工作，iOS 9 增加了 <em>可发现特性</em>，这是一个叠加层，用于显示一个应用程序内当前可用的键盘命令。</p>
+</blockquote>
+<h3 id="UIKeyCommand快捷键的组成"><a href="#UIKeyCommand快捷键的组成" class="headerlink" title="UIKeyCommand快捷键的组成"></a><code>UIKeyCommand</code>快捷键的组成</h3><ol>
+<li><p>input</p>
+<p>你需要识别的关键字，或正确的箭头和退出键，本身并不包含字符。可用常数有：</p>
+<ol>
+<li><code>UIKeyInputUpArrow</code></li>
+<li><code>UIKeyInputDownArrow</code></li>
+<li><code>UIKeyInputLeftArrow</code></li>
+<li><code>UIKeyInputRightArrow</code></li>
+<li><code>UIKeyInputEscape</code></li>
+</ol>
+</li>
+<li><p>modifierFlags</p>
+<p>一个或多个<code>UIKeyModifierFlags</code>，描述了需要与 input 键同时使用的键</p>
+<ol>
+<li><code>.Command</code>、<code>.Alternate</code>、<code>.Shift</code>、<code>.Control</code>：分别表示 Command，Option，Shift 和 Control 键</li>
+<li><code>.NumericPad</code>：表示 input 应该来自数字键盘，而不是标准键盘最上面一行</li>
+<li><code>.AlphaShift</code>：表示大小写锁定键是否作为按键组合的一部分（大写状态）</li>
+</ol>
+</li>
+<li><p>action</p>
+<p>按键命令调用的方法，<code>UIKeyCommand</code> 作为其唯一的参数。键盘事件将追溯响应链，直到发现一个匹配的方法。</p>
+</li>
+<li><p>discoverabilityTitle（仅 iOS 9）</p>
+<p>一个可选的标签，用来在发现层显示快捷键命令。</p>
+<p>==只有设置了标题的键盘命令才会被列出。==</p>
+</li>
+</ol>
+<h3 id="设置并响应键盘命令"><a href="#设置并响应键盘命令" class="headerlink" title="设置并响应键盘命令"></a>设置并响应键盘命令</h3><blockquote>
+<p>启用键盘命令很简单，只需要在响应链的某处提供一个 <code>UIKeyCommand</code> 实例的数组。</p>
+</blockquote>
+<p>文字输入是自动的第一响应者，但也许更方便的是在视图控制器通过实现 <code>canBecomeFirstResponder()</code>来响应键盘命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)canBecomeFirstResponder &#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后通过 <code>keyCommands</code> 属性提供可用的按键命令列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (NSArray&lt;UIKeyCommand *&gt;*)keyCommands &#123;</span><br><span class="line">    return @[</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;1&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Types&quot;],</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;2&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Protocols&quot;],</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;3&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Functions&quot;],</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;4&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Operators&quot;],</span><br><span class="line"></span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;f&quot; </span><br><span class="line">                            modifierFlags:UIKeyModifierCommand | UIKeyModifierAlternate </span><br><span class="line">                                   action:@selector(search:) </span><br><span class="line">                     discoverabilityTitle:@&quot;Find…&quot;]</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">- (void)selectTab:(UIKeyCommand *)sender &#123;</span><br><span class="line">    NSString *selectedTab &#x3D; sender.input;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="情景敏感性"><a href="#情景敏感性" class="headerlink" title="情景敏感性"></a>情景敏感性</h3><blockquote>
+<p>只要一个按键被按下， <code>keyCommands</code> 属性就会被访问，从而可以提供根据你应用程序的上下文状态敏感的反应。虽然这是类似菜单项的方式，其有效/无效状态被配置在 OS X 里面，iOS 版的建议是完全忽略不活动的命令，也就是说，在发现层不要显示变灰的命令。</p>
+</blockquote>
+<p>e.g. 对于不同的登录状态，有不同的可用快捷键。（针对已登录用户有额外的可用快捷键）</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> globalKeyCommands <span class="operator">=</span> [<span class="type">UIKeyCommand</span>(input:<span class="operator">...</span>), <span class="operator">...</span>]</span><br><span class="line"><span class="keyword">let</span> loggedInUserKeyCommands <span class="operator">=</span> [<span class="type">UIKeyCommand</span>(input:<span class="operator">...</span>), <span class="operator">...</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="keyword">var</span> keyCommands: [<span class="type">UIKeyCommand</span>]<span class="operator">?</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> isLoggedInUser() &#123;</span><br><span class="line">        <span class="keyword">return</span> globalKeyCommands <span class="operator">+</span> loggedInUserKeyCommands</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> globalKeyCommands</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       
     </div>
@@ -1822,7 +1898,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-08 10:16:51" itemprop="dateModified" datetime="2021-05-08T10:16:51+00:00">2021-05-08</time>
+        <time title="修改时间：2021-05-12 02:46:01" itemprop="dateModified" datetime="2021-05-12T02:46:01+00:00">2021-05-12</time>
       </span>
 
   
