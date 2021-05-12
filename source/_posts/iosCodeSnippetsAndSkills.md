@@ -6,7 +6,13 @@ tags:
 
 
 
-# iOS 零散知识点
+# iOS 零散知识点和示例代码块
+
+> 部分内容来源：
+>
+> [NSHipster]:https://nshipster.cn/
+
+
 
 
 
@@ -1084,6 +1090,229 @@ NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirecto
 NSString *filePath = [documentsPath stringByAppendingPathComponent:@"file.txt"];
 BOOL fileExists = [fileManager fileExistsAtPath:filePath];
 ```
+
+
+
+## `NSPredicate`
+
+### 替换符
+
+- `%@`: 对值为字符串、数字或日期对象的替换值
+
+- `%K`: 是key path的替换值。
+
+  e.g.
+
+  ```objective-c
+  NSPredicate *ageIs33Predicate = [NSPredicate predicateWithFormat:@"%K = %@", @"age", @33];
+  
+  // ["Charlie Smith"]
+  NSLog(@"Age 33: %@", [people filteredArrayUsingPredicate:ageIs33Predicate]);
+  ```
+
+
+
+- `$VARIABLE_NAME`是可以被`NSPredicate -predicateWithSubstitutionVariables:`替换的值。
+
+  e.g.
+
+  ```objective-c
+  NSPredicate *namesBeginningWithLetterPredicate = [NSPredicate predicateWithFormat:@"(firstName BEGINSWITH[cd] $letter) OR (lastName BEGINSWITH[cd] $letter)"];
+  
+  // ["Alice Smith", "Quentin Alberts"]
+  NSLog(@"'A' Names: %@", [people filteredArrayUsingPredicate:[namesBeginningWithLetterPredicate predicateWithSubstitutionVariables:@{@"letter": @"A"}]]);
+  ```
+
+  
+
+
+
+## `NSUndoManager`
+
+e.g.
+
+```objective-c
+@interface ViewController()<UITextFieldDelegate>
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UILabel *label;
+@end
+  
+@implementation ViewController
+  
+/// UI
+- (void)testMethod17 {
+    
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(8, 84 + 20, UIScreen.mainScreen.bounds.size.width - 16, 36)];
+    self.textField.backgroundColor = UIColor.systemFillColor;
+    self.textField.layer.cornerRadius = 4.0;
+    UIView *left = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12, 0)];
+    UIView *right = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12, 0)];
+    self.textField.leftView = left;
+    self.textField.rightView = right;
+    self.textField.leftViewMode = UITextFieldViewModeAlways;
+    self.textField.rightViewMode = UITextFieldViewModeAlways;
+    self.textField.delegate = self;
+    [self.view addSubview:self.textField];
+    
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(8, 84 + 20 + 36 + 20, UIScreen.mainScreen.bounds.size.width - 16, 48)];
+    self.label.textColor = UIColor.secondaryLabelColor;
+    [self.view addSubview:self.label];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [self appendingLabelText:textField.text];
+    textField.text = @"";
+    [textField resignFirstResponder]; // 回车后使 textField 放弃第一响应者，这样 viewController 可以变成第一响应者来响应手机摇动的动作，触发 undoManager 响应。
+    return NO;
+}
+
+- (void)appendingLabelText:(NSString *)text {
+    
+    // 每个 controller、控件都可以有单独的 undoManager，这里为了方便只用应用默认的全局 undoManager。
+    NSUndoManager *undoManager = UIApplication.sharedApplication.delegate.window.undoManager;
+    // 在 undoManager 注册对应 actionName 被 undo 时需要调用的方法 Selector 和参数。
+    [undoManager registerUndoWithTarget:self selector:@selector(removeLastText:) object:text];
+    // 注册撤销操作的名称，可以使用国际化达到更好的文本效果。
+    [undoManager setActionName:@"add text"];
+    if (self.label.text.length) {
+        
+        self.label.text = [NSString stringWithFormat:@"%@ %@", self.label.text, text];
+    } else {
+        
+        self.label.text = text;
+    }
+}
+
+- (void)removeLastText:(NSString *)text {
+    
+    NSUndoManager *undoManager = UIApplication.sharedApplication.delegate.window.undoManager;
+    [undoManager registerUndoWithTarget:self selector:@selector(appendingLabelText:) object:text];
+    [undoManager setActionName:@"remove text"];
+    if ([self.label.text containsString:text]) {
+        
+        NSUInteger firstLetterLocation = [self.label.text rangeOfString:text].location;
+        NSString *stringToRemove = text;
+        if (firstLetterLocation > 0) {
+            
+            NSString *previous = [NSString stringWithFormat:@"%c", [self.label.text characterAtIndex:firstLetterLocation - 1]];
+            if ([previous isEqualToString:@" "]) {
+                
+                stringToRemove = [NSString stringWithFormat:@" %@", text];
+            }
+        }
+        self.label.text = [self.label.text stringByReplacingOccurrencesOfString:stringToRemove withString:@"" options:kNilOptions range:NSMakeRange(0, self.label.text.length)];
+    }
+}
+
+@end
+```
+
+
+
+-registerUndoWithTarget:selector:object: 这个简便方法只能接受 object 一个参数。除此之外，还有一种通过 NSInvocation 注册复杂的撤销操作的办法：
+
+```objective-c
+// 在 [undoManager prepareWithInvocationTarget:self] 之后，可以直接调用进行撤销操作时需要调用的方法，并传入相应参数。
+[[undoManager prepareWithInvocationTarget:self] removeLastText:text];
+[undoManager setActionName:@"add text"];
+```
+
+
+
+## `UIKeyCommand`
+
+> 为了使 iPad 更高效的工作，iOS 9 增加了 *可发现特性*，这是一个叠加层，用于显示一个应用程序内当前可用的键盘命令。
+
+### `UIKeyCommand`快捷键的组成
+
+1. input
+
+   你需要识别的关键字，或正确的箭头和退出键，本身并不包含字符。可用常数有：
+
+   1. `UIKeyInputUpArrow`
+   2. `UIKeyInputDownArrow`
+   3. `UIKeyInputLeftArrow`
+   4. `UIKeyInputRightArrow`
+   5. `UIKeyInputEscape`
+
+2. modifierFlags
+
+   一个或多个`UIKeyModifierFlags`，描述了需要与 input 键同时使用的键
+
+   1. `.Command`、`.Alternate`、`.Shift`、`.Control`：分别表示 Command，Option，Shift 和 Control 键
+   2. `.NumericPad`：表示 input 应该来自数字键盘，而不是标准键盘最上面一行
+   3. `.AlphaShift`：表示大小写锁定键是否作为按键组合的一部分（大写状态）
+
+3. action
+
+   按键命令调用的方法，`UIKeyCommand` 作为其唯一的参数。键盘事件将追溯响应链，直到发现一个匹配的方法。
+
+4. discoverabilityTitle（仅 iOS 9）
+
+   一个可选的标签，用来在发现层显示快捷键命令。
+
+   ==只有设置了标题的键盘命令才会被列出。==
+
+### 设置并响应键盘命令
+
+> 启用键盘命令很简单，只需要在响应链的某处提供一个 `UIKeyCommand` 实例的数组。
+
+文字输入是自动的第一响应者，但也许更方便的是在视图控制器通过实现 `canBecomeFirstResponder()`来响应键盘命令：
+
+```objective-c
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+```
+
+然后通过 `keyCommands` 属性提供可用的按键命令列表
+
+```objective-c
+- (NSArray<UIKeyCommand *>*)keyCommands {
+    return @[
+        [UIKeyCommand keyCommandWithInput:@"1" modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@"Types"],
+        [UIKeyCommand keyCommandWithInput:@"2" modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@"Protocols"],
+        [UIKeyCommand keyCommandWithInput:@"3" modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@"Functions"],
+        [UIKeyCommand keyCommandWithInput:@"4" modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@"Operators"],
+
+        [UIKeyCommand keyCommandWithInput:@"f" 
+                            modifierFlags:UIKeyModifierCommand | UIKeyModifierAlternate 
+                                   action:@selector(search:) 
+                     discoverabilityTitle:@"Find…"]
+    ];
+}
+
+// ...
+
+- (void)selectTab:(UIKeyCommand *)sender {
+    NSString *selectedTab = sender.input;
+    // ...
+}
+```
+
+
+
+### 情景敏感性
+
+> 只要一个按键被按下， `keyCommands` 属性就会被访问，从而可以提供根据你应用程序的上下文状态敏感的反应。虽然这是类似菜单项的方式，其有效/无效状态被配置在 OS X 里面，iOS 版的建议是完全忽略不活动的命令，也就是说，在发现层不要显示变灰的命令。
+
+e.g. 对于不同的登录状态，有不同的可用快捷键。（针对已登录用户有额外的可用快捷键）
+
+```swift
+let globalKeyCommands = [UIKeyCommand(input:...), ...]
+let loggedInUserKeyCommands = [UIKeyCommand(input:...), ...]
+
+override var keyCommands: [UIKeyCommand]? {
+    if isLoggedInUser() {
+        return globalKeyCommands + loggedInUserKeyCommands
+    } else {
+        return globalKeyCommands
+    }
+}
+```
+
+
 
 
 
