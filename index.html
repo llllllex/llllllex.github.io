@@ -235,7 +235,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 07:12:52" itemprop="dateModified" datetime="2021-05-14T07:12:52+00:00">2021-05-14</time>
+        <time title="修改时间：2021-05-14 07:34:49" itemprop="dateModified" datetime="2021-05-14T07:34:49+00:00">2021-05-14</time>
       </span>
 
   
@@ -717,7 +717,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 07:12:52" itemprop="dateModified" datetime="2021-05-14T07:12:52+00:00">2021-05-14</time>
+        <time title="修改时间：2021-05-14 07:34:49" itemprop="dateModified" datetime="2021-05-14T07:34:49+00:00">2021-05-14</time>
       </span>
 
   
@@ -903,7 +903,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 07:12:52" itemprop="dateModified" datetime="2021-05-14T07:12:52+00:00">2021-05-14</time>
+        <time title="修改时间：2021-05-14 07:34:49" itemprop="dateModified" datetime="2021-05-14T07:34:49+00:00">2021-05-14</time>
       </span>
 
   
@@ -994,7 +994,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 07:12:52" itemprop="dateModified" datetime="2021-05-14T07:12:52+00:00">2021-05-14</time>
+        <time title="修改时间：2021-05-14 07:34:49" itemprop="dateModified" datetime="2021-05-14T07:34:49+00:00">2021-05-14</time>
       </span>
 
   
@@ -1509,6 +1509,13 @@
 
 
 
+<h2 id="密码规则-UITextInputPasswordRules"><a href="#密码规则-UITextInputPasswordRules" class="headerlink" title="密码规则 UITextInputPasswordRules"></a>密码规则 <code>UITextInputPasswordRules</code></h2><p>便利方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PasswordRule</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">CharacterClass</span> </span>&#123;</span><br><span class="line">        <span class="keyword">case</span> upper, lower, digits, special, asciiPrintable, unicode</span><br><span class="line">        <span class="keyword">case</span> custom(<span class="type">Set</span>&lt;<span class="type">Character</span>&gt;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">required</span>(<span class="type">CharacterClass</span>)</span><br><span class="line">    <span class="keyword">case</span> allowed(<span class="type">CharacterClass</span>)</span><br><span class="line">    <span class="keyword">case</span> maxConsecutive(<span class="type">UInt</span>)</span><br><span class="line">    <span class="keyword">case</span> minLength(<span class="type">UInt</span>)</span><br><span class="line">    <span class="keyword">case</span> maxLength(<span class="type">UInt</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PasswordRule</span>: <span class="title">CustomStringConvertible</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .required(<span class="keyword">let</span> characterClass):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;required: <span class="subst">\(characterClass)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .allowed(<span class="keyword">let</span> characterClass):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;allowed: <span class="subst">\(characterClass)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .maxConsecutive(<span class="keyword">let</span> length):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;max-consecutive: <span class="subst">\(length)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .minLength(<span class="keyword">let</span> length):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;minlength: <span class="subst">\(length)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .maxLength(<span class="keyword">let</span> length):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;maxlength: <span class="subst">\(length)</span>&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PasswordRule</span>.<span class="title">CharacterClass</span>: <span class="title">CustomStringConvertible</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .upper: <span class="keyword">return</span> <span class="string">&quot;upper&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .lower: <span class="keyword">return</span> <span class="string">&quot;lower&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .digits: <span class="keyword">return</span> <span class="string">&quot;digits&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .special: <span class="keyword">return</span> <span class="string">&quot;special&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .asciiPrintable: <span class="keyword">return</span> <span class="string">&quot;ascii-printable&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .unicode: <span class="keyword">return</span> <span class="string">&quot;unicode&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .custom(<span class="keyword">let</span> characters): <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> <span class="operator">+</span> <span class="type">String</span>(characters) <span class="operator">+</span> <span class="string">&quot;]&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UITextInputPasswordRules</span> </span>&#123;</span><br><span class="line">    <span class="keyword">convenience</span> <span class="function"><span class="keyword">init</span>(<span class="params">rules</span>: [<span class="type">PasswordRule</span>])</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> descriptor <span class="operator">=</span> rules.map&#123; <span class="variable">$0</span>.description &#125;</span><br><span class="line">            .joined(separator: <span class="string">&quot;; &quot;</span>)</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(descriptor: descriptor)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       
     </div>
@@ -1910,7 +1917,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 07:12:52" itemprop="dateModified" datetime="2021-05-14T07:12:52+00:00">2021-05-14</time>
+        <time title="修改时间：2021-05-14 07:34:49" itemprop="dateModified" datetime="2021-05-14T07:34:49+00:00">2021-05-14</time>
       </span>
 
   
