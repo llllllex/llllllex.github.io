@@ -11,8 +11,7 @@ tags:
 > 部分内容来源：
 >
 > [NSHipster]:https://nshipster.cn/
-
-
+> [veryitman]:http://www.veryitman.com/categories/iOS/
 
 
 
@@ -1313,6 +1312,70 @@ override var keyCommands: [UIKeyCommand]? {
 ```
 
 
+
+
+
+## 跳转系统设置页面
+
+1. 配置 URL Types
+
+   添加 URL Schemes 为 `prefs` 的 URL Types
+
+   Role 为 `Editor`
+
+2. openURL
+
+   ```objective-c
+   NSString * urlString = @"prefs:root=WIFI";
+   NSURL *url = [NSURL URLWithString:urlString];
+   UIApplication *app = [UIApplication sharedApplication];
+   if ([app canOpenURL:[NSURL URLWithString:urlString]]) {
+    
+       if ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0) {
+       
+       	[app openURL:url options:@{} completionHandler:nil];
+       } 
+       else {
+       
+       	[app openURL:url];
+       }
+   }
+   ```
+
+
+
+### 其他系统偏好设置的 URL
+
+```
+1.系统设置
+prefs:root=INTERNET_TETHERING
+2.WIFI设置
+prefs:root=WIFI
+3.蓝牙设置
+prefs:root=Bluetooth
+4.系统通知
+prefs:root=NOTIFICATIONS_ID
+5.通用设置
+prefs:root=General
+6.显示设置
+prefs:root=DISPLAY&BRIGHTNESS
+7.壁纸设置
+prefs:root=Wallpaper
+8.声音设置
+prefs:root=Sounds
+9.隐私设置
+prefs:root=privacy
+10.打开 APP Store
+prefs:root=STORE
+11.打开 Notes
+prefs:root=NOTES
+12.打开 Safari
+prefs:root=Safari
+13.打开 Music
+prefs:root=MUSIC
+14.打开 photo
+prefs:root=Photos
+```
 
 
 
