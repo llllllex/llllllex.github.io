@@ -1442,3 +1442,17 @@ extension UITextInputPasswordRules {
 
 
 
+## 性能优化 - 让对象在后台销毁。
+
+> 当容器类持有大量对象时，销毁的资源消耗就会十分明显。可以把对象放到后台线程释放。
+>
+> Tip: 把对象捕获到block中，在后台队列随便发个消息。
+
+```objective-c
+NSArray *temp = self.array;
+self.array = nil;
+dispatch_async(queue, ^{
+  [temp class];
+});
+```
+
