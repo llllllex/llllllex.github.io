@@ -23,32 +23,28 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"ryotrix.dev","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="代码设计原则 Catch 内尽量简洁 只做log和保护性操作（e.g. 回滚）  assert中的condition一般在assert后会通过if进行过滤  不同数据类型不可直接判等  try发生异常后，后面的代码直接跳过，进入catch块。因此try块代码尽量少，避免多个可能抛出异常的代码放在同一个try块中   代码认知复杂度 Cognitive Complexity 避免多层嵌套  提前退出">
-<meta property="og:type" content="article">
-<meta property="og:title" content="代码质量总结">
-<meta property="og:url" content="https://ryotrix.dev/2021/03/31/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://ryotrix.dev/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="代码设计原则 Catch 内尽量简洁 只做log和保护性操作（e.g. 回滚）  assert中的condition一般在assert后会通过if进行过滤  不同数据类型不可直接判等  try发生异常后，后面的代码直接跳过，进入catch块。因此try块代码尽量少，避免多个可能抛出异常的代码放在同一个try块中   代码认知复杂度 Cognitive Complexity 避免多层嵌套  提前退出">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-31T16:08:07.000Z">
-<meta property="article:modified_time" content="2021-05-20T06:06:19.495Z">
 <meta property="article:author" content="Lex">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://ryotrix.dev/2021/03/31/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/">
+<link rel="canonical" href="https://ryotrix.dev/page/2/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
-<title>代码质量总结 | Hexo</title>
+<title>Hexo</title>
   
 
 
@@ -143,7 +139,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -156,7 +152,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">代码设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AE%A4%E7%9F%A5%E5%A4%8D%E6%9D%82%E5%BA%A6-Cognitive-Complexity"><span class="nav-number">2.</span> <span class="nav-text">代码认知复杂度 Cognitive Complexity</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -199,18 +194,17 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/31/%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%80%BB%E7%BB%93/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/03/31/Xcode-Tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -222,9 +216,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          代码质量总结
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/31/Xcode-Tips/" class="post-title-link" itemprop="url">Xcode Tips</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -233,16 +227,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-03-31 16:08:07" itemprop="dateCreated datePublished" datetime="2021-03-31T16:08:07+00:00">2021-03-31</time>
+      <time title="创建时间：2021-03-31 04:47:43 / 修改时间：04:48:08" itemprop="dateCreated datePublished" datetime="2021-03-31T04:47:43+00:00">2021-03-31</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-20 06:06:19" itemprop="dateModified" datetime="2021-05-20T06:06:19+00:00">2021-05-20</time>
-      </span>
 
   
 </div>
@@ -254,30 +242,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="代码设计原则"><a href="#代码设计原则" class="headerlink" title="代码设计原则"></a>代码设计原则</h2><ol>
-<li><p>Catch 内尽量简洁</p>
-<p>只做log和保护性操作（e.g. 回滚）</p>
-</li>
-<li><p>assert中的condition一般在assert后会通过if进行过滤</p>
-</li>
-<li><p>不同数据类型不可直接判等</p>
-</li>
-<li><p>try发生异常后，后面的代码直接跳过，进入catch块。因此try块代码尽量少，避免多个可能抛出异常的代码放在同一个try块中</p>
-</li>
-</ol>
-<h2 id="代码认知复杂度-Cognitive-Complexity"><a href="#代码认知复杂度-Cognitive-Complexity" class="headerlink" title="代码认知复杂度 Cognitive Complexity"></a>代码认知复杂度 Cognitive Complexity</h2><ol>
-<li><p>避免多层嵌套</p>
-<ol>
-<li>提前退出（guard else return）</li>
-</ol>
-</li>
-<li><p>条件判断避免多条并列（if A &amp;&amp; B &amp;&amp; C）</p>
-</li>
-<li><p>分支条件避免同一级ifelse判断条件不一致</p>
-<p>e.g. </p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ❌</span></span><br><span class="line"><span class="keyword">if</span> <span class="type">A</span> <span class="operator">&amp;&amp;</span> <span class="type">B</span> &#123;</span><br><span class="line">   <span class="comment">// statement a</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="operator">!</span><span class="type">A</span> &#123;</span><br><span class="line">   <span class="comment">// statement b</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅</span></span><br><span class="line"><span class="keyword">if</span> <span class="type">A</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="type">B</span> &#123;</span><br><span class="line">      <span class="comment">// statement a</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">// statement b</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
+          <h1 id="Xcode-Tips"><a href="#Xcode-Tips" class="headerlink" title="Xcode Tips"></a>Xcode Tips</h1><h2 id="在-Xcode-活跃视图显示构建时间"><a href="#在-Xcode-活跃视图显示构建时间" class="headerlink" title="在 Xcode 活跃视图显示构建时间"></a>在 Xcode 活跃视图显示构建时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES</span><br></pre></td></tr></table></figure>
 
+
+
+<h2 id="防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程"><a href="#防止-Xcode-崩溃后，再次打开时打开崩溃前的所有工程" class="headerlink" title="防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程"></a>防止 Xcode 崩溃后，再次打开时打开崩溃前的所有工程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode ApplePersistenceIgnoreState -bool YES</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc"><a href="#Make-Xcode’s-Assistant-aware-of-your-ViewModels-Views-etc" class="headerlink" title="Make Xcode’s Assistant aware of your ViewModels, Views, etc"></a>Make Xcode’s Assistant aware of your ViewModels, Views, etc</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add &quot;ViewModel&quot; &quot;View&quot; &quot;Screen&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>You can check the current value of this default using defaults read com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes.</p>
+</blockquote>
+<h2 id="Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）"><a href="#Xcode-重构时，rename功能关闭代码折叠动画（duration设为0）" class="headerlink" title="Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）"></a>Xcode 重构时，rename功能关闭代码折叠动画（duration设为0）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.dt.Xcode CodeFoldingAnimationSpeed -int 0</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
     </div>
 
     
@@ -285,21 +270,8 @@
     
 
     <footer class="post-footer">
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/03/31/Xcode-Tips/" rel="prev" title="Xcode Tips">
-                  <i class="fa fa-chevron-left"></i> Xcode Tips
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/04/06/iosDevTips/" rel="next" title="iosDevTips">
-                  iosDevTips <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -307,7 +279,9 @@
 
 
 
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 <script>
