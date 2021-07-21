@@ -235,7 +235,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-08 09:17:05" itemprop="dateModified" datetime="2021-07-08T09:17:05+00:00">2021-07-08</time>
+        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
       </span>
 
   
@@ -325,7 +325,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-08 09:17:05" itemprop="dateModified" datetime="2021-07-08T09:17:05+00:00">2021-07-08</time>
+        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
       </span>
 
   
@@ -807,7 +807,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-08 09:17:05" itemprop="dateModified" datetime="2021-07-08T09:17:05+00:00">2021-07-08</time>
+        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
       </span>
 
   
@@ -993,7 +993,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-08 09:17:05" itemprop="dateModified" datetime="2021-07-08T09:17:05+00:00">2021-07-08</time>
+        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
       </span>
 
   
@@ -1084,7 +1084,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-08 09:17:05" itemprop="dateModified" datetime="2021-07-08T09:17:05+00:00">2021-07-08</time>
+        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
       </span>
 
   
@@ -1613,6 +1613,37 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSArray *temp &#x3D; self.array;</span><br><span class="line">self.array &#x3D; nil;</span><br><span class="line">dispatch_async(queue, ^&#123;</span><br><span class="line">  [temp class];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
+
+<h2 id="使用新-API-快速创建可滑动的半屏controller"><a href="#使用新-API-快速创建可滑动的半屏controller" class="headerlink" title="使用新 API 快速创建可滑动的半屏controller"></a>使用新 API 快速创建可滑动的半屏controller</h2><p>e.g.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> webViewController <span class="operator">=</span> <span class="type">WebViewController</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> sheet <span class="operator">=</span> webViewController.sheetPresentationController &#123;</span><br><span class="line">    </span><br><span class="line">    sheet.detents <span class="operator">=</span> [.medium(), .large()]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">present(webViewController, animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li><p><code>sheedPresentationController</code>的<code>detents</code>属性中，不同配置的顺序影响展示的效果，默认展示<code>detents</code>数组中的第一个配置</p>
+<p>  i.e. 如果想默认先半屏，那么设置<code>[.medium(), .large()]</code></p>
+<p>  ​      如果想默认先全屏，那么设置<code>[.large(), .medium()]</code></p>
+</li>
+</ol>
+<h3 id="添加-sheet-顶部的抓取条"><a href="#添加-sheet-顶部的抓取条" class="headerlink" title="添加 sheet 顶部的抓取条"></a>添加 sheet 顶部的抓取条</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.prefersGrabberVisible <span class="operator">=</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="防止展示-sheet-时底层视图变暗"><a href="#防止展示-sheet-时底层视图变暗" class="headerlink" title="防止展示 sheet 时底层视图变暗"></a>防止展示 sheet 时底层视图变暗</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.smallestUndimmedDetentIdentifier <span class="operator">=</span> .medium</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="防止半屏滚动-sheet-时，sheet-自动向上展开"><a href="#防止半屏滚动-sheet-时，sheet-自动向上展开" class="headerlink" title="防止半屏滚动 sheet 时，sheet 自动向上展开"></a>防止半屏滚动 sheet 时，sheet 自动向上展开</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.prefersScrollingExpandsWhenScrolledToEdge <span class="operator">=</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="定制-sheet-的圆角半径"><a href="#定制-sheet-的圆角半径" class="headerlink" title="定制 sheet 的圆角半径"></a>定制 sheet 的圆角半径</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.preferredCornerRadius <span class="operator">=</span> <span class="number">30.0</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
       
     </div>
 
@@ -2013,7 +2044,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-08 09:17:05" itemprop="dateModified" datetime="2021-07-08T09:17:05+00:00">2021-07-08</time>
+        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
       </span>
 
   
