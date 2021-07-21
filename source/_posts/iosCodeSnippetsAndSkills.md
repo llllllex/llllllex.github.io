@@ -1456,3 +1456,64 @@ dispatch_async(queue, ^{
 });
 ```
 
+
+
+## 使用新 API 快速创建可滑动的半屏controller
+
+e.g.
+
+```swift
+let webViewController = WebViewController()
+
+if let sheet = webViewController.sheetPresentationController {
+    
+    sheet.detents = [.medium(), .large()]
+}
+
+present(webViewController, animated: true)
+```
+
+
+
+1.   `sheedPresentationController`的`detents`属性中，不同配置的顺序影响展示的效果，默认展示`detents`数组中的第一个配置
+
+     i.e. 如果想默认先半屏，那么设置`[.medium(), .large()]`
+
+     ​      如果想默认先全屏，那么设置`[.large(), .medium()]`
+
+
+
+### 添加 sheet 顶部的抓取条
+
+```swift
+sheet.prefersGrabberVisible = true
+```
+
+
+
+### 防止展示 sheet 时底层视图变暗
+
+```swift
+sheet.smallestUndimmedDetentIdentifier = .medium
+```
+
+
+
+### 防止半屏滚动 sheet 时，sheet 自动向上展开
+
+```swift
+sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+```
+
+
+
+### 定制 sheet 的圆角半径
+
+```swift
+sheet.preferredCornerRadius = 30.0
+```
+
+
+
+
+
