@@ -191,3 +191,12 @@ a: 指向NSString实例对象a的指针（在使用时，对a的操作被解读�
 
 
 
+## 不常用info.plist配置项
+
+### Privacy
+
+1.   reminder 访问权限
+
+     `Privacy - Reminders Usage Description` : `<#Content for asking grant#>`
+
+     e.g. `The app uses reminders to help you stay on track.`
