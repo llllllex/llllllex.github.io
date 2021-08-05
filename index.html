@@ -235,7 +235,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
+        <time title="修改时间：2021-08-05 08:01:11" itemprop="dateModified" datetime="2021-08-05T08:01:11+00:00">2021-08-05</time>
       </span>
 
   
@@ -325,7 +325,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
+        <time title="修改时间：2021-08-05 08:01:11" itemprop="dateModified" datetime="2021-08-05T08:01:11+00:00">2021-08-05</time>
       </span>
 
   
@@ -807,7 +807,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
+        <time title="修改时间：2021-08-05 08:01:11" itemprop="dateModified" datetime="2021-08-05T08:01:11+00:00">2021-08-05</time>
       </span>
 
   
@@ -951,6 +951,13 @@
 </code></pre>
 </li>
 </ol>
+<h2 id="不常用属性"><a href="#不常用属性" class="headerlink" title="不常用属性"></a>不常用属性</h2><ol>
+<li><p><code>isViewLoaded</code></p>
+<blockquote>
+<p>  Use isViewLoaded to check if a view is currently loaded into memory.</p>
+</blockquote>
+</li>
+</ol>
 
       
     </div>
@@ -1008,7 +1015,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
+        <time title="修改时间：2021-08-05 08:01:11" itemprop="dateModified" datetime="2021-08-05T08:01:11+00:00">2021-08-05</time>
       </span>
 
   
@@ -1099,7 +1106,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
+        <time title="修改时间：2021-08-05 08:01:11" itemprop="dateModified" datetime="2021-08-05T08:01:11+00:00">2021-08-05</time>
       </span>
 
   
@@ -1656,7 +1663,11 @@
 
 
 
+<h2 id="从-storyboard获取指定id的controller"><a href="#从-storyboard获取指定id的controller" class="headerlink" title="从 storyboard获取指定id的controller"></a>从 <code>storyboard</code>获取指定id的controller</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 先在 Storyboard 的 Inspector 中设置指定 controller 的 storyboard ID</span></span><br><span class="line"><span class="comment">// 2. 获取被制定了 storyboard ID 的 controller</span></span><br><span class="line"><span class="keyword">let</span> storyboard <span class="operator">=</span> <span class="type">UIStoryboard</span>(name: <span class="keyword">Self</span>.mainStoryboardName, bundle: <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">let</span> detailViewController: <span class="type">ReminderDetailViewController</span> <span class="operator">=</span> storyboard.instantiateViewController(identifier: <span class="keyword">Self</span>.detailViewControllerIdentifier)</span><br></pre></td></tr></table></figure>
 
+
+
+<h2 id="在-SwiftUI-的-TabView-中使用自定义的-TabButton"><a href="#在-SwiftUI-的-TabView-中使用自定义的-TabButton" class="headerlink" title="在 SwiftUI 的 TabView 中使用自定义的 TabButton"></a>在 SwiftUI 的 TabView 中使用自定义的 TabButton</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">var</span> sleectedTabIndex <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> menuItems <span class="operator">=</span> [<span class="string">&quot;Travel&quot;</span>, <span class="string">&quot;Film&quot;</span>, <span class="string">&quot;Food &amp; Drink&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">TabView</span>(selection: <span class="variable">$selectedTabIndex</span>) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="type">ForEach</span>(menuItems.indices) &#123; index <span class="keyword">in</span></span><br><span class="line">                </span><br><span class="line">                <span class="type">Text</span>(menuItems[index])</span><br><span class="line">                    .frame(minWidth: <span class="number">0</span>, maxWidth: .infinity, minHeihgt: <span class="number">0</span>, maxHeight: .infinity)</span><br><span class="line">                    .background(<span class="type">Color</span>.green)</span><br><span class="line">                    .font(.system(size: <span class="number">50</span>, weight: .heavy, design: .rounded))</span><br><span class="line">                    .tag(index)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .tabViewStyle(.page(indexDisplayMode: .never))</span><br><span class="line">        .ignoresSafeArea()</span><br><span class="line">        .overlay(alignment: .bottom) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="type">NavigationMenu</span>(selectedIndex: <span class="variable">$selectedTabIndex</span>, menuItems: menuItems)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//MARK: - NavigationMenu</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NavigationMenu</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Namespace</span> <span class="keyword">private</span> <span class="keyword">var</span> menuItemTransition</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Veiw</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">HStack</span> &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">            <span class="type">ForEach</span>(menuItems.indices) &#123; index <span class="keyword">in</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> index <span class="operator">==</span> selectedIndex &#123;</span><br><span class="line">                	</span><br><span class="line">                    <span class="type">Text</span>(menuItems[index])</span><br><span class="line">                    	.padding(.horizontal)</span><br><span class="line">                    	.padding(.vertical, <span class="number">4</span>)</span><br><span class="line">                    	.background(<span class="type">Capsule</span>().foregroundColor(<span class="type">Color</span>.purple))</span><br><span class="line">                    	.foregroundColor(.white)</span><br><span class="line">                    	.matchedGeometryEffect(id: <span class="string">&quot;menuItem&quot;</span>, in: menuItemTransition)</span><br><span class="line">                &#125; esle &#123;</span><br><span class="line">                    </span><br><span class="line">                    <span class="type">Toxt</span>(menuItems[index])</span><br><span class="line">                    	.padding(.horizontal)</span><br><span class="line">                    	.padding(.vertical, <span class="number">4</span>)</span><br><span class="line">                    	.background(<span class="type">Capsule</span>().foregroundColor(<span class="type">Color</span>(uiColor: .ssytemGray5)))</span><br><span class="line">               			.onTapGesture &#123;</span><br><span class="line">                            </span><br><span class="line">                            selectedIndex <span class="operator">=</span> index</span><br><span class="line">                        &#125;     </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">Spacer</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .frame(minWidth: <span class="number">0</span>, maxWidth: .infinity)</span><br><span class="line">        .padding()</span><br><span class="line">        .animation(.easeInOut, value: selectedIndex)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -2059,7 +2070,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
+        <time title="修改时间：2021-08-05 08:01:11" itemprop="dateModified" datetime="2021-08-05T08:01:11+00:00">2021-08-05</time>
       </span>
 
   
@@ -2109,6 +2120,11 @@
 <li><p>controller 中的字面常量在 controller 内部最前方先定义为常量</p>
 <p>  e.g. </p>
   <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReminderListViewController</span>: <span class="title">UITableViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ⬇️ 1. 字面常量先定义，避免代码内部出现多个硬编码</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> showDetailSegueIdentifier <span class="operator">=</span> <span class="string">&quot;ShowReminderDetailSegue&quot;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span>(<span class="params">for</span> <span class="params">segue</span>: <span class="type">UIStoryboardSegue</span>, <span class="params">sender</span>: <span class="keyword">Any</span><span class="operator">?</span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// ⬇️ 2. 在使用该常量时可以避免拼写错误，也方便统一修改</span></span><br><span class="line">        <span class="keyword">if</span> segue.identifier <span class="operator">==</span> <span class="keyword">Self</span>.showDetailSegueIdentifier &#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>利用<code>typealias</code>为闭包设置字面意义易懂的别名</p>
+<p>  e.g.</p>
+  <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EditTitleCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">typealias</span> <span class="type">TitleChangeAction</span> <span class="operator">=</span> (<span class="type">String</span>) -&gt; <span class="type">Void</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> titleChangeAction: <span class="type">TitleChangeAction</span>?</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
