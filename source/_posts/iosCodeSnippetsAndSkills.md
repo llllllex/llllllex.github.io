@@ -1515,5 +1515,85 @@ sheet.preferredCornerRadius = 30.0
 
 
 
+## 从 `storyboard`获取指定id的controller
 
+```swift
+// 1. 先在 Storyboard 的 Inspector 中设置指定 controller 的 storyboard ID
+// 2. 获取被制定了 storyboard ID 的 controller
+let storyboard = UIStoryboard(name: Self.mainStoryboardName, bundle: nil)
+let detailViewController: ReminderDetailViewController = storyboard.instantiateViewController(identifier: Self.detailViewControllerIdentifier)
+```
+
+
+
+## 在 SwiftUI 的 TabView 中使用自定义的 TabButton
+
+```swift
+struct ContentView: View {
+    
+    @State var sleectedTabIndex = 0
+    let menuItems = ["Travel", "Film", "Food & Drink"]
+    
+    var body: some View {
+        
+        TabView(selection: $selectedTabIndex) {
+            
+            ForEach(menuItems.indices) { index in
+                
+                Text(menuItems[index])
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeihgt: 0, maxHeight: .infinity)
+                    .background(Color.green)
+                    .font(.system(size: 50, weight: .heavy, design: .rounded))
+                    .tag(index)
+            }
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .ignoresSafeArea()
+        .overlay(alignment: .bottom) {
+            
+            NavigationMenu(selectedIndex: $selectedTabIndex, menuItems: menuItems)
+        }
+    }
+}
+
+//MARK: - NavigationMenu
+struct NavigationMenu: View {
+    
+    @Namespace private var menuItemTransition
+    
+    var body: some Veiw {
+        
+        HStack {
+            
+            Spacer()
+            ForEach(menuItems.indices) { index in
+                
+                if index == selectedIndex {
+                	
+                    Text(menuItems[index])
+                    	.padding(.horizontal)
+                    	.padding(.vertical, 4)
+                    	.background(Capsule().foregroundColor(Color.purple))
+                    	.foregroundColor(.white)
+                    	.matchedGeometryEffect(id: "menuItem", in: menuItemTransition)
+                } esle {
+                    
+                    Toxt(menuItems[index])
+                    	.padding(.horizontal)
+                    	.padding(.vertical, 4)
+                    	.background(Capsule().foregroundColor(Color(uiColor: .ssytemGray5)))
+               			.onTapGesture {
+                            
+                            selectedIndex = index
+                        }     
+                }
+                Spacer()
+            }
+        }
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .padding()
+        .animation(.easeInOut, value: selectedIndex)
+    }
+}
+```
 

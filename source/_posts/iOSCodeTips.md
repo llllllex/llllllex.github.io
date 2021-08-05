@@ -183,3 +183,11 @@ a: 指向NSString实例对象a的指针（在使用时，对a的操作被解读�
 
 
 
+## 不常用属性
+
+1.   `isViewLoaded`
+
+     >   Use isViewLoaded to check if a view is currently loaded into memory.
+
+
+
