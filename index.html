@@ -235,7 +235,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
+        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
       </span>
 
   
@@ -325,7 +325,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
+        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
       </span>
 
   
@@ -807,7 +807,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
+        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
       </span>
 
   
@@ -936,6 +936,21 @@
 <p><code>NSObject</code> &lt;- <code>NSSet</code> &lt;- <code>NSMutableSet</code></p>
 <p><code>NSObject</code> &lt;- <code>NSOrderdSet</code> &lt;- <code>NSMutableOrderedSet</code></p>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>因为 <code>NSMutableOrderedSet</code> 既不是 <code>NSSet</code> 也不是 <code>NSMutableSet</code>，因此需要尽可能避免对 <code>NSOrderedSet</code> 的使用。这个类的主要使用场景在 CoreData。</p>
+<h2 id="代码整理和优化"><a href="#代码整理和优化" class="headerlink" title="代码整理和优化"></a>代码整理和优化</h2><ol>
+<li><p>View 重用</p>
+<p>  在 View 结构相同，内容可以根据有限的几种数据类型变化时，可以通过：</p>
+<ol>
+<li><p>  枚举值；</p>
+</li>
+<li><p>  多个不同态的便利构造器（即使用<code>工厂方法</code>）；</p>
+</li>
+<li><p>   ViewModel + 便利构造器</p>
+</li>
+</ol>
+<pre><code>   来解耦数据代码和视图代码。
+</code></pre>
+</li>
+</ol>
 
       
     </div>
@@ -993,7 +1008,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
+        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
       </span>
 
   
@@ -1084,7 +1099,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
+        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
       </span>
 
   
@@ -2044,7 +2059,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-21 09:02:57" itemprop="dateModified" datetime="2021-07-21T09:02:57+00:00">2021-07-21</time>
+        <time title="修改时间：2021-08-05 02:58:24" itemprop="dateModified" datetime="2021-08-05T02:58:24+00:00">2021-08-05</time>
       </span>
 
   
@@ -2090,6 +2105,13 @@
 <p>⚠️ 前提：if/else嵌套中的每个分支内部均不存在使用了if{return}提前退出的代码。</p>
 <p>i.e. 纯if/else嵌套可以重写为if{return}的模式，否则需要将分支处理为嵌套判断再改为if{return}。</p>
 </blockquote>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><ol>
+<li><p>controller 中的字面常量在 controller 内部最前方先定义为常量</p>
+<p>  e.g. </p>
+  <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReminderListViewController</span>: <span class="title">UITableViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ⬇️ 1. 字面常量先定义，避免代码内部出现多个硬编码</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> showDetailSegueIdentifier <span class="operator">=</span> <span class="string">&quot;ShowReminderDetailSegue&quot;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">prepare</span>(<span class="params">for</span> <span class="params">segue</span>: <span class="type">UIStoryboardSegue</span>, <span class="params">sender</span>: <span class="keyword">Any</span><span class="operator">?</span>)</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// ⬇️ 2. 在使用该常量时可以避免拼写错误，也方便统一修改</span></span><br><span class="line">        <span class="keyword">if</span> segue.identifier <span class="operator">==</span> <span class="keyword">Self</span>.showDetailSegueIdentifier &#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 
       
     </div>
