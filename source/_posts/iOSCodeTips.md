@@ -200,3 +200,39 @@ a: 指向NSString实例对象a的指针（在使用时，对a的操作被解读�
      `Privacy - Reminders Usage Description` : `<#Content for asking grant#>`
 
      e.g. `The app uses reminders to help you stay on track.`
+
+
+
+## iOS Debugging
+
+复现 -> 获取崩溃原因 ->  
+
+
+
+
+
+## CloudKit
+
+1.   批处理直接通过存储协调器 `PersistentStoreCoordinator` 来操作，不经过上下文 -> 上下文不同步更改批处理的变化。因此如果不对批处理做特别处理，app 并不会及时将批处理导致的数据变化在上下文中体现；
+
+2.   在 App 启动，加载 `CoreData` 存储时，若手动创建 description (`NSPersistentStoreDescription`)，则数据库在云端将保存在 `App Group Container` 中，其他的 App 或 App Extension 也可以读取；
+
+3.   对于使用了多个 `Configuration` 的 `CoreData` 数据库，可以只为需要的 `Configuration` 启用该功能
+
+
+
+### 是否通过手动启用的方式启用持久化历史跟踪功能所产生的不同效果
+
+| 持久化历史跟踪开启方式 | 手动                 | `NSPersistentCloudKitContainer`                   |
+| ---------------------- | -------------------- | ------------------------------------------------- |
+| 不同                   | 数据库变动会发送通知 | 数据库变动不发送通知，`CoreData` 内部处理数据变动 |
+
+
+
+### 账号下 groupID 个数
+
+| App 或 Extension个数 / 是否需要隔离数据 |     隔离     |    不隔离    |
+| --------------------------------------- | :----------: | :----------: |
+| 1 个                                    | 一个 groupID | 一个 groupID |
+| 多个                                    | 多个 groupID | 一个 groupID |
+

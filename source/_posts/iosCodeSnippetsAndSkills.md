@@ -1597,3 +1597,16 @@ struct NavigationMenu: View {
 }
 ```
 
+
+
+## SwiftUI 中将实例转为`Binding`传递引用
+
+```swift
+private func binding(for scrum: DailyScrum) -> Binding<DailyScrum> {
+        guard let scrumIndex = scrums.firstIndex(where: { $0.id == scrum.id }) else {
+            fatalError("Can't find scrum in array")
+        }
+        return $scrums[scrumIndex]
+}
+```
+
