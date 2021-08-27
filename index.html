@@ -121,7 +121,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a></li>
   </ul>
 </nav>
 
@@ -165,7 +165,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -204,6 +204,70 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/08/27/iOS-%E7%9A%84%E5%8D%95%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/27/iOS-%E7%9A%84%E5%8D%95%E4%BE%8B/" class="post-title-link" itemprop="url">iOS 的单例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-08-27 18:39:19 / 修改时间：10:43:48" itemprop="dateCreated datePublished" datetime="2021-08-27T18:39:19+00:00">2021-08-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/08/18/iOS-Learning-Notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -227,10 +291,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-08-18 16:43:57 / 修改时间：08:45:22" itemprop="dateCreated datePublished" datetime="2021-08-18T16:43:57+00:00">2021-08-18</time>
+      <time title="创建时间：2021-08-18 16:43:57" itemprop="dateCreated datePublished" datetime="2021-08-18T16:43:57+00:00">2021-08-18</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+      </span>
 
   
 </div>
@@ -242,7 +312,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="iOS-Learning-Notes"><a href="#iOS-Learning-Notes" class="headerlink" title="iOS Learning Notes"></a>iOS Learning Notes</h1>
+          <h1 id="iOS-Learning-Notes"><a href="#iOS-Learning-Notes" class="headerlink" title="iOS Learning Notes"></a>iOS Learning Notes</h1><h2 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h2><h3 id="Clang"><a href="#Clang" class="headerlink" title="Clang"></a>Clang</h3><h4 id="STEP"><a href="#STEP" class="headerlink" title="STEP"></a>STEP</h4><ol>
+<li><p>预处理 pre-process：</p>
+<p>  include 扩展、标记化处理、去除注释、条件编译、宏删除、宏替换。对<code>C</code>输出<code>.i</code>, 对<code>C++</code>输出 <code>.ii</code>, 对 OC 输出 <code>.mi</code>, 对<code>Objective-C++ </code>输出 <code>.mii</code>；</p>
+</li>
+<li><p>词法分析 lexical analysis：</p>
+<p>  lexer 将代码切成一个个 token，比如大小括号，等于号还有字符串等。是计算机科学中将字符序列转换为标记序列的过程；</p>
+</li>
+<li><p>  语法分析（Semantic Analysis）：验证语法是否正确，然后将所有节点组成抽象语法树 AST 。由 Clang 中 Parser 和 Sema 配合完成；</p>
+</li>
+<li><p>  静态分析（Static Analysis）：使用它来表示用于分析源代码以便自动发现错误；</p>
+</li>
+<li><p>  中间代码生成（Code Generation）：开始 IR 中间代码的生成了，CodeGen 会负责将语法树自顶向下遍历逐步翻译成 LLVM IR。</p>
+</li>
+</ol>
+
       
     </div>
 
@@ -299,7 +383,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-18 08:45:22" itemprop="dateModified" datetime="2021-08-18T08:45:22+00:00">2021-08-18</time>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
       </span>
 
   
@@ -383,7 +467,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-18 08:45:22" itemprop="dateModified" datetime="2021-08-18T08:45:22+00:00">2021-08-18</time>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
       </span>
 
   
@@ -456,7 +540,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-18 08:45:22" itemprop="dateModified" datetime="2021-08-18T08:45:22+00:00">2021-08-18</time>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
       </span>
 
   
@@ -546,7 +630,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-18 08:45:22" itemprop="dateModified" datetime="2021-08-18T08:45:22+00:00">2021-08-18</time>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
       </span>
 
   
@@ -1028,7 +1112,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-18 08:45:22" itemprop="dateModified" datetime="2021-08-18T08:45:22+00:00">2021-08-18</time>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
       </span>
 
   
@@ -1284,7 +1368,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-18 08:45:22" itemprop="dateModified" datetime="2021-08-18T08:45:22+00:00">2021-08-18</time>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
       </span>
 
   
@@ -1375,7 +1459,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-18 08:45:22" itemprop="dateModified" datetime="2021-08-18T08:45:22+00:00">2021-08-18</time>
+        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
       </span>
 
   
@@ -2026,83 +2110,6 @@
 <p>a)在使用本软件网络服务进行网上交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，请您立即联络本软件客服，以便本软件采取相应措施。</p>
 </li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/terminalTips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/06/terminalTips/" class="post-title-link" itemprop="url">terminalTips</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-04-06 03:16:22 / 修改时间：03:16:39" itemprop="dateCreated datePublished" datetime="2021-04-06T03:16:22+00:00">2021-04-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Terminal-Tips"><a href="#Terminal-Tips" class="headerlink" title="Terminal Tips"></a>Terminal Tips</h1><h2 id="常用系统命令"><a href="#常用系统命令" class="headerlink" title="常用系统命令"></a>常用系统命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now // 重启</span><br><span class="line">shutdown now    // 关机</span><br><span class="line"></span><br><span class="line">pmset -g                   // 显示电源管理设置信息</span><br><span class="line">sudo pmset displaysleep 15 // 设置显示器无活动15分钟后关闭</span><br><span class="line">sudo pmset sleep 30        // 计算机无活动30分钟后休眠</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
-<li>Command + L：清空一行</li>
-<li>Command + K：清空全部</li>
-</ol>
-<h2 id="使用-sudo-快速执行上一条命令"><a href="#使用-sudo-快速执行上一条命令" class="headerlink" title="使用 sudo 快速执行上一条命令"></a>使用 sudo 快速执行上一条命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo !!</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果由于你忘了使用sudo而导致命令行返回一个错误，只需输入sudo !!就可以用sudo来执行上一条指令。</p>
-</blockquote>
 
       
     </div>
