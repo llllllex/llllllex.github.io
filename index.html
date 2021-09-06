@@ -121,7 +121,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">16</span></a></li>
   </ul>
 </nav>
 
@@ -165,7 +165,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -204,6 +204,94 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/09/06/Objective-C-Runtime-%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/06/Objective-C-Runtime-%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Objective-C Runtime 源码学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-06 16:46:37 / 修改时间：09:11:10" itemprop="dateCreated datePublished" datetime="2021-09-06T16:46:37+00:00">2021-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Objective-C-Runtime源码学习"><a href="#Objective-C-Runtime源码学习" class="headerlink" title="Objective-C Runtime源码学习"></a>Objective-C Runtime源码学习</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><ul>
+<li>  Public Headers</li>
+<li>  Private Headers</li>
+<li>  Project Headers</li>
+<li>  Source</li>
+<li>  Obsolete Headers</li>
+<li>  Obsolete Source</li>
+</ul>
+<h2 id="重点概念及数据结构"><a href="#重点概念及数据结构" class="headerlink" title="重点概念及数据结构"></a>重点概念及数据结构</h2><ol>
+<li><p>objc_object</p>
+<blockquote>
+<p>  Represents an instance of a class.</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>id</p>
+<blockquote>
+<p>  A pointer to an instance of a class.</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> *<span class="title">id</span>;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/08/27/iOS-%E7%9A%84%E5%8D%95%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -227,10 +315,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-08-27 18:39:19 / 修改时间：10:43:48" itemprop="dateCreated datePublished" datetime="2021-08-27T18:39:19+00:00">2021-08-27</time>
+      <time title="创建时间：2021-08-27 18:39:19" itemprop="dateCreated datePublished" datetime="2021-08-27T18:39:19+00:00">2021-08-27</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
+      </span>
 
   
 </div>
@@ -242,7 +336,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h1 id="iOS-中的单例"><a href="#iOS-中的单例" class="headerlink" title="iOS 中的单例"></a>iOS 中的单例</h1><h2 id="什么是单例？为什么要使用单例？"><a href="#什么是单例？为什么要使用单例？" class="headerlink" title="什么是单例？为什么要使用单例？"></a>什么是单例？为什么要使用单例？</h2><ol>
+<li>  是什么：单例是一种常用的设计模式。</li>
+<li>  目    的：保证系统中某个类只有一个实例且易于访问</li>
+<li>  效    果：方便控制实例个数；节约系统资源。</li>
+<li>  手    段：</li>
+</ol>
+<p>按照语言特性的不同，分 <code>Objective-C</code> 和 <code>Swift</code> 两块来讲。</p>
+<h2 id="Objective-C-中的单例"><a href="#Objective-C-中的单例" class="headerlink" title="Objective-C 中的单例"></a><code>Objective-C</code> 中的单例</h2>
       
     </div>
 
@@ -299,7 +400,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -383,7 +484,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -467,7 +568,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -540,7 +641,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -630,7 +731,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -1112,7 +1213,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -1368,7 +1469,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -1459,7 +1560,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-27 10:43:48" itemprop="dateModified" datetime="2021-08-27T10:43:48+00:00">2021-08-27</time>
+        <time title="修改时间：2021-09-06 09:11:10" itemprop="dateModified" datetime="2021-09-06T09:11:10+00:00">2021-09-06</time>
       </span>
 
   
@@ -2026,90 +2127,6 @@
 
 <h2 id="SwiftUI-中将实例转为Binding传递引用"><a href="#SwiftUI-中将实例转为Binding传递引用" class="headerlink" title="SwiftUI 中将实例转为Binding传递引用"></a>SwiftUI 中将实例转为<code>Binding</code>传递引用</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">binding</span>(<span class="params">for</span> <span class="params">scrum</span>: <span class="type">DailyScrum</span>)</span> -&gt; <span class="type">Binding</span>&lt;<span class="type">DailyScrum</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> scrumIndex <span class="operator">=</span> scrums.firstIndex(where: &#123; <span class="variable">$0</span>.id <span class="operator">==</span> scrum.id &#125;) <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">&quot;Can&#x27;t find scrum in array&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$scrums</span>[scrumIndex]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/App-Store-%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/06/App-Store-%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80/" class="post-title-link" itemprop="url">App Store 隐私政策网址</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-04-06 03:17:13 / 修改时间：03:18:07" itemprop="dateCreated datePublished" datetime="2021-04-06T03:17:13+00:00">2021-04-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>本软件尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本软件会按照本隐私权政策的规定使用和披露您的个人信息。但本软件将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本软件不会将这些信息对外披露或向第三方提供。本软件会不时更新本隐私权政策。您在同意本软件服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本软件服务使用协议不可分割的一部分。</p>
-<ol>
-<li><p>适用范围</p>
-<p>a) 在您使用本软件网络服务，本软件自动接收并记录的您的手机上的信息，包括但不限于您的健康数据、使用的语言、访问日期和时间、软硬件特征信息及您需求的网页记录等数据；</p>
-</li>
-<li><p>信息的使用</p>
-<p>a)在获得您的数据之后，本软件会将其上传至服务器，以生成您的排行榜数据，以便您能够更好地使用服务。</p>
-</li>
-<li><p>信息披露</p>
-<p>a)本软件不会将您的信息披露给不受信任的第三方。</p>
-<p>b)根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；</p>
-<p>c)如您出现违反中国有关法律、法规或者相关规则的情况，需要向第三方披露；</p>
-</li>
-<li><p>信息存储和交换</p>
-<p>本软件收集的有关您的信息和资料将保存在本软件及（或）其关联公司的服务器上，这些信息和资料可能传送至您所在国家、地区或本软件收集信息和资料所在地的境外并在境外被访问、存储和展示。</p>
-</li>
-<li><p>信息安全</p>
-<p>a)在使用本软件网络服务进行网上交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，请您立即联络本软件客服，以便本软件采取相应措施。</p>
-</li>
-</ol>
 
       
     </div>
