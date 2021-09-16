@@ -121,7 +121,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">16</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
   </ul>
 </nav>
 
@@ -165,7 +165,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -204,6 +204,79 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/09/16/iOS%E5%BC%80%E5%8F%91-%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/16/iOS%E5%BC%80%E5%8F%91-%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">iOS开发-系统和框架</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-16 11:14:28 / 修改时间：03:15:50" itemprop="dateCreated datePublished" datetime="2021-09-16T11:14:28+00:00">2021-09-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>现在的苹果系统是在某个unix的分支系统的基础上进行构建的（具体哪个我忘了），线程间通信使用端口消息，比较底层的框架是CoreXxx。</p>
+<p>负责界面渲染的是CoreAnimation，这一套渲染框架是横跨iOS、macOS等的（tvOS和watchOS相关的开发我还没碰过没了解过，这块不清楚是不是一样）。</p>
+<blockquote>
+<p>  虽然叫CoreAnimation，但是实际上是负责界面渲染与绘制的框架，请不要被名字误导了。</p>
+</blockquote>
+<p>在此基础上，不同的系统因为不同的交互方式，有一层负责交互任务处理的封装，在macOS的界面框架AppKit上叫<code>NSView</code>，在iOS的界面框架UIKit上叫做<code>UIView</code>，这一层封装负责处理各个平台不同的交互，渲染任务的处理还是由CoreAnimation负责处理——对应的类叫做<code>CALayer</code>。</p>
+<p>对于SwiftUI来讲，他是DSL(Domain Specific Development Language)，从语法设计上可以直接类比XML，HTML，实际上第一层解析的实现和处理是转化为对应的命令式的Swift方法调用来处理的。在不同平台上，具体的SwiftUI的实现是通过不同平台的界面框架来实现的。</p>
+<p>SwiftUI的基础代码架构是MVVM，因为它将View通过DSL完全独立开来，数据的引用（数据流、App状态数据，临时状态数据（e.g.控制流参数、界面临时状态））是通过依赖注入的方式加入到View的。</p>
+<p>UIKit的基础代码架构是MVC，一个Controller和一个View是绑定在一起的，在不进行代码解耦的情况下，业务流，界面绘制，数据获取与处理等各种操作均在这个Controller层进行处理。View实际上是与Controller紧密结合在一起的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/09/06/Objective-C-Runtime-%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -227,10 +300,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-09-06 16:46:37 / 修改时间：09:30:40" itemprop="dateCreated datePublished" datetime="2021-09-06T16:46:37+00:00">2021-09-06</time>
+      <time title="创建时间：2021-09-06 16:46:37" itemprop="dateCreated datePublished" datetime="2021-09-06T16:46:37+00:00">2021-09-06</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
+      </span>
 
   
 </div>
@@ -250,10 +329,14 @@
 <li>  <code>Obsolete Headers</code></li>
 <li>  <code>Obsolete Source</code></li>
 </ul>
+<h3 id="Runtime的三种调用方式："><a href="#Runtime的三种调用方式：" class="headerlink" title="Runtime的三种调用方式："></a>Runtime的三种调用方式：</h3><p>1、<code>runtime api</code> –&gt; (class_、objc_、object_)<br>2、<code>NSObject api</code> –&gt; (isKindOfClass、isMemberOfClass)<br>3、OC上层方法 –&gt;（@selector）</p>
 <h2 id="重点概念及数据结构"><a href="#重点概念及数据结构" class="headerlink" title="重点概念及数据结构"></a>重点概念及数据结构</h2><ol>
 <li><p>objc_object</p>
 <blockquote>
 <p>  Represents an instance of a class.</p>
+</blockquote>
+<blockquote>
+<p>  objc.h</p>
 </blockquote>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -262,10 +345,132 @@
 <blockquote>
 <p>  A pointer to an instance of a class.</p>
 </blockquote>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> *<span class="title">id</span>;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>  objc.h</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> *<span class="title">id</span>;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="3">
+<li><p>objc_class</p>
+<blockquote>
+<p>  An opaque type that represents an Objective-C class.</p>
+</blockquote>
+<blockquote>
+<p>  objc.h</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> *<span class="title">Class</span>;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  runtime.h</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !__OBJC2__</span></span><br><span class="line">    Class _Nullable super_class                              OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> * _Nonnull name                               OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> version                                             OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> info                                                OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> instance_size                                       OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_ivar_list</span> * _<span class="title">Nullable</span> <span class="title">ivars</span>                  <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_method_list</span> * _<span class="title">Nullable</span> * _<span class="title">Nullable</span> <span class="title">methodLists</span>                    <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_cache</span> * _<span class="title">Nonnull</span> <span class="title">cache</span>                       <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_protocol_list</span> * _<span class="title">Nullable</span> <span class="title">protocols</span>          <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">&#125; OBJC2_UNAVAILABLE;</span><br><span class="line"><span class="comment">/* Use `Class` instead of `struct objc_class *` */</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
+<h2 id="Objc环境初始化"><a href="#Objc环境初始化" class="headerlink" title="Objc环境初始化"></a>Objc环境初始化</h2><ol>
+<li>  <code>objc-os.mm</code> L.922 <code>void _objc_init(void)</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void _objc_init(void)</span><br><span class="line">&#123;</span><br><span class="line">    static bool initialized &#x3D; false;</span><br><span class="line">    if (initialized) return;</span><br><span class="line">    initialized &#x3D; true;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; fixme defer initialization until an objc-using image is found?</span><br><span class="line">    environ_init();</span><br><span class="line">    tls_init();</span><br><span class="line">    static_init();</span><br><span class="line">    runtime_init();</span><br><span class="line">    exception_init();</span><br><span class="line">#if __OBJC2__</span><br><span class="line">    cache_t::init();</span><br><span class="line">#endif</span><br><span class="line">    _imp_implementationWithBlock_init();</span><br><span class="line"></span><br><span class="line">    _dyld_objc_notify_register(&amp;map_images, load_images, unmap_image);</span><br><span class="line"></span><br><span class="line">#if __OBJC2__</span><br><span class="line">    didCallDyldNotifyRegister &#x3D; true;</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><p><code>environ_init()</code></p>
+<p>  <code>objc-runtime.mm</code> L.367</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">void environ_init(void) </span><br><span class="line">&#123;</span><br><span class="line">    if (issetugid()) &#123;</span><br><span class="line">        &#x2F;&#x2F; All environment variables are silently ignored when setuid or setgid</span><br><span class="line">        &#x2F;&#x2F; This includes OBJC_HELP and OBJC_PRINT_OPTIONS themselves.</span><br><span class="line">        return;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Turn off autorelease LRU coalescing by default for apps linked against</span><br><span class="line">    &#x2F;&#x2F; older SDKs. LRU coalescing can reorder releases and certain older apps</span><br><span class="line">    &#x2F;&#x2F; are accidentally relying on the ordering.</span><br><span class="line">    &#x2F;&#x2F; rdar:&#x2F;&#x2F;problem&#x2F;63886091</span><br><span class="line">    if (!dyld_program_sdk_at_least(dyld_fall_2020_os_versions))</span><br><span class="line">        DisableAutoreleaseCoalescingLRU &#x3D; true;</span><br><span class="line"></span><br><span class="line">    bool PrintHelp &#x3D; false;</span><br><span class="line">    bool PrintOptions &#x3D; false;</span><br><span class="line">    bool maybeMallocDebugging &#x3D; false;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Scan environ[] directly instead of calling getenv() a lot.</span><br><span class="line">    &#x2F;&#x2F; This optimizes the case where none are set.</span><br><span class="line">    for (char **p &#x3D; *_NSGetEnviron(); *p !&#x3D; nil; p++) &#123;</span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;Malloc&quot;, 6)  ||  0 &#x3D;&#x3D; strncmp(*p, &quot;DYLD&quot;, 4)  ||  </span><br><span class="line">            0 &#x3D;&#x3D; strncmp(*p, &quot;NSZombiesEnabled&quot;, 16))</span><br><span class="line">        &#123;</span><br><span class="line">            maybeMallocDebugging &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (0 !&#x3D; strncmp(*p, &quot;OBJC_&quot;, 5)) continue;</span><br><span class="line">        </span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;OBJC_HELP&#x3D;&quot;, 10)) &#123;</span><br><span class="line">            PrintHelp &#x3D; true;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;OBJC_PRINT_OPTIONS&#x3D;&quot;, 19)) &#123;</span><br><span class="line">            PrintOptions &#x3D; true;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;OBJC_DEBUG_POOL_DEPTH&#x3D;&quot;, 22)) &#123;</span><br><span class="line">            SetPageCountWarning(*p + 22);</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        const char *value &#x3D; strchr(*p, &#39;&#x3D;&#39;);</span><br><span class="line">        if (!*value) continue;</span><br><span class="line">        value++;</span><br><span class="line">        </span><br><span class="line">        for (size_t i &#x3D; 0; i &lt; sizeof(Settings)&#x2F;sizeof(Settings[0]); i++) &#123;</span><br><span class="line">            const option_t *opt &#x3D; &amp;Settings[i];</span><br><span class="line">            if ((size_t)(value - *p) &#x3D;&#x3D; 1+opt-&gt;envlen  &amp;&amp;  </span><br><span class="line">                0 &#x3D;&#x3D; strncmp(*p, opt-&gt;env, opt-&gt;envlen))</span><br><span class="line">            &#123;</span><br><span class="line">                *opt-&gt;var &#x3D; (0 &#x3D;&#x3D; strcmp(value, &quot;YES&quot;));</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Special case: enable some autorelease pool debugging</span><br><span class="line">    &#x2F;&#x2F; when some malloc debugging is enabled </span><br><span class="line">    &#x2F;&#x2F; and OBJC_DEBUG_POOL_ALLOCATION is not set to something other than NO.</span><br><span class="line">    if (maybeMallocDebugging) &#123;</span><br><span class="line">        const char *insert &#x3D; getenv(&quot;DYLD_INSERT_LIBRARIES&quot;);</span><br><span class="line">        const char *zombie &#x3D; getenv(&quot;NSZombiesEnabled&quot;);</span><br><span class="line">        const char *pooldebug &#x3D; getenv(&quot;OBJC_DEBUG_POOL_ALLOCATION&quot;);</span><br><span class="line">        if ((getenv(&quot;MallocStackLogging&quot;)</span><br><span class="line">             || getenv(&quot;MallocStackLoggingNoCompact&quot;)</span><br><span class="line">             || (zombie &amp;&amp; (*zombie &#x3D;&#x3D; &#39;Y&#39; || *zombie &#x3D;&#x3D; &#39;y&#39;))</span><br><span class="line">             || (insert &amp;&amp; strstr(insert, &quot;libgmalloc&quot;)))</span><br><span class="line">            &amp;&amp;</span><br><span class="line">            (!pooldebug || 0 &#x3D;&#x3D; strcmp(pooldebug, &quot;YES&quot;)))</span><br><span class="line">        &#123;</span><br><span class="line">            DebugPoolAllocation &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!os_feature_enabled_simple(objc4, preoptimizedCaches, true)) &#123;</span><br><span class="line">        DisablePreoptCaches &#x3D; true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Print OBJC_HELP and OBJC_PRINT_OPTIONS output.</span><br><span class="line">    if (PrintHelp  ||  PrintOptions) &#123;</span><br><span class="line">        if (PrintHelp) &#123;</span><br><span class="line">            _objc_inform(&quot;Objective-C runtime debugging. Set variable&#x3D;YES to enable.&quot;);</span><br><span class="line">            _objc_inform(&quot;OBJC_HELP: describe available environment variables&quot;);</span><br><span class="line">            if (PrintOptions) &#123;</span><br><span class="line">                _objc_inform(&quot;OBJC_HELP is set&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            _objc_inform(&quot;OBJC_PRINT_OPTIONS: list which options are set&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if (PrintOptions) &#123;</span><br><span class="line">            _objc_inform(&quot;OBJC_PRINT_OPTIONS is set&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (size_t i &#x3D; 0; i &lt; sizeof(Settings)&#x2F;sizeof(Settings[0]); i++) &#123;</span><br><span class="line">            const option_t *opt &#x3D; &amp;Settings[i];            </span><br><span class="line">            if (PrintHelp) _objc_inform(&quot;%s: %s&quot;, opt-&gt;env, opt-&gt;help);</span><br><span class="line">            if (PrintOptions &amp;&amp; *opt-&gt;var) _objc_inform(&quot;%s is set&quot;, opt-&gt;env);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>  <code>tls_init()</code></li>
+</ol>
+<p><code>objc-runtime.mm</code> L.550</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void tls_init(void)</span><br><span class="line">&#123;</span><br><span class="line">#if SUPPORT_DIRECT_THREAD_KEYS</span><br><span class="line">    pthread_key_init_np(TLS_DIRECT_KEY, &amp;_objc_pthread_destroyspecific);</span><br><span class="line">#else</span><br><span class="line">    _objc_pthread_key &#x3D; tls_create(&amp;_objc_pthread_destroyspecific);</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>  <code>static_init()</code></li>
+</ol>
+<ol start="5">
+<li>  <code>runtime_init()</code></li>
+</ol>
+<p><code>objc-runtime-new.mm</code> L.8520</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void runtime_init(void)</span><br><span class="line">&#123;</span><br><span class="line">    objc::unattachedCategories.init(32);</span><br><span class="line">    objc::allocatedClasses.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>  <code>exception_init()</code></li>
+<li>  <code>cache_t::init()</code></li>
+<li>  ``</li>
+</ol>
+<h2 id="特殊的数据结构"><a href="#特殊的数据结构" class="headerlink" title="特殊的数据结构"></a>特殊的数据结构</h2><ol>
+<li><p>DisguisedPtr</p>
+<blockquote>
+<p>  DisguisedPtr<T> acts like pointer type T*, except the stored value is disguised to hide it from tools like <code>leaks</code>.</p>
+<p>  nil is disguised as itself so zero-filled memory works as expected, which means 0x80..00 is also disguised as itself but we don’t care.</p>
+<p>  Note that weak_entry_t knows about this encoding.</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DisguisedPtr</span> &#123;</span></span><br><span class="line">    <span class="keyword">uintptr_t</span> value;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="特殊的二进制地址"><a href="#特殊的二进制地址" class="headerlink" title="特殊的二进制地址"></a>特殊的二进制地址</h2><blockquote>
+<p>  The low two bits:</p>
+</blockquote>
+<ol>
+<li><p><code>0b00</code>: pointer-aligned DisguisedPtr</p>
+<p>  (disguised nil or 0x80..00)</p>
+</li>
+<li><p>  <code>0b11</code>: any other address</p>
+</li>
+<li><p>  <code>0b10</code>: mark the out-of-line state</p>
+</li>
+</ol>
+<h2 id="AutoRelease-pool"><a href="#AutoRelease-pool" class="headerlink" title="AutoRelease pool"></a>AutoRelease pool</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><blockquote>
+<p>  A thread’s autorelease pool is a stack of pointers.</p>
+</blockquote>
+<p>一个线程的自动释放池是一个存放指针的栈。</p>
+<blockquote>
+<p>  Each pointer is either an object ot release, or POOL_BOUNDARY which is an autorelease pool boundary.</p>
+</blockquote>
+<p>其中的每个指针要么是要释放的对象，要么是自动释放池的标记。</p>
+<blockquote>
+<p>  A pool token is a pointer to the POOL_BOUNDARY for that pool. When the pool is popped, every object hotter than the sentinel is released.</p>
+</blockquote>
+<p>pool token是指向该自动释放池标记的指针。当该池弹出时，每个比标记更新( hotter )的对象都会被释放。</p>
+<blockquote>
+<p>  The stack is divided into a doubly-linkedlist of pages. Pages are added and deleted as necessary.</p>
+</blockquote>
+<p>自动释放池的栈分成了使用双链表连接起来的数个页。这些页面的添加和删除是惰性的——需要的时候才会被添加/删除，而不是提前生成。</p>
+<blockquote>
+<p>  Thread-local storage points to the hot page, where newly autoreleased objects are stored.</p>
+</blockquote>
+<p>线程本地（线程内部）存储指向了活跃的页面——新的自动释放的对象被存储的那一页。</p>
+<h2 id="Weak"><a href="#Weak" class="headerlink" title="Weak"></a>Weak</h2><blockquote>
+<p>  The weak table is a hash table governed by a single spin lock.</p>
+<p>  An allocated blob of memory, most often an object, but under GC any such allocation, may have its address stored in a __weak marked storage location through use of compiler generated write-barriers or hand coded uses of the register weak primitive. Associated with the registration can be a callback block for the case when one of the allocated chunks of memory is reclaimed. </p>
+<p>  The table is hashed on the address of the allocated memory. When __weak marked memory changes its reference, we count on the fact that we can still see its previous reference.</p>
+<p>  So, in the hash table, indexed by the weakly referenced item, is a list of all locations where this address is currently being stored.</p>
+<p>  For ARC, we also keep track of whether an arbitrary object is being deallocated by briefly placing it in the table just prior to invoking dealloc, and removing it via objc_clear_deallocating just prior to memory reclamation.</p>
+</blockquote>
+<h2 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h2><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1guabzh1pqqj60vd0u00v602.jpg" alt="image-20210909135253943"></p>
+<ol>
+<li><p>消息发送</p>
+<p>  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua7xi96jqj60zi0bywfh02.jpg" alt="消息传递流程"></p>
+<ol>
+<li>快速查找  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua81ao3tnj61ps0l0djo02.jpg" alt="img"></li>
+<li>慢速查找  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua81t8ydmj61y40h6tcf02.jpg" alt="img"></li>
+</ol>
+</li>
+<li><p>消息转发</p>
+<p>  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua7wtw39lj60zk0hkjsj02.jpg" alt="消息转发流程"></p>
+</li>
+</ol>
+<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p>KVC在某种程度上提供了替代存取方法（访问器方法）的方案，不过存取方法终究是个好东西，以至于只要有可能，KVC也尽可能先尝试使用存取方法访问属性。当使用KVC访问属性时，它内部其实做了很多事：<br>1.首先查找有无<property>，set<property>，is<property>等property属性对应的存取方法，若有，则直接使用这些方法;<br>2.若无，则继续查找_<property>，_get<property>，<em>set<property>等方法，若有就使用；<br>3.若查询不到以上任何存取方法，则尝试直接访问实例变量<property>，</em><property>；<br>4.若连该成员变量也访问不到，则会在下面方法中抛出异常。<strong>之所以提供这两个方法，就是让你在因访问不到该属性而程序即将崩掉前，供你重写，在内做些处理，防止程序直接崩掉。</strong><br><code>valueForUndefinedKey:</code>和<code>setValue:forUndefinedKey:</code>方法。</p>
 
       
     </div>
@@ -323,7 +528,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -400,7 +605,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -484,7 +689,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -568,7 +773,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -641,7 +846,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -731,7 +936,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -1213,7 +1418,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -1469,7 +1674,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
       </span>
 
   
@@ -1503,630 +1708,6 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/62ea9cfecf80">https://www.jianshu.com/p/62ea9cfecf80</a></p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/iosCodeSnippetsAndSkills/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lex">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/04/06/iosCodeSnippetsAndSkills/" class="post-title-link" itemprop="url">iosDevSnippetsAndSkills</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-06 11:14:33" itemprop="dateCreated datePublished" datetime="2021-04-06T11:14:33+00:00">2021-04-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-06 09:30:40" itemprop="dateModified" datetime="2021-09-06T09:30:40+00:00">2021-09-06</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="iOS-零散知识点和示例代码块"><a href="#iOS-零散知识点和示例代码块" class="headerlink" title="iOS 零散知识点和示例代码块"></a>iOS 零散知识点和示例代码块</h1><blockquote>
-<p>部分内容来源：</p>
-</blockquote>
-<h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxcx5zeedj30u00fmq4q.jpg"></p>
-<h2 id="内存-amp-Debug"><a href="#内存-amp-Debug" class="headerlink" title="内存 &amp; Debug"></a>内存 &amp; Debug</h2><h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><p>fp 寄存器存储了上一帧的地址，类似一个链表的起始地址，通过 fp 不断回溯可以将整个 Backtrace 函数调用栈进行串联。</p>
-<h2 id="有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？"><a href="#有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？" class="headerlink" title="有没有办法将参数的NSDictionary附加到NSURLRequest而不是手动创建字符串？"></a>有没有办法将参数的<strong>NSDictionary</strong>附加到<strong>NSURLRequest</strong>而不是手动创建字符串？</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/ask/106457">https://cloud.tencent.com/developer/ask/106457</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSURLComponents *url &#x3D; [[NSURLComponents alloc] initWithURL:request.URL resolvingAgainstBaseURL:YES];</span><br><span class="line">NSMutableArray *queryItems &#x3D; NSMutableArray.new;</span><br><span class="line">[params enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSString *value, BOOL *stop) &#123;</span><br><span class="line">   [queryItems addObject:[NSURLQueryItem queryItemWithName:name </span><br><span class="line">                          value:[value stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]</span><br><span class="line">                         ]</span><br><span class="line">   ];</span><br><span class="line">&#125;];</span><br><span class="line">url.queryItems &#x3D; queryItems;</span><br><span class="line">request.URL &#x3D; url.URL;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="获取屏幕尺寸的两种方法"><a href="#获取屏幕尺寸的两种方法" class="headerlink" title="获取屏幕尺寸的两种方法"></a>获取屏幕尺寸的两种方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CGSize screenSize &#x3D; UIApplication.sharedApplication.delegate.window.bounds.size;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CGSize screenSize &#x3D; UIScreen.mainScreen.bounds.size;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Date-Extensions-判断-获取时间戳-时间差"><a href="#Date-Extensions-判断-获取时间戳-时间差" class="headerlink" title="Date+Extensions: 判断/获取时间戳/时间差"></a>Date+Extensions: 判断/获取时间戳/时间差</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Date</span> </span>&#123;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  是否为今天</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">isToday</span>()</span> -&gt; <span class="type">Bool</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> calendar <span class="operator">=</span> <span class="type">Calendar</span>.current</span><br><span class="line">      <span class="keyword">let</span> unit: <span class="type">Set</span>&lt;<span class="type">Calendar</span>.<span class="type">Component</span>&gt; <span class="operator">=</span> [.day,.month,.year]</span><br><span class="line">      <span class="keyword">let</span> nowComps <span class="operator">=</span> calendar.dateComponents(unit, from: <span class="type">Date</span>())</span><br><span class="line">      <span class="keyword">let</span> selfCmps <span class="operator">=</span> calendar.dateComponents(unit, from: <span class="keyword">self</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">return</span> (selfCmps.year <span class="operator">==</span> nowComps.year) <span class="operator">&amp;&amp;</span></span><br><span class="line">      (selfCmps.month <span class="operator">==</span> nowComps.month) <span class="operator">&amp;&amp;</span></span><br><span class="line">      (selfCmps.day <span class="operator">==</span> nowComps.day)</span><br><span class="line">      </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  是否为昨天</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">isYesterday</span>()</span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> calendar <span class="operator">=</span> <span class="type">Calendar</span>.current</span><br><span class="line">      <span class="keyword">let</span> unit: <span class="type">Set</span>&lt;<span class="type">Calendar</span>.<span class="type">Component</span>&gt; <span class="operator">=</span> [.day,.month,.year]</span><br><span class="line">      <span class="keyword">let</span> nowComps <span class="operator">=</span> calendar.dateComponents(unit, from: <span class="type">Date</span>())</span><br><span class="line">      <span class="keyword">let</span> selfCmps <span class="operator">=</span> calendar.dateComponents(unit, from: <span class="keyword">self</span>)</span><br><span class="line">      <span class="keyword">if</span> selfCmps.day <span class="operator">==</span> <span class="literal">nil</span> <span class="operator">||</span> nowComps.day <span class="operator">==</span> <span class="literal">nil</span> &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> count <span class="operator">=</span> nowComps.day<span class="operator">!</span> <span class="operator">-</span> selfCmps.day<span class="operator">!</span></span><br><span class="line">      <span class="keyword">return</span> (selfCmps.year <span class="operator">==</span> nowComps.year) <span class="operator">&amp;&amp;</span></span><br><span class="line">         (selfCmps.month <span class="operator">==</span> nowComps.month) <span class="operator">&amp;&amp;</span></span><br><span class="line">         (count <span class="operator">==</span> <span class="number">1</span>)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">///只有年月日的字符串</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">dataWithYMD</span>()</span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> fmt <span class="operator">=</span> <span class="type">DateFormatter</span>()</span><br><span class="line">      fmt.dateFormat <span class="operator">=</span> <span class="string">&quot;yyyy-MM-dd&quot;</span></span><br><span class="line">      <span class="keyword">let</span> selfStr <span class="operator">=</span> fmt.string(from: <span class="keyword">self</span>)</span><br><span class="line">      <span class="keyword">let</span> result <span class="operator">=</span> fmt.date(from: selfStr)<span class="operator">!</span></span><br><span class="line">      <span class="built_in">print</span>(result)</span><br><span class="line">      <span class="keyword">return</span> selfStr</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">///获取当前年月日的时间戳</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">timeIntervalWithYMDDate</span>()</span> -&gt; <span class="type">TimeInterval</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> fmt <span class="operator">=</span> <span class="type">DateFormatter</span>()</span><br><span class="line">      fmt.dateFormat <span class="operator">=</span> <span class="string">&quot;yyyy-MM-dd&quot;</span></span><br><span class="line">      <span class="keyword">let</span> selfStr <span class="operator">=</span> fmt.string(from: <span class="keyword">self</span>)</span><br><span class="line">      <span class="keyword">let</span> result <span class="operator">=</span> fmt.date(from: selfStr)<span class="operator">!</span></span><br><span class="line">      <span class="keyword">return</span> result.timeIntervalSinceReferenceDate <span class="operator">+</span> <span class="number">24</span> <span class="operator">*</span> <span class="number">60</span> <span class="operator">*</span> <span class="number">60</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  是否为今年</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">isThisYear</span>()</span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">       <span class="keyword">let</span> calendar <span class="operator">=</span> <span class="type">Calendar</span>.current</span><br><span class="line">       <span class="keyword">let</span> nowCmps <span class="operator">=</span> calendar.dateComponents([.year], from: <span class="type">Date</span>())</span><br><span class="line">       <span class="keyword">let</span> selfCmps <span class="operator">=</span> calendar.dateComponents([.year], from: <span class="keyword">self</span>)</span><br><span class="line">       <span class="keyword">let</span> result <span class="operator">=</span> nowCmps.year <span class="operator">==</span> selfCmps.year</span><br><span class="line">       <span class="keyword">return</span> result</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *  获得与当前时间的差距</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">deltaWithNow</span>()</span> -&gt; <span class="type">DateComponents</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> calendar <span class="operator">=</span> <span class="type">Calendar</span>.current</span><br><span class="line">      <span class="keyword">let</span> cmps <span class="operator">=</span> calendar.dateComponents([.hour,.minute,.second], from: <span class="keyword">self</span>, to: <span class="type">Date</span>())</span><br><span class="line">      <span class="keyword">return</span> cmps</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>特殊的符号”^”与”$”,分别表示一个字符串的开始与结束。</p>
-<p>“^dog”:表示以”dog”开头的字符串（”dog product”,”dog123”,”dog” ）</p>
-<p>类似于:- (BOOL)hasPrefix:(NSString *)aString;</p>
-<p>“dog$”:表示以dog为结尾的字符串（”Product Manager is a dog”, “it is a dog”）</p>
-<p>类似于:- (BOOL)hasSuffix:(NSString *)aString;</p>
-<p>“^apple$”:表示以”apple”开头且以”apple”结尾的字符串</p>
-<p>“banana”:表示任何包含”banana”的字符串</p>
-<p>类似于 iOS8的新方法- (BOOL)containsString:(NSString *)aString,搜索子串用的。</p>
-<p>“*”,”+”,”?”:分别表示”没有或更多([0, +∞)取整数)”,”一个或更多([1,+∞)取整数)”,”没有或一个([0,1]取整数)”</p>
-<p>“ab*”:表示一个”a”后面按跟着0个或者N个”b”(“a”,”ab”,”abbbf”,这里并没有说是以b结尾)</p>
-<p>“ab+”:表示一个”a”后面跟着至少一个”b”(“ab”,”abb”)</p>
-<p>“ab?”:表示一个”a”后面跟着一个或者0个”b”(“a”,”abc”,”af”)</p>
-<p>“a?b+$”:表示字符串末尾有0个或者1个”a”或1个”a”跟着1个或者多个”b”(“ab”,”b”,”bbb”,”abbbb”,……)</p>
-<p>可以用大括号括起来（{}），表示一个重复的具体范围。例如</p>
-<p>“ab{4}”:表示一个”a”跟着4个”b”,”abbbb”</p>
-<p>‘’’ab{1,}’:表示一个”a”跟着至少1个”b”,(“ab”,”abb”,….)</p>
-<p>“ab{3,4}”:表示一个”a”跟着3个或者4个”b”(“abbb”,”abbbb”)</p>
-<p>所以”*”等于{0,},”+”等于{1,},”?”等于{0,1}。</p>
-<p>注意：可以没有上线，但是不能没有下线{,5}为错误写法。</p>
-<p>“|”表示“或”操作</p>
-<p>“a|b”:表示一个字符串中含有”a”或者”b”</p>
-<p>“(a|bcd)ef”:表示”aef”或者”bcdef”</p>
-<p>“(a|b)*c”:表示”a”或者”b”后面跟着0或者多个”c”(“a”,”b”,”ac”,”accccc”,”bc”,”bcccc”)</p>
-<p>方括号”[ ]“表示在括号内的众多字符中，选择1-N个括号内的符合语法的字符作为结果，例如</p>
-<p>“[ab]”:表示一个字符串含有”a”或”b”，等价于”a|b”</p>
-<p>“[a-d]”:表示一个字符串包含a-d中的一个，等价于”a|b|c|d”或者”[abcd]”</p>
-<p>“^[a-zA-Z]”:表示以字母开头的字符串。</p>
-<p>“[0-9]a”:表示”a”前面有一个数字。</p>
-<p>“[a-zA-Z0-9]$”:表示一个字符串以字母或者数字结尾。</p>
-<p>“.”:表示除了”\n”,”\r”之外的任意单个字符串。</p>
-<p>“a.[a-z]”:表示一个”a”后面你跟着一个任意一个字符串和一个小写字母。</p>
-<p>“^.{5}$”:表示任意一个长度是5的字符串。</p>
-<p>“\num” 其中num是一个正整数。表示”\num”之前的字符出现相同的个数，例如</p>
-<p>“(.)\1”:表示两个连续相同的字符。</p>
-<p>“10{1,2}“:表示”1”后面跟着1个或者2个”0”(“10”,”100”)</p>
-<p>“0{3,}“:表示至少有3个连续的”0”(“000”,”0000”)</p>
-<p>在方括号里用’^’表示不希望出现的字符，’^’应在方括号里的第一位。</p>
-<p>“@[^a-zA-Z]@”:表示两个”@”之间不应该有字母。</p>
-<p>常用的正则：</p>
-<p>“\d”:匹配一个数字字符，等价于”[0-9]”.</p>
-<p>“\D”:匹配一个非数字字符，等价于”[^0-9]”</p>
-<p>“\w”:匹配包括下划线的任何单词字符，等价于”[a-zA-Z0-9_]”</p>
-<p>“\W”:匹配任何非单词字符，等价于”[^a-zA-Z0-9_]”</p>
-<p>iOS中书写正则表达式，碰到转义字符，多加一个“\”,例如：</p>
-<p>全数字字符：@”^\d+$”</p>
-<h3 id="常用正则"><a href="#常用正则" class="headerlink" title="常用正则"></a>常用正则</h3><p>(1) 验证电话号码：（”^(\d{3,4}-)\d{7,8}$”） 　</p>
-<p>(2) 验证Email地址：(“^\w+([-+.]\w+)*@\w+([-.]\w+)<em>.\w+([-.]\w+)</em>$”)； 　　</p>
-<p>(3) 整数或者小数：^[0-9]+([.]{0,1}[0-9]+){0,1}$ 　　</p>
-<p>(4) 只能输入数字：”^[0-9]*$”。 　　</p>
-<p>(5) 只能输入由26个英文字母组成的字符串：”^[A-Za-z]+$”。 </p>
-<p>(6) 验证是否含有^%&amp;’,;=?$\”等字符：”[^%&amp;’,;=?$\x22]+”。 　</p>
-<p>(7) 只能输入汉字：”^[\u4e00-\u9fa5]{0,}$”。 　　</p>
-<p>(8) 验证一年的12个月：”^(0?[1-9]|1[0-2])$”正确格式为：”01″～”09″和”10″～”12″。 　　</p>
-<p>(9) 验证一个月的31天：”^((0?[1-9])|((1|2)[0-9])|30|31)$”正确格式为；”01″～”09″、”10″～”29″和“30”~“31”。 　　</p>
-<p>(10) 获取日期正则表达式：\d{4}[年|-|.]\d{\1-\12}[月|-|.]\d{\1-\31}日? 注：可用来匹配大多数年月日信息。 　　</p>
-<p>(11) 匹配空白行的正则表达式：\n\s*\r 注：可以用来删除空白行 </p>
-<p>(12) 匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$ 注：表单验证时很实用 </p>
-<p>(13) 匹配腾讯QQ号：[1-9][0-9]{4,14} 注：腾讯QQ号从10 000 开始 　　</p>
-<p>(14) 匹配中国邮政编码：[1-9]\d{5}(?!\d) 注：中国邮政编码为6位数字 　　</p>
-<p>(15) 匹配ip地址：((2[0-4]\d|25[0-5]|[01]?\d\d?).){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)。</p>
-<ol>
-<li><p>验证用户名和密码：”^[a-zA-Z]\w{5,15}$” 　　</p>
-</li>
-<li><p>验证电话号码：（”^([\d{3,4}-)\d{7,8}$] 　　eg：021-68686868 0511-6868686； 　　</p>
-</li>
-<li><p>验证手机号码：”^1[3|4|5|7|8][0-9]\d{8}$”； 　　</p>
-</li>
-<li><p>验证身份证号（15位或18位数字）：”\d{14}[[0-9],0-9xX]”</p>
-</li>
-<li><p>验证Email地址：(“^\w+([-+.]\w+)*@\w+([-.]\w+)<em>.\w+([-.]\w+)</em>$”);</p>
-</li>
-<li><p>只能输入由数字和26个英文字母组成的字符串：(“^[A-Za-z0-9]+$”) ; </p>
-</li>
-<li><p>整数或者小数：^[0-9]+([.]{0,1}[0-9]+){0,1}$ 　　</p>
-</li>
-<li><p>只能输入数字：”^[0-9]*$”。 　　</p>
-</li>
-<li><p>只能输入n位的数字：”^\d{n}$”。 　　</p>
-</li>
-<li><p>只能输入至少n位的数字：”^\d{n,}$”。 　　</p>
-</li>
-<li><p>只能输入m~n位的数字：”^\d{m,n}$”。 　　</p>
-</li>
-<li><p>只能输入零和非零开头的数字：”^(0|[1-9][0-9]*)$”。 　　</p>
-</li>
-<li><p>只能输入有两位小数的正实数：”^[0-9]+(.[0-9]{2})?$”。 　</p>
-</li>
-<li><p>只能输入有1~3位小数的正实数：”^[0-9]+(.[0-9]{1,3})?$”。 </p>
-</li>
-<li><p>只能输入非零的正整数：”^+?[1-9][0-9]*$”。 　　</p>
-</li>
-<li><p>只能输入非零的负整数：”^-[1-9][]0-9″*$。 　　</p>
-</li>
-<li><p>只能输入长度为3的字符：”^.{3}$”。 　　</p>
-</li>
-<li><p>只能输入由26个英文字母组成的字符串：”^[A-Za-z]+$”。 　</p>
-</li>
-<li><p>只能输入由26个大写英文字母组成的字符串：”^[A-Z]+$”。 </p>
-</li>
-<li><p>只能输入由26个小写英文字母组成的字符串：”^[a-z]+$”。 </p>
-</li>
-<li><p>验证是否含有^%&amp;’,;=?$\”等字符：”[^%&amp;’,;=?$\x22]+”。 </p>
-</li>
-<li><p>只能输入汉字：”^[\u4e00-\u9fa5]{0,}$”。 　　</p>
-</li>
-<li><p>验证URL：”^http://([\w-]+.)+[\w-]+(/[\w-./?%&amp;=]*)?$”。 　　</p>
-</li>
-<li><p>验证一年的12个月：”^(0?[1-9]|1[0-2])$”正确格式为：”01″～”09″和”10″～”12″。 　　</p>
-</li>
-<li><p>验证一个月的31天：”^((0?[1-9])|((1|2)[0-9])|30|31)$”正确格式为；”01″～”09″、”10″～”29″和“30”~“31”。 　　</p>
-</li>
-<li><p>获取日期正则表达式：[\d{4]}[年|-|.]\d{\1-\12}[月|-|.]\d{\1-\31}日? 　　评注：可用来匹配大多数年月日信息。 　　</p>
-</li>
-<li><p>匹配双字节字符(包括汉字在内)：[^\x00-\xff] 　　评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1） 　　</p>
-</li>
-<li><p>匹配空白行的正则表达式：\n\s*\r 　　评注：可以用来删除空白行 　　</p>
-</li>
-<li><p>匹配HTML标记的正则表达式：&lt;(\S*?)[^&gt;]<em>&gt;.</em>?&lt;/&gt;|&lt;.*? /&gt; 　　评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力 　　</p>
-</li>
-<li><p>匹配首尾空白字符的正则表达式：^\s*|\s*$ 　　评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式 </p>
-</li>
-<li><p>匹配网址URL的正则表达式：[a-zA-z]+://[^\s]* 　　评注：网上流传的版本功能很有限，上面这个基本可以满足需求 　　</p>
-</li>
-<li><p>匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$ 　　评注：表单验证时很实用 　　</p>
-</li>
-<li><p>匹配腾讯QQ号：[1-9][0-9]{4,14} 　　评注：腾讯QQ号从10 000 开始 </p>
-</li>
-<li><p>匹配中国邮政编码：[1-9]\d{5}(?!\d) 　　评注：中国邮政编码为6位数字 　　</p>
-</li>
-<li><p>匹配ip地址：((2[0-4]\d|25[0-5]|[01]?\d\d?).){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)。 　　下面给出正则表达式的元字符（来自百度百科）</p>
-</li>
-</ol>
-<h3 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h3><ul>
-<li>验证是不是QQ号</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSString *pattern &#x3D; @&quot;[1-9][0-9]&#123;4,14&#125;&quot;;</span><br><span class="line">NSPredicate * pre &#x3D; [NSPredicate predicateWithFormat:@&quot;SELF MATCHES %@&quot;, pattern];</span><br><span class="line">BOOL isMatch &#x3D; [pre evaluateWithObject:self.enterText.text];</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="网络状态码"><a href="#网络状态码" class="headerlink" title="网络状态码"></a>网络状态码</h2><ul>
-<li>1XX 提示信息：请求正在处理中</li>
-<li>2XX 成功错误码：请求已被接受处理</li>
-<li>3XX 重定向：完成请求需要附加操作</li>
-<li>4XX 客户端错误：请求资源有误或者请求不合法，服务器无法处理</li>
-<li>5XX 服务器错误：服务器处理请求出错</li>
-</ul>
-<h3 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h3><ul>
-<li>200 OK</li>
-<li>302 Found 暂时重定向</li>
-<li>301 Move Permanently永久重定向</li>
-<li>304 Not Modified 没有内容更新，使用缓存</li>
-<li>400 Bad Request 客户端请求与语法错误</li>
-<li>403 Forbidden 服务器拒绝提供服务</li>
-<li>404 Not Found 请求资源不存在</li>
-<li>500 Internal Server Error服务器发生了不可预期的错误</li>
-<li>503 Server Unavailable 服务器当前不能处理客户端的请求，一段时间后可能恢复正常</li>
-</ul>
-<h2 id="HTTP-请求过程"><a href="#HTTP-请求过程" class="headerlink" title="HTTP 请求过程"></a>HTTP 请求过程</h2><p>一个完整的HTTP请求过程如下：</p>
-<ol>
-<li>用户在浏览器输入URL</li>
-<li>域名解析（DNS的寻址）</li>
-<li>TCP三次握手</li>
-<li>握手成功后建立TCP通道，发起HTTP请求</li>
-<li>服务器响应HTTP请求，返回对应的响应报文</li>
-<li>客户端开始解析渲染</li>
-</ol>
-<h2 id="URL-和-URI"><a href="#URL-和-URI" class="headerlink" title="URL 和 URI"></a>URL 和 URI</h2><ul>
-<li>URI：统一资源标识符</li>
-<li>URL：统一资源定位符</li>
-</ul>
-<p>URI是一个用于标识互联网资源名称的字符串，最常见的形式是统一资源定位符（URL），经常指定为非正式的网址。更罕见的用法是统一资源名称（URN），其目的是通过提供一种途径。用于在特定的命名空间资源的标识，以补充网址。</p>
-<p>即URL和URN 都是 URI的子集，URI是一种抽象的概念，URL是URI的一种常见的具象表达形式。</p>
-<h2 id="缩放图片避免内存消耗过大"><a href="#缩放图片避免内存消耗过大" class="headerlink" title="缩放图片避免内存消耗过大"></a>缩放图片避免内存消耗过大</h2><p>原有缩放方法如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (UIImage *)scaleImage:(UIImage *)image newSize:(CGSize)newSize &#123;</span><br><span class="line">   UIGraphicsBeginImageContextWithOptions(newSize, NO, 0);</span><br><span class="line">   [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];</span><br><span class="line">   UIImage *newImage &#x3D; UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">   UIGraphicsEndImgeContext();</span><br><span class="line">   </span><br><span class="line">   return newImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>处理大分辨率图片时，往往容易出现OOM，原因是-[UIImage drawInRect:]在绘制时，先解码图片，再生成原始分辨率大小的bitmap，这是很耗内存的。解决方法是使用更低层的ImageIO接口，避免中间bitmap产生。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)scaledImageWithData:(NSData *)data withSize:(CGSize)size scale:(CGFloat)scale orientation:(UIImageOrientation)orientation &#123;</span><br><span class="line">   CGFloat maxPixelSize &#x3D; MAX(size.width, size.height);</span><br><span class="line">   CGImageSourceRef sourceRef &#x3D; CGImageSourceCreateWithData((__bridge CFDataRef)data, nil);</span><br><span class="line">   NSDictionary *options &#x3D; @&#123;(__bridge id)kCGImageSourceThumnailFromImageAlways:(__bridge id)kCFBooleanTrue,</span><br><span class="line">   (__bridge id)kCGImageSourceThumbnailMaxPixelSize:[NSNumber numberWithFloat:maxPixelSize]&#125;;</span><br><span class="line">   </span><br><span class="line">   CGImageRef imageRef &#x3D; CGImageSourceCreateThumnailAtIndex(sourceRef, 0, (__bridge CFDictionaryRef)options);</span><br><span class="line">   UIImage *resultImage &#x3D; [UIImage imageWithCGImage:imageRef scale:scale orientation:orientation];</span><br><span class="line">   CGImageRelease(imageRef);</span><br><span class="line">   CFRelease(sourceRef);</span><br><span class="line">   </span><br><span class="line">   return resultImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="LocationManager-Combine-Version"><a href="#LocationManager-Combine-Version" class="headerlink" title="LocationManager - Combine Version"></a>LocationManager - Combine Version</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> CoreLocation</span><br><span class="line"><span class="keyword">import</span> MapKit</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">LocationManager</span>: <span class="title">NSObject</span>, <span class="title">ObservableObject</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> locationManager <span class="operator">=</span> <span class="type">CLLocationManager</span>()</span><br><span class="line">  <span class="meta">@Published</span> <span class="keyword">var</span> region: <span class="type">MKCoordinateRegion</span></span><br><span class="line">  <span class="meta">@Published</span> <span class="keyword">var</span> authorized <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">init</span>()</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> place <span class="operator">=</span> <span class="type">WondersOfTheWorld</span>().places.randomElement() <span class="operator">??</span> <span class="type">WondersOfTheWorld</span>().places[<span class="number">0</span>]</span><br><span class="line">    region <span class="operator">=</span> <span class="type">MKCoordinateRegion</span>(center: place.location.coordinate, latitudinalMeters: <span class="number">1000</span>, longitudinalMeters: <span class="number">1000</span>)</span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">    locationManager.delegate <span class="operator">=</span> <span class="keyword">self</span></span><br><span class="line">    locationManager.desiredAccuracy <span class="operator">=</span> kCLLocationAccuracyBest</span><br><span class="line">    <span class="keyword">if</span> locationManager.authorizationStatus <span class="operator">==</span> .authorizedWhenInUse &#123;</span><br><span class="line">      authorized <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">      locationManager.startUpdatingLocation()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">requestAuthorization</span>()</span> &#123;</span><br><span class="line">    locationManager.requestWhenInUseAuthorization()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// MARK: - CLLocationManagerDelegate</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">LocationManager</span>: <span class="title">CLLocationManagerDelegate</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">locationManagerDidChangeAuthorization</span>(<span class="keyword">_</span> <span class="params">manager</span>: <span class="type">CLLocationManager</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> locationManager.authorizationStatus <span class="operator">==</span> .authorizedWhenInUse &#123;</span><br><span class="line">      authorized <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">      locationManager.startUpdatingLocation()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">locationManager</span>(<span class="keyword">_</span> <span class="params">manager</span>: <span class="type">CLLocationManager</span>, <span class="params">didUpdateLocations</span> <span class="params">locations</span>: [<span class="type">CLLocation</span>])</span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> latest <span class="operator">=</span> locations.first <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    region <span class="operator">=</span> <span class="type">MKCoordinateRegion</span>.<span class="keyword">init</span>(center: latest.coordinate, latitudinalMeters: <span class="number">1000</span>, longitudinalMeters: <span class="number">1000</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Region: <span class="subst">\(region)</span>&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">locationManager</span>(<span class="keyword">_</span> <span class="params">manager</span>: <span class="type">CLLocationManager</span>, <span class="params">didFailWithError</span> <span class="params">error</span>: <span class="type">Error</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> clError <span class="operator">=</span> error <span class="keyword">as?</span> <span class="type">CLError</span> <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">switch</span> clError &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">CLError</span>.denied:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&quot;Access denied&quot;</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&quot;LocationManager didFailWithError: <span class="subst">\(clError.localizedDescription)</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><blockquote>
-<p> 使用preconditionFailure（_：file：line :)或fatalError（_：file：line :)而不是assertionFailure（_：file：line :)可以使您的应用在release配置下崩溃。</p>
-</blockquote>
-<p>Ref: <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/91213ee3cecf">https://www.jianshu.com/p/91213ee3cecf</a></p>
-<h2 id="字符串国际化中，格式化字符串多参数位置调整"><a href="#字符串国际化中，格式化字符串多参数位置调整" class="headerlink" title="字符串国际化中，格式化字符串多参数位置调整"></a>字符串国际化中，格式化字符串多参数位置调整</h2><p>e.g.</p>
-<p>/* Message in alert dialog when something fails */</p>
-<p>“%@ Error! %@ failed!” = “%2$@ blah blah, %1$@ blah!”;</p>
-<p>上例中，两个参数在翻译后的字符串中，前后位置调换。</p>
-<h2 id="使用-xib-时的-AutolLayout-和-frame-设置"><a href="#使用-xib-时的-AutolLayout-和-frame-设置" class="headerlink" title="使用 xib 时的 AutolLayout 和 frame 设置"></a>使用 xib 时的 AutolLayout 和 frame 设置</h2><p>开起AutoLayout后</p>
-<p>方法调用顺序：viewDidLoad -&gt; viewWillLayoutSubviews（这个函数在执行时加载文件对应的xib中设置的约束）-&gt; viewDidLayoutSubviews</p>
-<p>因此在viewDidLoad和viewWillLayoutSubviews中设置frame都是无效的，frame会在加载layout约束时重新计算。</p>
-<p>想要更改frame有两个方法：</p>
-<ol>
-<li>在viewDidLayoutSubviews中设置frame；</li>
-<li>将约束control-drag到代码中，通过IBOutlet设置对应属性。通过这个方式可以在viewDidLoad和viewWillLayoutSubviews中进行设置。</li>
-</ol>
-<blockquote>
-<p> Tip：如果要对frame进行修改并产生动画，需要在动画block内的代码块最后调用[被修改frame的view.super layoutIfNeeded];</p>
-</blockquote>
-<h2 id="用-NSKeyedArchiver-和-NSKeyedUnarchiver-实现多层数据结构的完全复制"><a href="#用-NSKeyedArchiver-和-NSKeyedUnarchiver-实现多层数据结构的完全复制" class="headerlink" title="用 NSKeyedArchiver 和 NSKeyedUnarchiver 实现多层数据结构的完全复制"></a>用 NSKeyedArchiver 和 NSKeyedUnarchiver 实现多层数据结构的完全复制</h2><h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSMutableString *str1 &#x3D; @“1”;</span><br><span class="line">NSMutableString *str2 &#x3D; @“2”;</span><br><span class="line"></span><br><span class="line">NSMutabelArray *arr1 &#x3D; [NSMutableArray arrayWithObjects:str1, str2, nil];</span><br><span class="line">NSMutableArray *arr2 &#x3D; [NSMutableArray arrayWithObjects:str1, str2, arr1, nil];</span><br><span class="line"></span><br><span class="line">NSMutableArray *arr3 &#x3D; [[NSMutableArray alloc] initWithArray:arr2 copyItems:YES];</span><br><span class="line"></span><br><span class="line">NSMutableString *str3 &#x3D; [arr1 objectAtIndex:0];</span><br><span class="line">[str3 appendString:@“1”];</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;arrM2--%@&quot;,arrM2);</span><br><span class="line">NSLog(@&quot;arrM3--%@&quot;,arrM3);</span><br></pre></td></tr></table></figure>
-
-<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">2017-03-14 00:55:57.604 深复制和完全复制[6080:438490] arrM2--(</span><br><span class="line">    11,</span><br><span class="line">    2,</span><br><span class="line">        (</span><br><span class="line">        11,</span><br><span class="line">        2</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">2017-03-14 00:55:57.606 深复制和完全复制[6080:438490] arrM3--(</span><br><span class="line">    1,</span><br><span class="line">    2,</span><br><span class="line">        (</span><br><span class="line">        11,</span><br><span class="line">        2</span><br><span class="line">    )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h3 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h3><p>外层数据深拷贝，内层数据依然是浅拷贝（只拷贝指针）。</p>
-<h3 id="修复："><a href="#修复：" class="headerlink" title="修复："></a>修复：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *arr3 &#x3D; [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:arr2]];</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="ARC-MRC-引用计数模式设置"><a href="#ARC-MRC-引用计数模式设置" class="headerlink" title="ARC - MRC 引用计数模式设置"></a>ARC - MRC 引用计数模式设置</h2><p>Project设置 -&gt; Build Settings -&gt; Apple LLVM x.x - Language - Objective C -&gt; Weak References in Manual Retain Release: </p>
-<p>NO: MRC</p>
-<p>YES: ARC</p>
-<h2 id="tintColorDidChange"><a href="#tintColorDidChange" class="headerlink" title="tintColorDidChange"></a>tintColorDidChange</h2><p>当弹出一个alert或者action sheet时，iOS7会自动将后面视图的tint color变暗。此时，我们可以在自定义视图中重写tintColorDidChange方法来执行我们想要的操作。</p>
-<h2 id="UIView-不能接受事件处理的情况"><a href="#UIView-不能接受事件处理的情况" class="headerlink" title="UIView 不能接受事件处理的情况"></a>UIView 不能接受事件处理的情况</h2><ol>
-<li>alpha &lt; 0.01</li>
-<li>userInteractionEnable = NO</li>
-<li>hidden = YES</li>
-</ol>
-<h2 id="如何重写自己的-hash-方法"><a href="#如何重写自己的-hash-方法" class="headerlink" title="如何重写自己的 hash 方法"></a>如何重写自己的 hash 方法</h2><p>hash方法是NSObject中声明的，默认实现是返回对象的内存地址。</p>
-<p>那么hash方法的最佳实践到底是什么呢?<br> 大神<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://nshipster.com/authors/mattt-thompson/">Mattt Thompson</a>在<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://nshipster.com/equality/">Equality</a>中给出的结论就是</p>
-<p>In reality, a simple XOR over the hash values of critical properties is sufficient 99% of the time(对关键属性的hash值进行位异或运算作为hash值)</p>
-<p>比如对于Person类的hash方法实现如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (NSUInteger)hash &#123;</span><br><span class="line">  </span><br><span class="line">   return [self.name hash] ^ [self.birthday hash];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="xib-动画"><a href="#xib-动画" class="headerlink" title="xib 动画"></a>xib 动画</h2><p>Xib中的控件，通过约束更改尺寸/位置等属性后，需要调用控件的父视图的layoutIfNeed方法。</p>
-<p>如果是使用UIView的animateWith…动画方法，需要在动画block内部的最后调用该方法。</p>
-<h2 id="ios-开发-loaded-the-“ViewController”-nib-but-the-view-outlet-was-not-set-’"><a href="#ios-开发-loaded-the-“ViewController”-nib-but-the-view-outlet-was-not-set-’" class="headerlink" title="ios 开发 loaded the “ViewController” nib but the view outlet was not set.’"></a>ios 开发 loaded the “ViewController” nib but the view outlet was not set.’</h2><p>遇到loaded the “ViewController” nib but the view outlet was not set.’时，解决办法为：<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_8f38d3410101a1rb.html%EF%BC%8C%E9%9C%80%E8%A6%81%E5%B0%86Files&#39;s">http://blog.sina.com.cn/s/blog_8f38d3410101a1rb.html，需要将Files&#39;s</a> Owner中的view变量做一下关联。</p>
-<p>但是，有时候做关联时并没有看到view变量，这时，需要设置一下Files’s Owner的class，之后就可以做关联了。详情参考：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/10750082/loaded-the-controller-nib-but-the-view-outlet-was-not-set">https://stackoverflow.com/questions/10750082/loaded-the-controller-nib-but-the-view-outlet-was-not-set</a></p>
-<h2 id="How-to-avoid-clipboard-warning-as-possibly-as-you-can"><a href="#How-to-avoid-clipboard-warning-as-possibly-as-you-can" class="headerlink" title="How to avoid clipboard warning as possibly as you can"></a>How to avoid clipboard warning as possibly as you can</h2><p>Always check <strong>UIPasteboard.hasStrings</strong> before reading <strong>UIPasteboard.string</strong>, you can <strong>potentially</strong> save one clipboard warning.</p>
-<p>——from ying Chong</p>
-<h2 id="怎么使用-GeometryReader-传入的-GeometryProxy-类型的参数，又不会因为在视图层级中加入-GeometryReader-导致占用了全部的可用屏幕空间，导致布局出现错误。"><a href="#怎么使用-GeometryReader-传入的-GeometryProxy-类型的参数，又不会因为在视图层级中加入-GeometryReader-导致占用了全部的可用屏幕空间，导致布局出现错误。" class="headerlink" title="怎么使用 GeometryReader 传入的 GeometryProxy 类型的参数，又不会因为在视图层级中加入 GeometryReader 导致占用了全部的可用屏幕空间，导致布局出现错误。"></a>怎么使用 GeometryReader 传入的 GeometryProxy 类型的参数，又不会因为在视图层级中加入 GeometryReader 导致占用了全部的可用屏幕空间，导致布局出现错误。</h2><p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goxgunt0cmj30ay07taa2.jpg"></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Graph</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">  <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> width <span class="operator">=</span> <span class="type">UIScreen</span>.main.bounds.width <span class="comment">// just initial constant</span></span><br><span class="line">  <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">      <span class="type">HStack</span>(spacing: <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="type">Color</span>.red.frame(width: width <span class="operator">/</span> <span class="number">3</span>, height: <span class="number">80</span>)</span><br><span class="line">        <span class="type">Color</span>.blue.frame(width: width <span class="operator">/</span> <span class="number">3</span>, height: <span class="number">120</span>)</span><br><span class="line">        <span class="type">Color</span>.green.frame(width: width <span class="operator">/</span> <span class="number">3</span>, height: <span class="number">180</span>)</span><br><span class="line">      &#125;.background(<span class="type">GeometryReader</span> &#123; gp -&gt; <span class="type">Color</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">let</span> frame <span class="operator">=</span> gp.frame(in: .local)</span><br><span class="line">        <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">            <span class="keyword">self</span>.width <span class="operator">=</span> frame.size.width <span class="comment">// &lt;&lt; dynamic, on layout !!</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Color</span>.clear</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="收到键盘通知后自动调整-scrollview-的-contentOffset"><a href="#收到键盘通知后自动调整-scrollview-的-contentOffset" class="headerlink" title="收到键盘通知后自动调整 scrollview 的 contentOffset"></a>收到键盘通知后自动调整 scrollview 的 contentOffset</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (void)keyboardWillShow:(NSNotification *)notification</span><br><span class="line">&#123;</span><br><span class="line">    NSDictionary *info &#x3D; [notification userInfo];</span><br><span class="line">    CGFloat kbH &#x3D; [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;</span><br><span class="line">    NSIndexPath *indexPath &#x3D; [NSIndexPath indexPathForRow:self.classes.count inSection:0];</span><br><span class="line">    CGRect p &#x3D; [self.baseTableView rectForRowAtIndexPath:indexPath];</span><br><span class="line">    CGRect rectInSelfview &#x3D; [self.baseTableView convertRect:p toView:self.view];</span><br><span class="line">    CGFloat cellBottomY &#x3D; rectInSelfview.origin.y + rectInSelfview.size.height;</span><br><span class="line">    </span><br><span class="line">    if (cellBottomY &lt; kbH) &#123;</span><br><span class="line">        </span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [UIView animateWithDuration:0.2 animations:^&#123;</span><br><span class="line">        </span><br><span class="line">        self.baseTableView.contentOffset &#x3D; CGPointMake(0, cellBottomY - (self.baseTableView.height - kbH));</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="避免锁死Tip"><a href="#避免锁死Tip" class="headerlink" title="避免锁死Tip"></a>避免锁死Tip</h2><ol>
-<li><p>dispatch_once 中不要有同步到主线程执行的方法。</p>
-</li>
-<li><p>CTTelephonyNetworkInfo 最好在 +load方法或者 main 方法之前的其他时机提前初始化一个共享的实例，避免踩到子线程懒加载时候要求主线程同步响应的坑。</p>
-</li>
-<li><p>有可能存在锁竞争的代码尽量不在主线程同步执行。</p>
-</li>
-<li><p>如果主线程与子线程不可避免的存在竞争时，加锁的粒度要尽量小，操作要尽量轻。、</p>
-</li>
-<li><p>数据库读写，文件压缩/解压缩等磁盘 IO 行为不放在主线程执行。</p>
-</li>
-<li><p>如果存在主线程将任务同步到串行队列中执行的场景，确保这些任务不与子线程可能存在的耗时操作复用同一个串行队列。</p>
-</li>
-<li><p>对于一些启动阶段非必要同步加载并且有比较密集磁盘 IO 行为的 SDK，如各种支付分享等第三方 SDK 都可以延迟，错开加载。</p>
-</li>
-<li><p>NSUserDefaults 底层实现中存在直接或者间接的跨进程通信，在主线程同步调用容易发生卡死。➡️重度使用参考MMKV，轻度使用参考firebase自己写歌轻量的UserDefaults类</p>
-</li>
-<li><p>[[UIApplication sharedApplication] openURL]接口，内部实现也存在同步的跨进程通信。➡️iOS10 及以上的系统版本使用[[UIApplication sharedApplication] openURL:options:completionHandler:]这个接口替换，此接口可以异步调起，不会造成卡死。</p>
-</li>
-</ol>
-<h2 id="测量一段代码的运行时间"><a href="#测量一段代码的运行时间" class="headerlink" title="测量一段代码的运行时间"></a>测量一段代码的运行时间</h2><h3 id="使用-包装了-mach-absolute-time-的-CACurrentMediaTime-方法来以秒为单位测量时间"><a href="#使用-包装了-mach-absolute-time-的-CACurrentMediaTime-方法来以秒为单位测量时间" class="headerlink" title="使用 包装了 mach_absolute_time 的 CACurrentMediaTime() 方法来以秒为单位测量时间"></a>使用 包装了 <code>mach_absolute_time</code> 的 <code>CACurrentMediaTime()</code> 方法来以秒为单位测量时间</h3><blockquote>
-<p>和 <code>NSDate</code> 或 <code>CFAbsoluteTimeGetCurrent()</code> 偏移量不同的是，<code>mach_absolute_time()</code> 和 <code>CACurrentMediaTime()</code> 是基于内建时钟的，能够更精确更原子化地测量，并且不会因为外部时间变化而变化（例如时区变化、夏时制、秒突变等）</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">static size_t const count &#x3D; 1000;</span><br><span class="line">static size_t const iterations &#x3D; 10000;</span><br><span class="line">CFTimeInterval startTime &#x3D; CACurrentMediaTime();</span><br><span class="line">&#123;</span><br><span class="line">    for (size_t i &#x3D; 0; i &lt; iterations; i++) &#123;</span><br><span class="line">        @autoreleasepool &#123;</span><br><span class="line">            NSMutableArray *mutableArray &#x3D; [NSMutableArray array];</span><br><span class="line">            for (size_t j &#x3D; 0; j &lt; count; j++) &#123;</span><br><span class="line">                [mutableArray addObject:object];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">CFTimeInterval endTime &#x3D; CACurrentMediaTime();</span><br><span class="line">NSLog(@&quot;Total Runtime: %g s&quot;, endTime - startTime);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>这个例子中 <code>startTime</code> 和 <code>endTime</code> 之间的 block 代码是不必要的，只是为了提高可读性，让代码看起来更清晰明了：很容易能分隔开变量会发生大规模突变的代码</p>
-</blockquote>
-<h3 id="dispatch-benchmark"><a href="#dispatch-benchmark" class="headerlink" title="dispatch_benchmark"></a>dispatch_benchmark</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">uint64_t t &#x3D; dispatch_benchmark(iterations, ^&#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        NSMutableArray *mutableArray &#x3D; [NSMutableArray array];</span><br><span class="line">        for (size_t i &#x3D; 0; i &lt; count; i++) &#123;</span><br><span class="line">            [mutableArray addObject:object];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;[[NSMutableArray array] addObject:] Avg. Runtime: %llu ns&quot;, t);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>不要在提交的最终代码里包含<code>dispatch_benchmark</code>函数，这只应该用在测试或开发过程中。另外，使用instruments获取真正影响代码和程序效率的部分远比关注代码绝对运行时间更重要。</p>
-</blockquote>
-<h3 id="公共方法"><a href="#公共方法" class="headerlink" title="公共方法"></a>公共方法</h3><blockquote>
-<p>出于仅提供辅助而与具体状态无关，如果特别有用的话，可能值得使其全局可用</p>
-</blockquote>
-<p>e.g.</p>
-<p>TransactionStateMachine.h</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSUinteger, TransactionState) &#123;</span><br><span class="line">  TransactionOpened,</span><br><span class="line">  TransactionPending,</span><br><span class="line">  TransactionClosed</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">extern NSString * NSStringFromTransactionState(TransactionState state);</span><br></pre></td></tr></table></figure>
-
-
-
-<p>TransactionStateMachine.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">NSString * NSStringFromTransactionState(TransactionState state) &#123;</span><br><span class="line">  switch (state) &#123;</span><br><span class="line">    case TransactionOpened:</span><br><span class="line">      return @&quot;Opened&quot;;</span><br><span class="line">    case TransactionPending:</span><br><span class="line">      return @&quot;Pending&quot;;</span><br><span class="line">    case TransactionClosed:</span><br><span class="line">      return @&quot;Closed&quot;;</span><br><span class="line">    default:</span><br><span class="line">      return nil</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用-CFStringTransform-正则化用户生产的内容"><a href="#使用-CFStringTransform-正则化用户生产的内容" class="headerlink" title="使用 CFStringTransform 正则化用户生产的内容"></a>使用 CFStringTransform 正则化用户生产的内容</h2><p>字符串变换的一个更实际的应用是正则化不可预知的用户输入。即使你的应用并不单独处理其他语言，你也应当能智能地处理用户向你的应用输入的任何内容。</p>
-<p>例如，你想在设备上建立一个可搜索的电影索引，它包含世界各地的人的问候：</p>
-<ul>
-<li>首先，应用 <code>kCFStringTransformToLatin</code> 变换将所有非英文文本转换为拉丁字母表示。</li>
-</ul>
-<blockquote>
-<p>Hello! こんにちは! สวัสดี! مرحبا! 您好! → Hello! kon’nichiha! s̄wạs̄dī! mrḥbạ! nín hǎo!</p>
-</blockquote>
-<ul>
-<li>然后，应用 <code>kCFStringTransformStripCombiningMarks</code> 变换来去除变音符和重音。</li>
-</ul>
-<blockquote>
-<p>Hello! kon’nichiha! s̄wạs̄dī! mrḥbạ! nín hǎo! → Hello! kon’nichiha! swasdi! mrhba! nin hao!</p>
-</blockquote>
-<ul>
-<li>最后，用 <code>CFStringLowercase</code> 转为小写，并用<a target="_blank" rel="noopener" href="https://developer.apple.com/library/mac/#documentation/CoreFoundation/Reference/CFStringTokenizerRef/Reference/reference.html"><code>CFStringTokenizer</code></a> 分词用作文本的索引。</li>
-</ul>
-<blockquote>
-<p>(hello, kon’nichiha, swasdi, mrhba, nin, hao)</p>
-</blockquote>
-<p>通过对用户输入的文本使用同样的变换，你就可以实现一个通用的搜索，无论搜索文本或内容是什么语言！</p>
-<h2 id="CoreMotion-和-CoreLocation组合使用时一些移动速度范围指导值"><a href="#CoreMotion-和-CoreLocation组合使用时一些移动速度范围指导值" class="headerlink" title="CoreMotion 和 CoreLocation组合使用时一些移动速度范围指导值"></a>CoreMotion 和 CoreLocation组合使用时一些移动速度范围指导值</h2><ul>
-<li>步行速度通常最高能达到 2.5 米每秒（5.6 mph, 9 km/h）</li>
-<li>跑步速度范围从 2.5 到 7.5 米每秒（5.6 – 16.8 mph, 9 – 27 km/h）</li>
-<li>骑行速度范围从 3 到 12 米每秒（6.7 – 26.8 mph, 10.8 – 43.2 km/h）</li>
-<li>汽车的速度可以超过 100 米每秒（220 mph, 360 km/h）</li>
-</ul>
-<h3 id="或者，你可能会使用位置数据来改变-UI，取决于现在的位置是否在一片水域。"><a href="#或者，你可能会使用位置数据来改变-UI，取决于现在的位置是否在一片水域。" class="headerlink" title="或者，你可能会使用位置数据来改变 UI，取决于现在的位置是否在一片水域。"></a>或者，你可能会使用位置数据来改变 UI，取决于现在的位置是否在一片水域。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if currentLocation.intersects(waterRegion) &#123;</span><br><span class="line">    if activity.walking &#123;</span><br><span class="line">        print(&quot;🏊‍&quot;)</span><br><span class="line">    &#125; else if activity.automotive &#123;</span><br><span class="line">        print(&quot;🚢&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用-keyPath-时避免拼写错误"><a href="#使用-keyPath-时避免拼写错误" class="headerlink" title="使用 keyPath 时避免拼写错误"></a>使用 keyPath 时避免拼写错误</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">                      ofObject:(id)object</span><br><span class="line">                        change:(NSDictionary *)change</span><br><span class="line">                       context:(void *)context</span><br><span class="line">&#123;</span><br><span class="line">    if ([object isKindOfClass:[NSOperation class]]) &#123;</span><br><span class="line">        if ([keyPath isEqualToString:NSStringFromSelector(@selector(isFinished))]) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if (...) &#123;</span><br><span class="line">        &#x2F;&#x2F; ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="removeObserver时，避免因尚未注册导致的崩溃"><a href="#removeObserver时，避免因尚未注册导致的崩溃" class="headerlink" title="removeObserver时，避免因尚未注册导致的崩溃"></a>removeObserver时，避免因尚未注册导致的崩溃</h3><blockquote>
-<p>使用 @try / @catch 块包裹 remove 语句</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">                      ofObject:(id)object</span><br><span class="line">                        change:(NSDictionary *)change</span><br><span class="line">                       context:(void *)context</span><br><span class="line">&#123;</span><br><span class="line">    if ([keyPath isEqualToString:NSStringFromSelector(@selector(isFinished))]) &#123;</span><br><span class="line">        if ([object isFinished]) &#123;</span><br><span class="line">          @try &#123;</span><br><span class="line">              [object removeObserver:self forKeyPath:NSStringFromSelector(@selector(isFinished))];</span><br><span class="line">          &#125;</span><br><span class="line">          @catch (NSException * __unused exception) &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>当然，这个例子中没有处理一个捕获的异常，这其实是一种妥协的方式。因此，只有当面对连续不断的崩溃并且不能通过一般的措施（竞争条件或者来自父类的非法行为）补救才会用这种方式。</p>
-</blockquote>
-<h2 id="断言和断言处理器"><a href="#断言和断言处理器" class="headerlink" title="断言和断言处理器"></a>断言和断言处理器</h2><h3 id="两套断言宏"><a href="#两套断言宏" class="headerlink" title="两套断言宏"></a>两套断言宏</h3><ol>
-<li>一般断言：<code>NSAssert</code> / <code>NSCAssert</code></li>
-<li>参数化断言：<code>NSParameterAssert</code> / <code>NSCParameterAssert</code></li>
-</ol>
-<h4 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h4><blockquote>
-<p>方法或函数应当在代码最开始处使用 <code>NSParameterAssert</code> / <code>NSCParameterAssert</code> 来强制输入的值满足先验条件，这是一条金科玉律；其他情况下使用 <code>NSAssert</code> / <code>NSCAssert</code>。</p>
-</blockquote>
-<h4 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h4><blockquote>
-<p> C 和 Objective-C 的断言：<code>NSAssert</code> 应当只用于 Objective-C 环境中（即方法实现中），而 <code>NSCAssert</code> 应当只用于 C 环境中（即函数中）。</p>
-</blockquote>
-<h4 id="Also"><a href="#Also" class="headerlink" title="Also:"></a>Also:</h4><blockquote>
-<p><code>NSAssert</code>和<code>NSCAssert</code>有多参数变体，从<code>NSAssert1</code>到<code>NSAssert5</code>，他们各自使用不同数量的参数用于<code>printf</code>风格的格式化字符串。</p>
-</blockquote>
-<h3 id="NSAssertionHandler"><a href="#NSAssertionHandler" class="headerlink" title="NSAssertionHandler"></a><code>NSAssertionHandler</code></h3><blockquote>
-<p><code>NSAssertionHandler</code> 提供了一套优雅地处理断言失败的方式来保留珍贵的现实世界的使用信息……但是不要在生产环境中使用<code>NSAssertionHandler</code>……基础类库中的断言处理只可远观不可亵玩。</p>
-</blockquote>
-<blockquote>
-<p><code>NSAssertionHandler</code> 是一个很直接的类，带有两个需要在子类中实现的方法：<code>-handleFailureInMethod:...</code> （当 <code>NSAssert</code> / <code>NSParameterAssert</code> 失败时调用）和 <code>-handleFailureInFunction:...</code> （当 <code>NSCAssert</code> / <code>NSCParameterAssert</code> 失败时调用）。</p>
-</blockquote>
-<p>e.g.</p>
-<p>LoggingAssertionHander.h</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface LoggingAssertionHandler: NSAssertionHandler</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-<p>LoggingAssertionHandler.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@implementation LoggingAssertionHandler</span><br><span class="line"></span><br><span class="line">- (void)handleFailureInMethod:(SEL)selector</span><br><span class="line">                       object:(id)object</span><br><span class="line">                         file:(NSString *)fileName</span><br><span class="line">                   lineNumber:(NSInteger)line</span><br><span class="line">                  description:(NSString *)format, ...</span><br><span class="line">&#123;</span><br><span class="line">  NSLog(@&quot;NSAssert Failure: Method %@ for object %@ in %@#%i&quot;, NSStringFromSelector(selector), object, fileName, line);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)handleFailureInFunction:(NSString *)functionName</span><br><span class="line">                           file:(NSString *)fileName</span><br><span class="line">                     lineNumber:(NSInteger)line</span><br><span class="line">                    description:(NSString *)format, ...</span><br><span class="line">&#123;</span><br><span class="line">  NSLog(@&quot;NSCAssert Failure: Function (%@) in %@#%i&quot;, functionName, fileName, line);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>每个线程都可以指定断言处理器。想设置一个 <code>NSAssertionHandler</code> 的子类来处理失败的断言，在线程的 <code>threadDictionary</code> 对象中设置 <code>NSAssertionHandlerKey</code> 字段即可。</p>
-<p>大部分情况下，你只需在 <code>-application:didFinishLaunchingWithOptions:</code> 中设置当前线程的断言处理器。</p>
-</blockquote>
-<p>e.g.</p>
-<p>AppDelegate.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application</span><br><span class="line">didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">  NSAssertionHandler *assertionHandler &#x3D; [[LoggingAssertionHandler alloc] init];</span><br><span class="line">  [[[NSThread currentThread] threadDictionary] setValue:assertionHandler</span><br><span class="line">                                                 forKey:NSAssertionHandlerKey];</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">  return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><h3 id="NSKeyedArchiver和NSKeyedUnarchiver"><a href="#NSKeyedArchiver和NSKeyedUnarchiver" class="headerlink" title="NSKeyedArchiver和NSKeyedUnarchiver"></a><code>NSKeyedArchiver</code>和<code>NSKeyedUnarchiver</code></h3><p>e.g.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 获取存储路径</span><br><span class="line">NSURL *path &#x3D; [NSBundle.mainBundle resourceURL];</span><br><span class="line">path &#x3D; [path URLByAppendingPathComponent:@&quot;Documents&quot;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2. 存储</span><br><span class="line">NSDate *timestamp &#x3D; [NSDate date];</span><br><span class="line">NSData *storeData &#x3D; [NSKeyedArchiver archivedDataWithRootObject:timestamp requiringSecureCoding:NO error:nil];</span><br><span class="line">[storeData writeToURL:path options:NSDataWritingFileProtectionCompleteUnlessOpen error:nil];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3. 取出数据</span><br><span class="line">NSDate *date &#x3D; [NSKeyedUnarchiver unarchivedObjectOfClass:NSDate.class fromData:[NSData dataWithContentsOfURL:path] error:nil];</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="文件写入与读取"><a href="#文件写入与读取" class="headerlink" title="文件写入与读取"></a>文件写入与读取</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://nshipster.cn/nsfilemanager/">https://nshipster.cn/nsfilemanager/</a></p>
-</blockquote>
-<p>进行文件的写入与读取时，不要使用 <code>NSBundle -xxxURL</code> 或 <code>NSBundle -xxxPath</code> 方法获取存储路径，可以使用 <code>NSSearchPathForDirectoriesInDomains</code> 。</p>
-<p>e.g.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *documentsPath &#x3D; [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">documentsPath &#x3D; [documentsPath stringByAppendingPathComponent:@&quot;store.data&quot;];</span><br></pre></td></tr></table></figure>
-
-<h3 id="推荐：NSFileManager"><a href="#推荐：NSFileManager" class="headerlink" title="推荐：NSFileManager"></a>推荐：<code>NSFileManager</code></h3><h2 id="使用-NSIndexSet-或-NSMutableIndexSet-配置设置项"><a href="#使用-NSIndexSet-或-NSMutableIndexSet-配置设置项" class="headerlink" title="使用 NSIndexSet 或 NSMutableIndexSet 配置设置项"></a>使用 <code>NSIndexSet</code> 或 <code>NSMutableIndexSet</code> 配置设置项</h2><p>e.g.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">static NSUInteger const PreferenceItemICloudSyncOn &#x3D; 1001;</span><br><span class="line">static NSUInteger const PreferenceItemPreferredLocalCacheDataOn &#x3D; 1002;</span><br><span class="line">static NSUInteger const PreferenceItemNotificationsOn &#x3D; 1010;</span><br><span class="line">static NSUInteger const PreferenceItemNotificationsShowAlertOn &#x3D; 1011;</span><br><span class="line"></span><br><span class="line">static NSUInteger const PreferenceItemCardStyleOn &#x3D; 2001;</span><br><span class="line">static NSUInteger const PreferenceItemShowStrokeBorderOn &#x3D; 2002;</span><br><span class="line">static NSUInteger const PreferenceItemHideTableViewSeparatorOn &#x3D; 2003;</span><br><span class="line"></span><br><span class="line">static NSUInteger const PreferenceItemGuestModeOn &#x3D; 3001;</span><br><span class="line">static NSUInteger const PreferenceItemHideSpecificFilesOn &#x3D; 3002;</span><br><span class="line"></span><br><span class="line">- (NSMutableIndexSet *)openedPreferenceItems &#123;</span><br><span class="line">    </span><br><span class="line">    if (!_openedPreferenceItems) &#123;</span><br><span class="line">        </span><br><span class="line">      &#x2F;&#x2F; 添加某项</span><br><span class="line">        _openedPreferenceItems &#x3D; [NSMutableIndexSet indexSet];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemICloudSyncOn];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemNotificationsOn];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemHideTableViewSeparatorOn];</span><br><span class="line">        [_openedPreferenceItems addIndex:PreferenceItemHideSpecificFilesOn];</span><br><span class="line">    &#125;</span><br><span class="line">    return _openedPreferenceItems;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 移除某项</span><br><span class="line">[self.openedPreferenceItems removeIndex:PreferenceItemGuestModeOn];</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="确定文件是否存在"><a href="#确定文件是否存在" class="headerlink" title="确定文件是否存在"></a>确定文件是否存在</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSFileManager *fileManager &#x3D; [NSFileManager defaultManager];</span><br><span class="line">NSString *documentsPath &#x3D; [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];</span><br><span class="line">NSString *filePath &#x3D; [documentsPath stringByAppendingPathComponent:@&quot;file.txt&quot;];</span><br><span class="line">BOOL fileExists &#x3D; [fileManager fileExistsAtPath:filePath];</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="NSPredicate"><a href="#NSPredicate" class="headerlink" title="NSPredicate"></a><code>NSPredicate</code></h2><h3 id="替换符"><a href="#替换符" class="headerlink" title="替换符"></a>替换符</h3><ul>
-<li><p><code>%@</code>: 对值为字符串、数字或日期对象的替换值</p>
-</li>
-<li><p><code>%K</code>: 是key path的替换值。</p>
-<p>e.g.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *ageIs33Predicate &#x3D; [NSPredicate predicateWithFormat:@&quot;%K &#x3D; %@&quot;, @&quot;age&quot;, @33];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; [&quot;Charlie Smith&quot;]</span><br><span class="line">NSLog(@&quot;Age 33: %@&quot;, [people filteredArrayUsingPredicate:ageIs33Predicate]);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<ul>
-<li><p><code>$VARIABLE_NAME</code>是可以被<code>NSPredicate -predicateWithSubstitutionVariables:</code>替换的值。</p>
-<p>e.g.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *namesBeginningWithLetterPredicate &#x3D; [NSPredicate predicateWithFormat:@&quot;(firstName BEGINSWITH[cd] $letter) OR (lastName BEGINSWITH[cd] $letter)&quot;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; [&quot;Alice Smith&quot;, &quot;Quentin Alberts&quot;]</span><br><span class="line">NSLog(@&quot;&#39;A&#39; Names: %@&quot;, [people filteredArrayUsingPredicate:[namesBeginningWithLetterPredicate predicateWithSubstitutionVariables:@&#123;@&quot;letter&quot;: @&quot;A&quot;&#125;]]);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="NSUndoManager"><a href="#NSUndoManager" class="headerlink" title="NSUndoManager"></a><code>NSUndoManager</code></h2><p>e.g.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController()&lt;UITextFieldDelegate&gt;</span><br><span class="line">@property (nonatomic, strong) UITextField *textField;</span><br><span class="line">@property (nonatomic, strong) UILabel *label;</span><br><span class="line">@end</span><br><span class="line">  </span><br><span class="line">@implementation ViewController</span><br><span class="line">  </span><br><span class="line">&#x2F;&#x2F;&#x2F; UI</span><br><span class="line">- (void)testMethod17 &#123;</span><br><span class="line">    </span><br><span class="line">    self.textField &#x3D; [[UITextField alloc] initWithFrame:CGRectMake(8, 84 + 20, UIScreen.mainScreen.bounds.size.width - 16, 36)];</span><br><span class="line">    self.textField.backgroundColor &#x3D; UIColor.systemFillColor;</span><br><span class="line">    self.textField.layer.cornerRadius &#x3D; 4.0;</span><br><span class="line">    UIView *left &#x3D; [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12, 0)];</span><br><span class="line">    UIView *right &#x3D; [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12, 0)];</span><br><span class="line">    self.textField.leftView &#x3D; left;</span><br><span class="line">    self.textField.rightView &#x3D; right;</span><br><span class="line">    self.textField.leftViewMode &#x3D; UITextFieldViewModeAlways;</span><br><span class="line">    self.textField.rightViewMode &#x3D; UITextFieldViewModeAlways;</span><br><span class="line">    self.textField.delegate &#x3D; self;</span><br><span class="line">    [self.view addSubview:self.textField];</span><br><span class="line">    </span><br><span class="line">    self.label &#x3D; [[UILabel alloc] initWithFrame:CGRectMake(8, 84 + 20 + 36 + 20, UIScreen.mainScreen.bounds.size.width - 16, 48)];</span><br><span class="line">    self.label.textColor &#x3D; UIColor.secondaryLabelColor;</span><br><span class="line">    [self.view addSubview:self.label];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (BOOL)textFieldShouldReturn:(UITextField *)textField &#123;</span><br><span class="line">    </span><br><span class="line">    [self appendingLabelText:textField.text];</span><br><span class="line">    textField.text &#x3D; @&quot;&quot;;</span><br><span class="line">    [textField resignFirstResponder]; &#x2F;&#x2F; 回车后使 textField 放弃第一响应者，这样 viewController 可以变成第一响应者来响应手机摇动的动作，触发 undoManager 响应。</span><br><span class="line">    return NO;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)appendingLabelText:(NSString *)text &#123;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 每个 controller、控件都可以有单独的 undoManager，这里为了方便只用应用默认的全局 undoManager。</span><br><span class="line">    NSUndoManager *undoManager &#x3D; UIApplication.sharedApplication.delegate.window.undoManager;</span><br><span class="line">    &#x2F;&#x2F; 在 undoManager 注册对应 actionName 被 undo 时需要调用的方法 Selector 和参数。</span><br><span class="line">    [undoManager registerUndoWithTarget:self selector:@selector(removeLastText:) object:text];</span><br><span class="line">    &#x2F;&#x2F; 注册撤销操作的名称，可以使用国际化达到更好的文本效果。</span><br><span class="line">    [undoManager setActionName:@&quot;add text&quot;];</span><br><span class="line">    if (self.label.text.length) &#123;</span><br><span class="line">        </span><br><span class="line">        self.label.text &#x3D; [NSString stringWithFormat:@&quot;%@ %@&quot;, self.label.text, text];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        </span><br><span class="line">        self.label.text &#x3D; text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)removeLastText:(NSString *)text &#123;</span><br><span class="line">    </span><br><span class="line">    NSUndoManager *undoManager &#x3D; UIApplication.sharedApplication.delegate.window.undoManager;</span><br><span class="line">    [undoManager registerUndoWithTarget:self selector:@selector(appendingLabelText:) object:text];</span><br><span class="line">    [undoManager setActionName:@&quot;remove text&quot;];</span><br><span class="line">    if ([self.label.text containsString:text]) &#123;</span><br><span class="line">        </span><br><span class="line">        NSUInteger firstLetterLocation &#x3D; [self.label.text rangeOfString:text].location;</span><br><span class="line">        NSString *stringToRemove &#x3D; text;</span><br><span class="line">        if (firstLetterLocation &gt; 0) &#123;</span><br><span class="line">            </span><br><span class="line">            NSString *previous &#x3D; [NSString stringWithFormat:@&quot;%c&quot;, [self.label.text characterAtIndex:firstLetterLocation - 1]];</span><br><span class="line">            if ([previous isEqualToString:@&quot; &quot;]) &#123;</span><br><span class="line">                </span><br><span class="line">                stringToRemove &#x3D; [NSString stringWithFormat:@&quot; %@&quot;, text];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        self.label.text &#x3D; [self.label.text stringByReplacingOccurrencesOfString:stringToRemove withString:@&quot;&quot; options:kNilOptions range:NSMakeRange(0, self.label.text.length)];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-
-
-<p>-registerUndoWithTarget:selector:object: 这个简便方法只能接受 object 一个参数。除此之外，还有一种通过 NSInvocation 注册复杂的撤销操作的办法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 在 [undoManager prepareWithInvocationTarget:self] 之后，可以直接调用进行撤销操作时需要调用的方法，并传入相应参数。</span><br><span class="line">[[undoManager prepareWithInvocationTarget:self] removeLastText:text];</span><br><span class="line">[undoManager setActionName:@&quot;add text&quot;];</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="UIKeyCommand"><a href="#UIKeyCommand" class="headerlink" title="UIKeyCommand"></a><code>UIKeyCommand</code></h2><blockquote>
-<p>为了使 iPad 更高效的工作，iOS 9 增加了 <em>可发现特性</em>，这是一个叠加层，用于显示一个应用程序内当前可用的键盘命令。</p>
-</blockquote>
-<h3 id="UIKeyCommand快捷键的组成"><a href="#UIKeyCommand快捷键的组成" class="headerlink" title="UIKeyCommand快捷键的组成"></a><code>UIKeyCommand</code>快捷键的组成</h3><ol>
-<li><p>input</p>
-<p>你需要识别的关键字，或正确的箭头和退出键，本身并不包含字符。可用常数有：</p>
-<ol>
-<li><code>UIKeyInputUpArrow</code></li>
-<li><code>UIKeyInputDownArrow</code></li>
-<li><code>UIKeyInputLeftArrow</code></li>
-<li><code>UIKeyInputRightArrow</code></li>
-<li><code>UIKeyInputEscape</code></li>
-</ol>
-</li>
-<li><p>modifierFlags</p>
-<p>一个或多个<code>UIKeyModifierFlags</code>，描述了需要与 input 键同时使用的键</p>
-<ol>
-<li><code>.Command</code>、<code>.Alternate</code>、<code>.Shift</code>、<code>.Control</code>：分别表示 Command，Option，Shift 和 Control 键</li>
-<li><code>.NumericPad</code>：表示 input 应该来自数字键盘，而不是标准键盘最上面一行</li>
-<li><code>.AlphaShift</code>：表示大小写锁定键是否作为按键组合的一部分（大写状态）</li>
-</ol>
-</li>
-<li><p>action</p>
-<p>按键命令调用的方法，<code>UIKeyCommand</code> 作为其唯一的参数。键盘事件将追溯响应链，直到发现一个匹配的方法。</p>
-</li>
-<li><p>discoverabilityTitle（仅 iOS 9）</p>
-<p>一个可选的标签，用来在发现层显示快捷键命令。</p>
-<p>==只有设置了标题的键盘命令才会被列出。==</p>
-</li>
-</ol>
-<h3 id="设置并响应键盘命令"><a href="#设置并响应键盘命令" class="headerlink" title="设置并响应键盘命令"></a>设置并响应键盘命令</h3><blockquote>
-<p>启用键盘命令很简单，只需要在响应链的某处提供一个 <code>UIKeyCommand</code> 实例的数组。</p>
-</blockquote>
-<p>文字输入是自动的第一响应者，但也许更方便的是在视图控制器通过实现 <code>canBecomeFirstResponder()</code>来响应键盘命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)canBecomeFirstResponder &#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后通过 <code>keyCommands</code> 属性提供可用的按键命令列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (NSArray&lt;UIKeyCommand *&gt;*)keyCommands &#123;</span><br><span class="line">    return @[</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;1&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Types&quot;],</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;2&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Protocols&quot;],</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;3&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Functions&quot;],</span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;4&quot; modifierFlags:UIKeyModifierCommand action:@selector(selectTab:) discoverabilityTitle:@&quot;Operators&quot;],</span><br><span class="line"></span><br><span class="line">        [UIKeyCommand keyCommandWithInput:@&quot;f&quot; </span><br><span class="line">                            modifierFlags:UIKeyModifierCommand | UIKeyModifierAlternate </span><br><span class="line">                                   action:@selector(search:) </span><br><span class="line">                     discoverabilityTitle:@&quot;Find…&quot;]</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; ...</span><br><span class="line"></span><br><span class="line">- (void)selectTab:(UIKeyCommand *)sender &#123;</span><br><span class="line">    NSString *selectedTab &#x3D; sender.input;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="情景敏感性"><a href="#情景敏感性" class="headerlink" title="情景敏感性"></a>情景敏感性</h3><blockquote>
-<p>只要一个按键被按下， <code>keyCommands</code> 属性就会被访问，从而可以提供根据你应用程序的上下文状态敏感的反应。虽然这是类似菜单项的方式，其有效/无效状态被配置在 OS X 里面，iOS 版的建议是完全忽略不活动的命令，也就是说，在发现层不要显示变灰的命令。</p>
-</blockquote>
-<p>e.g. 对于不同的登录状态，有不同的可用快捷键。（针对已登录用户有额外的可用快捷键）</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> globalKeyCommands <span class="operator">=</span> [<span class="type">UIKeyCommand</span>(input:<span class="operator">...</span>), <span class="operator">...</span>]</span><br><span class="line"><span class="keyword">let</span> loggedInUserKeyCommands <span class="operator">=</span> [<span class="type">UIKeyCommand</span>(input:<span class="operator">...</span>), <span class="operator">...</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="keyword">var</span> keyCommands: [<span class="type">UIKeyCommand</span>]<span class="operator">?</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> isLoggedInUser() &#123;</span><br><span class="line">        <span class="keyword">return</span> globalKeyCommands <span class="operator">+</span> loggedInUserKeyCommands</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> globalKeyCommands</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="跳转系统设置页面"><a href="#跳转系统设置页面" class="headerlink" title="跳转系统设置页面"></a>跳转系统设置页面</h2><ol>
-<li><p>配置 URL Types</p>
-<p>添加 URL Schemes 为 <code>prefs</code> 的 URL Types</p>
-<p>Role 为 <code>Editor</code></p>
-</li>
-<li><p>openURL</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">NSString * urlString &#x3D; @&quot;prefs:root&#x3D;WIFI&quot;;</span><br><span class="line">NSURL *url &#x3D; [NSURL URLWithString:urlString];</span><br><span class="line">UIApplication *app &#x3D; [UIApplication sharedApplication];</span><br><span class="line">if ([app canOpenURL:[NSURL URLWithString:urlString]]) &#123;</span><br><span class="line"> </span><br><span class="line">    if ([[UIDevice currentDevice].systemVersion doubleValue] &gt;&#x3D; 10.0) &#123;</span><br><span class="line">    </span><br><span class="line">    	[app openURL:url options:@&#123;&#125; completionHandler:nil];</span><br><span class="line">    &#125; </span><br><span class="line">    else &#123;</span><br><span class="line">    </span><br><span class="line">    	[app openURL:url];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="其他系统偏好设置的-URL"><a href="#其他系统偏好设置的-URL" class="headerlink" title="其他系统偏好设置的 URL"></a>其他系统偏好设置的 URL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.系统设置</span><br><span class="line">prefs:root&#x3D;INTERNET_TETHERING</span><br><span class="line">2.WIFI设置</span><br><span class="line">prefs:root&#x3D;WIFI</span><br><span class="line">3.蓝牙设置</span><br><span class="line">prefs:root&#x3D;Bluetooth</span><br><span class="line">4.系统通知</span><br><span class="line">prefs:root&#x3D;NOTIFICATIONS_ID</span><br><span class="line">5.通用设置</span><br><span class="line">prefs:root&#x3D;General</span><br><span class="line">6.显示设置</span><br><span class="line">prefs:root&#x3D;DISPLAY&amp;BRIGHTNESS</span><br><span class="line">7.壁纸设置</span><br><span class="line">prefs:root&#x3D;Wallpaper</span><br><span class="line">8.声音设置</span><br><span class="line">prefs:root&#x3D;Sounds</span><br><span class="line">9.隐私设置</span><br><span class="line">prefs:root&#x3D;privacy</span><br><span class="line">10.打开 APP Store</span><br><span class="line">prefs:root&#x3D;STORE</span><br><span class="line">11.打开 Notes</span><br><span class="line">prefs:root&#x3D;NOTES</span><br><span class="line">12.打开 Safari</span><br><span class="line">prefs:root&#x3D;Safari</span><br><span class="line">13.打开 Music</span><br><span class="line">prefs:root&#x3D;MUSIC</span><br><span class="line">14.打开 photo</span><br><span class="line">prefs:root&#x3D;Photos</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="密码规则-UITextInputPasswordRules"><a href="#密码规则-UITextInputPasswordRules" class="headerlink" title="密码规则 UITextInputPasswordRules"></a>密码规则 <code>UITextInputPasswordRules</code></h2><p>便利方法：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PasswordRule</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">CharacterClass</span> </span>&#123;</span><br><span class="line">        <span class="keyword">case</span> upper, lower, digits, special, asciiPrintable, unicode</span><br><span class="line">        <span class="keyword">case</span> custom(<span class="type">Set</span>&lt;<span class="type">Character</span>&gt;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">required</span>(<span class="type">CharacterClass</span>)</span><br><span class="line">    <span class="keyword">case</span> allowed(<span class="type">CharacterClass</span>)</span><br><span class="line">    <span class="keyword">case</span> maxConsecutive(<span class="type">UInt</span>)</span><br><span class="line">    <span class="keyword">case</span> minLength(<span class="type">UInt</span>)</span><br><span class="line">    <span class="keyword">case</span> maxLength(<span class="type">UInt</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PasswordRule</span>: <span class="title">CustomStringConvertible</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .required(<span class="keyword">let</span> characterClass):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;required: <span class="subst">\(characterClass)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .allowed(<span class="keyword">let</span> characterClass):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;allowed: <span class="subst">\(characterClass)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .maxConsecutive(<span class="keyword">let</span> length):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;max-consecutive: <span class="subst">\(length)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .minLength(<span class="keyword">let</span> length):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;minlength: <span class="subst">\(length)</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .maxLength(<span class="keyword">let</span> length):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;maxlength: <span class="subst">\(length)</span>&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">PasswordRule</span>.<span class="title">CharacterClass</span>: <span class="title">CustomStringConvertible</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .upper: <span class="keyword">return</span> <span class="string">&quot;upper&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .lower: <span class="keyword">return</span> <span class="string">&quot;lower&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .digits: <span class="keyword">return</span> <span class="string">&quot;digits&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .special: <span class="keyword">return</span> <span class="string">&quot;special&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .asciiPrintable: <span class="keyword">return</span> <span class="string">&quot;ascii-printable&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .unicode: <span class="keyword">return</span> <span class="string">&quot;unicode&quot;</span></span><br><span class="line">        <span class="keyword">case</span> .custom(<span class="keyword">let</span> characters): <span class="keyword">return</span> <span class="string">&quot;[&quot;</span> <span class="operator">+</span> <span class="type">String</span>(characters) <span class="operator">+</span> <span class="string">&quot;]&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UITextInputPasswordRules</span> </span>&#123;</span><br><span class="line">    <span class="keyword">convenience</span> <span class="function"><span class="keyword">init</span>(<span class="params">rules</span>: [<span class="type">PasswordRule</span>])</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> descriptor <span class="operator">=</span> rules.map&#123; <span class="variable">$0</span>.description &#125;</span><br><span class="line">            .joined(separator: <span class="string">&quot;; &quot;</span>)</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(descriptor: descriptor)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="性能优化-让对象在后台销毁。"><a href="#性能优化-让对象在后台销毁。" class="headerlink" title="性能优化 - 让对象在后台销毁。"></a>性能优化 - 让对象在后台销毁。</h2><blockquote>
-<p>当容器类持有大量对象时，销毁的资源消耗就会十分明显。可以把对象放到后台线程释放。</p>
-<p>Tip: 把对象捕获到block中，在后台队列随便发个消息。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSArray *temp &#x3D; self.array;</span><br><span class="line">self.array &#x3D; nil;</span><br><span class="line">dispatch_async(queue, ^&#123;</span><br><span class="line">  [temp class];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用新-API-快速创建可滑动的半屏controller"><a href="#使用新-API-快速创建可滑动的半屏controller" class="headerlink" title="使用新 API 快速创建可滑动的半屏controller"></a>使用新 API 快速创建可滑动的半屏controller</h2><p>e.g.</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> webViewController <span class="operator">=</span> <span class="type">WebViewController</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> sheet <span class="operator">=</span> webViewController.sheetPresentationController &#123;</span><br><span class="line">    </span><br><span class="line">    sheet.detents <span class="operator">=</span> [.medium(), .large()]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">present(webViewController, animated: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<ol>
-<li><p><code>sheedPresentationController</code>的<code>detents</code>属性中，不同配置的顺序影响展示的效果，默认展示<code>detents</code>数组中的第一个配置</p>
-<p>  i.e. 如果想默认先半屏，那么设置<code>[.medium(), .large()]</code></p>
-<p>  ​      如果想默认先全屏，那么设置<code>[.large(), .medium()]</code></p>
-</li>
-</ol>
-<h3 id="添加-sheet-顶部的抓取条"><a href="#添加-sheet-顶部的抓取条" class="headerlink" title="添加 sheet 顶部的抓取条"></a>添加 sheet 顶部的抓取条</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.prefersGrabberVisible <span class="operator">=</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="防止展示-sheet-时底层视图变暗"><a href="#防止展示-sheet-时底层视图变暗" class="headerlink" title="防止展示 sheet 时底层视图变暗"></a>防止展示 sheet 时底层视图变暗</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.smallestUndimmedDetentIdentifier <span class="operator">=</span> .medium</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="防止半屏滚动-sheet-时，sheet-自动向上展开"><a href="#防止半屏滚动-sheet-时，sheet-自动向上展开" class="headerlink" title="防止半屏滚动 sheet 时，sheet 自动向上展开"></a>防止半屏滚动 sheet 时，sheet 自动向上展开</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.prefersScrollingExpandsWhenScrolledToEdge <span class="operator">=</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="定制-sheet-的圆角半径"><a href="#定制-sheet-的圆角半径" class="headerlink" title="定制 sheet 的圆角半径"></a>定制 sheet 的圆角半径</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sheet.preferredCornerRadius <span class="operator">=</span> <span class="number">30.0</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="从-storyboard获取指定id的controller"><a href="#从-storyboard获取指定id的controller" class="headerlink" title="从 storyboard获取指定id的controller"></a>从 <code>storyboard</code>获取指定id的controller</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 先在 Storyboard 的 Inspector 中设置指定 controller 的 storyboard ID</span></span><br><span class="line"><span class="comment">// 2. 获取被制定了 storyboard ID 的 controller</span></span><br><span class="line"><span class="keyword">let</span> storyboard <span class="operator">=</span> <span class="type">UIStoryboard</span>(name: <span class="keyword">Self</span>.mainStoryboardName, bundle: <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">let</span> detailViewController: <span class="type">ReminderDetailViewController</span> <span class="operator">=</span> storyboard.instantiateViewController(identifier: <span class="keyword">Self</span>.detailViewControllerIdentifier)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="在-SwiftUI-的-TabView-中使用自定义的-TabButton"><a href="#在-SwiftUI-的-TabView-中使用自定义的-TabButton" class="headerlink" title="在 SwiftUI 的 TabView 中使用自定义的 TabButton"></a>在 SwiftUI 的 TabView 中使用自定义的 TabButton</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">var</span> sleectedTabIndex <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> menuItems <span class="operator">=</span> [<span class="string">&quot;Travel&quot;</span>, <span class="string">&quot;Film&quot;</span>, <span class="string">&quot;Food &amp; Drink&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">TabView</span>(selection: <span class="variable">$selectedTabIndex</span>) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="type">ForEach</span>(menuItems.indices) &#123; index <span class="keyword">in</span></span><br><span class="line">                </span><br><span class="line">                <span class="type">Text</span>(menuItems[index])</span><br><span class="line">                    .frame(minWidth: <span class="number">0</span>, maxWidth: .infinity, minHeihgt: <span class="number">0</span>, maxHeight: .infinity)</span><br><span class="line">                    .background(<span class="type">Color</span>.green)</span><br><span class="line">                    .font(.system(size: <span class="number">50</span>, weight: .heavy, design: .rounded))</span><br><span class="line">                    .tag(index)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .tabViewStyle(.page(indexDisplayMode: .never))</span><br><span class="line">        .ignoresSafeArea()</span><br><span class="line">        .overlay(alignment: .bottom) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="type">NavigationMenu</span>(selectedIndex: <span class="variable">$selectedTabIndex</span>, menuItems: menuItems)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//MARK: - NavigationMenu</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NavigationMenu</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Namespace</span> <span class="keyword">private</span> <span class="keyword">var</span> menuItemTransition</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Veiw</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">HStack</span> &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="type">Spacer</span>()</span><br><span class="line">            <span class="type">ForEach</span>(menuItems.indices) &#123; index <span class="keyword">in</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> index <span class="operator">==</span> selectedIndex &#123;</span><br><span class="line">                	</span><br><span class="line">                    <span class="type">Text</span>(menuItems[index])</span><br><span class="line">                    	.padding(.horizontal)</span><br><span class="line">                    	.padding(.vertical, <span class="number">4</span>)</span><br><span class="line">                    	.background(<span class="type">Capsule</span>().foregroundColor(<span class="type">Color</span>.purple))</span><br><span class="line">                    	.foregroundColor(.white)</span><br><span class="line">                    	.matchedGeometryEffect(id: <span class="string">&quot;menuItem&quot;</span>, in: menuItemTransition)</span><br><span class="line">                &#125; esle &#123;</span><br><span class="line">                    </span><br><span class="line">                    <span class="type">Toxt</span>(menuItems[index])</span><br><span class="line">                    	.padding(.horizontal)</span><br><span class="line">                    	.padding(.vertical, <span class="number">4</span>)</span><br><span class="line">                    	.background(<span class="type">Capsule</span>().foregroundColor(<span class="type">Color</span>(uiColor: .ssytemGray5)))</span><br><span class="line">               			.onTapGesture &#123;</span><br><span class="line">                            </span><br><span class="line">                            selectedIndex <span class="operator">=</span> index</span><br><span class="line">                        &#125;     </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="type">Spacer</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .frame(minWidth: <span class="number">0</span>, maxWidth: .infinity)</span><br><span class="line">        .padding()</span><br><span class="line">        .animation(.easeInOut, value: selectedIndex)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="SwiftUI-中将实例转为Binding传递引用"><a href="#SwiftUI-中将实例转为Binding传递引用" class="headerlink" title="SwiftUI 中将实例转为Binding传递引用"></a>SwiftUI 中将实例转为<code>Binding</code>传递引用</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">binding</span>(<span class="params">for</span> <span class="params">scrum</span>: <span class="type">DailyScrum</span>)</span> -&gt; <span class="type">Binding</span>&lt;<span class="type">DailyScrum</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> scrumIndex <span class="operator">=</span> scrums.firstIndex(where: &#123; <span class="variable">$0</span>.id <span class="operator">==</span> scrum.id &#125;) <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">&quot;Can&#x27;t find scrum in array&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$scrums</span>[scrumIndex]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

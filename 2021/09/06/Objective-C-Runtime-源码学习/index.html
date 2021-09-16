@@ -23,17 +23,23 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"ryotrix.dev","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Objective-C Runtime源码学习项目结构   Public Headers   Private Headers   Project Headers   Source ( Implementation )   Obsolete Headers   Obsolete Source  重点概念及数据结构 objc_object    Represents an instance of">
+<meta name="description" content="Objective-C Runtime源码学习项目结构   Public Headers   Private Headers   Project Headers   Source ( Implementation )   Obsolete Headers   Obsolete Source  Runtime的三种调用方式：1、runtime api –&gt; (class_、objc_、ob">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C Runtime 源码学习">
 <meta property="og:url" content="https://ryotrix.dev/2021/09/06/Objective-C-Runtime-%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Objective-C Runtime源码学习项目结构   Public Headers   Private Headers   Project Headers   Source ( Implementation )   Obsolete Headers   Obsolete Source  重点概念及数据结构 objc_object    Represents an instance of">
+<meta property="og:description" content="Objective-C Runtime源码学习项目结构   Public Headers   Private Headers   Project Headers   Source ( Implementation )   Obsolete Headers   Obsolete Source  Runtime的三种调用方式：1、runtime api –&gt; (class_、objc_、ob">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1guabzh1pqqj60vd0u00v602.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gua7xi96jqj60zi0bywfh02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gua81ao3tnj61ps0l0djo02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gua81t8ydmj61y40h6tcf02.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gua7wtw39lj60zk0hkjsj02.jpg">
 <meta property="article:published_time" content="2021-09-06T16:46:37.000Z">
-<meta property="article:modified_time" content="2021-09-06T09:30:40.804Z">
+<meta property="article:modified_time" content="2021-09-16T03:15:50.740Z">
 <meta property="article:author" content="Lex">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1guabzh1pqqj60vd0u00v602.jpg">
 
 
 <link rel="canonical" href="https://ryotrix.dev/2021/09/06/Objective-C-Runtime-%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
@@ -125,7 +131,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">16</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
   </ul>
 </nav>
 
@@ -156,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Objective-C-Runtime%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">Objective-C Runtime源码学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%E6%A6%82%E5%BF%B5%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">重点概念及数据结构</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Objective-C-Runtime%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">Objective-C Runtime源码学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">项目结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime%E7%9A%84%E4%B8%89%E7%A7%8D%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">Runtime的三种调用方式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%E6%A6%82%E5%BF%B5%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">重点概念及数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objc%E7%8E%AF%E5%A2%83%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">Objc环境初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">特殊的数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9C%B0%E5%9D%80"><span class="nav-number">1.5.</span> <span class="nav-text">特殊的二进制地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AutoRelease-pool"><span class="nav-number">1.6.</span> <span class="nav-text">AutoRelease pool</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">1.6.1.</span> <span class="nav-text">Definition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak"><span class="nav-number">1.7.</span> <span class="nav-text">Weak</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8"><span class="nav-number">1.8.</span> <span class="nav-text">方法调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KVC"><span class="nav-number">1.9.</span> <span class="nav-text">KVC</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -170,7 +176,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -233,10 +239,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-09-06 16:46:37 / 修改时间：09:30:40" itemprop="dateCreated datePublished" datetime="2021-09-06T16:46:37+00:00">2021-09-06</time>
+      <time title="创建时间：2021-09-06 16:46:37" itemprop="dateCreated datePublished" datetime="2021-09-06T16:46:37+00:00">2021-09-06</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
+      </span>
 
   
 </div>
@@ -256,10 +268,14 @@
 <li>  <code>Obsolete Headers</code></li>
 <li>  <code>Obsolete Source</code></li>
 </ul>
+<h3 id="Runtime的三种调用方式："><a href="#Runtime的三种调用方式：" class="headerlink" title="Runtime的三种调用方式："></a>Runtime的三种调用方式：</h3><p>1、<code>runtime api</code> –&gt; (class_、objc_、object_)<br>2、<code>NSObject api</code> –&gt; (isKindOfClass、isMemberOfClass)<br>3、OC上层方法 –&gt;（@selector）</p>
 <h2 id="重点概念及数据结构"><a href="#重点概念及数据结构" class="headerlink" title="重点概念及数据结构"></a>重点概念及数据结构</h2><ol>
 <li><p>objc_object</p>
 <blockquote>
 <p>  Represents an instance of a class.</p>
+</blockquote>
+<blockquote>
+<p>  objc.h</p>
 </blockquote>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -268,10 +284,132 @@
 <blockquote>
 <p>  A pointer to an instance of a class.</p>
 </blockquote>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> *<span class="title">id</span>;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>  objc.h</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> *<span class="title">id</span>;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="3">
+<li><p>objc_class</p>
+<blockquote>
+<p>  An opaque type that represents an Objective-C class.</p>
+</blockquote>
+<blockquote>
+<p>  objc.h</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> *<span class="title">Class</span>;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  runtime.h</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !__OBJC2__</span></span><br><span class="line">    Class _Nullable super_class                              OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> * _Nonnull name                               OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> version                                             OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> info                                                OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> instance_size                                       OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_ivar_list</span> * _<span class="title">Nullable</span> <span class="title">ivars</span>                  <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_method_list</span> * _<span class="title">Nullable</span> * _<span class="title">Nullable</span> <span class="title">methodLists</span>                    <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_cache</span> * _<span class="title">Nonnull</span> <span class="title">cache</span>                       <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_protocol_list</span> * _<span class="title">Nullable</span> <span class="title">protocols</span>          <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">&#125; OBJC2_UNAVAILABLE;</span><br><span class="line"><span class="comment">/* Use `Class` instead of `struct objc_class *` */</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
+<h2 id="Objc环境初始化"><a href="#Objc环境初始化" class="headerlink" title="Objc环境初始化"></a>Objc环境初始化</h2><ol>
+<li>  <code>objc-os.mm</code> L.922 <code>void _objc_init(void)</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void _objc_init(void)</span><br><span class="line">&#123;</span><br><span class="line">    static bool initialized &#x3D; false;</span><br><span class="line">    if (initialized) return;</span><br><span class="line">    initialized &#x3D; true;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; fixme defer initialization until an objc-using image is found?</span><br><span class="line">    environ_init();</span><br><span class="line">    tls_init();</span><br><span class="line">    static_init();</span><br><span class="line">    runtime_init();</span><br><span class="line">    exception_init();</span><br><span class="line">#if __OBJC2__</span><br><span class="line">    cache_t::init();</span><br><span class="line">#endif</span><br><span class="line">    _imp_implementationWithBlock_init();</span><br><span class="line"></span><br><span class="line">    _dyld_objc_notify_register(&amp;map_images, load_images, unmap_image);</span><br><span class="line"></span><br><span class="line">#if __OBJC2__</span><br><span class="line">    didCallDyldNotifyRegister &#x3D; true;</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><p><code>environ_init()</code></p>
+<p>  <code>objc-runtime.mm</code> L.367</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">void environ_init(void) </span><br><span class="line">&#123;</span><br><span class="line">    if (issetugid()) &#123;</span><br><span class="line">        &#x2F;&#x2F; All environment variables are silently ignored when setuid or setgid</span><br><span class="line">        &#x2F;&#x2F; This includes OBJC_HELP and OBJC_PRINT_OPTIONS themselves.</span><br><span class="line">        return;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Turn off autorelease LRU coalescing by default for apps linked against</span><br><span class="line">    &#x2F;&#x2F; older SDKs. LRU coalescing can reorder releases and certain older apps</span><br><span class="line">    &#x2F;&#x2F; are accidentally relying on the ordering.</span><br><span class="line">    &#x2F;&#x2F; rdar:&#x2F;&#x2F;problem&#x2F;63886091</span><br><span class="line">    if (!dyld_program_sdk_at_least(dyld_fall_2020_os_versions))</span><br><span class="line">        DisableAutoreleaseCoalescingLRU &#x3D; true;</span><br><span class="line"></span><br><span class="line">    bool PrintHelp &#x3D; false;</span><br><span class="line">    bool PrintOptions &#x3D; false;</span><br><span class="line">    bool maybeMallocDebugging &#x3D; false;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Scan environ[] directly instead of calling getenv() a lot.</span><br><span class="line">    &#x2F;&#x2F; This optimizes the case where none are set.</span><br><span class="line">    for (char **p &#x3D; *_NSGetEnviron(); *p !&#x3D; nil; p++) &#123;</span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;Malloc&quot;, 6)  ||  0 &#x3D;&#x3D; strncmp(*p, &quot;DYLD&quot;, 4)  ||  </span><br><span class="line">            0 &#x3D;&#x3D; strncmp(*p, &quot;NSZombiesEnabled&quot;, 16))</span><br><span class="line">        &#123;</span><br><span class="line">            maybeMallocDebugging &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (0 !&#x3D; strncmp(*p, &quot;OBJC_&quot;, 5)) continue;</span><br><span class="line">        </span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;OBJC_HELP&#x3D;&quot;, 10)) &#123;</span><br><span class="line">            PrintHelp &#x3D; true;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;OBJC_PRINT_OPTIONS&#x3D;&quot;, 19)) &#123;</span><br><span class="line">            PrintOptions &#x3D; true;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        if (0 &#x3D;&#x3D; strncmp(*p, &quot;OBJC_DEBUG_POOL_DEPTH&#x3D;&quot;, 22)) &#123;</span><br><span class="line">            SetPageCountWarning(*p + 22);</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        const char *value &#x3D; strchr(*p, &#39;&#x3D;&#39;);</span><br><span class="line">        if (!*value) continue;</span><br><span class="line">        value++;</span><br><span class="line">        </span><br><span class="line">        for (size_t i &#x3D; 0; i &lt; sizeof(Settings)&#x2F;sizeof(Settings[0]); i++) &#123;</span><br><span class="line">            const option_t *opt &#x3D; &amp;Settings[i];</span><br><span class="line">            if ((size_t)(value - *p) &#x3D;&#x3D; 1+opt-&gt;envlen  &amp;&amp;  </span><br><span class="line">                0 &#x3D;&#x3D; strncmp(*p, opt-&gt;env, opt-&gt;envlen))</span><br><span class="line">            &#123;</span><br><span class="line">                *opt-&gt;var &#x3D; (0 &#x3D;&#x3D; strcmp(value, &quot;YES&quot;));</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Special case: enable some autorelease pool debugging</span><br><span class="line">    &#x2F;&#x2F; when some malloc debugging is enabled </span><br><span class="line">    &#x2F;&#x2F; and OBJC_DEBUG_POOL_ALLOCATION is not set to something other than NO.</span><br><span class="line">    if (maybeMallocDebugging) &#123;</span><br><span class="line">        const char *insert &#x3D; getenv(&quot;DYLD_INSERT_LIBRARIES&quot;);</span><br><span class="line">        const char *zombie &#x3D; getenv(&quot;NSZombiesEnabled&quot;);</span><br><span class="line">        const char *pooldebug &#x3D; getenv(&quot;OBJC_DEBUG_POOL_ALLOCATION&quot;);</span><br><span class="line">        if ((getenv(&quot;MallocStackLogging&quot;)</span><br><span class="line">             || getenv(&quot;MallocStackLoggingNoCompact&quot;)</span><br><span class="line">             || (zombie &amp;&amp; (*zombie &#x3D;&#x3D; &#39;Y&#39; || *zombie &#x3D;&#x3D; &#39;y&#39;))</span><br><span class="line">             || (insert &amp;&amp; strstr(insert, &quot;libgmalloc&quot;)))</span><br><span class="line">            &amp;&amp;</span><br><span class="line">            (!pooldebug || 0 &#x3D;&#x3D; strcmp(pooldebug, &quot;YES&quot;)))</span><br><span class="line">        &#123;</span><br><span class="line">            DebugPoolAllocation &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!os_feature_enabled_simple(objc4, preoptimizedCaches, true)) &#123;</span><br><span class="line">        DisablePreoptCaches &#x3D; true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Print OBJC_HELP and OBJC_PRINT_OPTIONS output.</span><br><span class="line">    if (PrintHelp  ||  PrintOptions) &#123;</span><br><span class="line">        if (PrintHelp) &#123;</span><br><span class="line">            _objc_inform(&quot;Objective-C runtime debugging. Set variable&#x3D;YES to enable.&quot;);</span><br><span class="line">            _objc_inform(&quot;OBJC_HELP: describe available environment variables&quot;);</span><br><span class="line">            if (PrintOptions) &#123;</span><br><span class="line">                _objc_inform(&quot;OBJC_HELP is set&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            _objc_inform(&quot;OBJC_PRINT_OPTIONS: list which options are set&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if (PrintOptions) &#123;</span><br><span class="line">            _objc_inform(&quot;OBJC_PRINT_OPTIONS is set&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (size_t i &#x3D; 0; i &lt; sizeof(Settings)&#x2F;sizeof(Settings[0]); i++) &#123;</span><br><span class="line">            const option_t *opt &#x3D; &amp;Settings[i];            </span><br><span class="line">            if (PrintHelp) _objc_inform(&quot;%s: %s&quot;, opt-&gt;env, opt-&gt;help);</span><br><span class="line">            if (PrintOptions &amp;&amp; *opt-&gt;var) _objc_inform(&quot;%s is set&quot;, opt-&gt;env);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>  <code>tls_init()</code></li>
+</ol>
+<p><code>objc-runtime.mm</code> L.550</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void tls_init(void)</span><br><span class="line">&#123;</span><br><span class="line">#if SUPPORT_DIRECT_THREAD_KEYS</span><br><span class="line">    pthread_key_init_np(TLS_DIRECT_KEY, &amp;_objc_pthread_destroyspecific);</span><br><span class="line">#else</span><br><span class="line">    _objc_pthread_key &#x3D; tls_create(&amp;_objc_pthread_destroyspecific);</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>  <code>static_init()</code></li>
+</ol>
+<ol start="5">
+<li>  <code>runtime_init()</code></li>
+</ol>
+<p><code>objc-runtime-new.mm</code> L.8520</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void runtime_init(void)</span><br><span class="line">&#123;</span><br><span class="line">    objc::unattachedCategories.init(32);</span><br><span class="line">    objc::allocatedClasses.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>  <code>exception_init()</code></li>
+<li>  <code>cache_t::init()</code></li>
+<li>  ``</li>
+</ol>
+<h2 id="特殊的数据结构"><a href="#特殊的数据结构" class="headerlink" title="特殊的数据结构"></a>特殊的数据结构</h2><ol>
+<li><p>DisguisedPtr</p>
+<blockquote>
+<p>  DisguisedPtr<T> acts like pointer type T*, except the stored value is disguised to hide it from tools like <code>leaks</code>.</p>
+<p>  nil is disguised as itself so zero-filled memory works as expected, which means 0x80..00 is also disguised as itself but we don’t care.</p>
+<p>  Note that weak_entry_t knows about this encoding.</p>
+</blockquote>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DisguisedPtr</span> &#123;</span></span><br><span class="line">    <span class="keyword">uintptr_t</span> value;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="特殊的二进制地址"><a href="#特殊的二进制地址" class="headerlink" title="特殊的二进制地址"></a>特殊的二进制地址</h2><blockquote>
+<p>  The low two bits:</p>
+</blockquote>
+<ol>
+<li><p><code>0b00</code>: pointer-aligned DisguisedPtr</p>
+<p>  (disguised nil or 0x80..00)</p>
+</li>
+<li><p>  <code>0b11</code>: any other address</p>
+</li>
+<li><p>  <code>0b10</code>: mark the out-of-line state</p>
+</li>
+</ol>
+<h2 id="AutoRelease-pool"><a href="#AutoRelease-pool" class="headerlink" title="AutoRelease pool"></a>AutoRelease pool</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><blockquote>
+<p>  A thread’s autorelease pool is a stack of pointers.</p>
+</blockquote>
+<p>一个线程的自动释放池是一个存放指针的栈。</p>
+<blockquote>
+<p>  Each pointer is either an object ot release, or POOL_BOUNDARY which is an autorelease pool boundary.</p>
+</blockquote>
+<p>其中的每个指针要么是要释放的对象，要么是自动释放池的标记。</p>
+<blockquote>
+<p>  A pool token is a pointer to the POOL_BOUNDARY for that pool. When the pool is popped, every object hotter than the sentinel is released.</p>
+</blockquote>
+<p>pool token是指向该自动释放池标记的指针。当该池弹出时，每个比标记更新( hotter )的对象都会被释放。</p>
+<blockquote>
+<p>  The stack is divided into a doubly-linkedlist of pages. Pages are added and deleted as necessary.</p>
+</blockquote>
+<p>自动释放池的栈分成了使用双链表连接起来的数个页。这些页面的添加和删除是惰性的——需要的时候才会被添加/删除，而不是提前生成。</p>
+<blockquote>
+<p>  Thread-local storage points to the hot page, where newly autoreleased objects are stored.</p>
+</blockquote>
+<p>线程本地（线程内部）存储指向了活跃的页面——新的自动释放的对象被存储的那一页。</p>
+<h2 id="Weak"><a href="#Weak" class="headerlink" title="Weak"></a>Weak</h2><blockquote>
+<p>  The weak table is a hash table governed by a single spin lock.</p>
+<p>  An allocated blob of memory, most often an object, but under GC any such allocation, may have its address stored in a __weak marked storage location through use of compiler generated write-barriers or hand coded uses of the register weak primitive. Associated with the registration can be a callback block for the case when one of the allocated chunks of memory is reclaimed. </p>
+<p>  The table is hashed on the address of the allocated memory. When __weak marked memory changes its reference, we count on the fact that we can still see its previous reference.</p>
+<p>  So, in the hash table, indexed by the weakly referenced item, is a list of all locations where this address is currently being stored.</p>
+<p>  For ARC, we also keep track of whether an arbitrary object is being deallocated by briefly placing it in the table just prior to invoking dealloc, and removing it via objc_clear_deallocating just prior to memory reclamation.</p>
+</blockquote>
+<h2 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h2><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1guabzh1pqqj60vd0u00v602.jpg" alt="image-20210909135253943"></p>
+<ol>
+<li><p>消息发送</p>
+<p>  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua7xi96jqj60zi0bywfh02.jpg" alt="消息传递流程"></p>
+<ol>
+<li>快速查找  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua81ao3tnj61ps0l0djo02.jpg" alt="img"></li>
+<li>慢速查找  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua81t8ydmj61y40h6tcf02.jpg" alt="img"></li>
+</ol>
+</li>
+<li><p>消息转发</p>
+<p>  <img src="https://tva1.sinaimg.cn/large/008i3skNly1gua7wtw39lj60zk0hkjsj02.jpg" alt="消息转发流程"></p>
+</li>
+</ol>
+<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p>KVC在某种程度上提供了替代存取方法（访问器方法）的方案，不过存取方法终究是个好东西，以至于只要有可能，KVC也尽可能先尝试使用存取方法访问属性。当使用KVC访问属性时，它内部其实做了很多事：<br>1.首先查找有无<property>，set<property>，is<property>等property属性对应的存取方法，若有，则直接使用这些方法;<br>2.若无，则继续查找_<property>，_get<property>，<em>set<property>等方法，若有就使用；<br>3.若查询不到以上任何存取方法，则尝试直接访问实例变量<property>，</em><property>；<br>4.若连该成员变量也访问不到，则会在下面方法中抛出异常。<strong>之所以提供这两个方法，就是让你在因访问不到该属性而程序即将崩掉前，供你重写，在内做些处理，防止程序直接崩掉。</strong><br><code>valueForUndefinedKey:</code>和<code>setValue:forUndefinedKey:</code>方法。</p>
 
     </div>
 
@@ -290,6 +428,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/09/16/iOS%E5%BC%80%E5%8F%91-%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%A1%86%E6%9E%B6/" rel="next" title="iOS开发-系统和框架">
+                  iOS开发-系统和框架 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
