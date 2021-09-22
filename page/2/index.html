@@ -121,7 +121,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a></li>
   </ul>
 </nav>
 
@@ -165,7 +165,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,97 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/ARM%E5%8F%8A%E6%B1%87%E7%BC%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lex">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/06/ARM%E5%8F%8A%E6%B1%87%E7%BC%96/" class="post-title-link" itemprop="url">ARM及汇编</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-06 14:21:55" itemprop="dateCreated datePublished" datetime="2021-04-06T14:21:55+00:00">2021-04-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-22 05:41:27" itemprop="dateModified" datetime="2021-09-22T05:41:27+00:00">2021-09-22</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ARM-及-汇编"><a href="#ARM-及-汇编" class="headerlink" title="ARM 及 汇编"></a>ARM 及 汇编</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82490125">https://zhuanlan.zhihu.com/p/82490125</a></p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gpa06f17azj30n10g9myn.jpg"></p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h3><h4 id="LDR-STR"><a href="#LDR-STR" class="headerlink" title="LDR/STR"></a>LDR/STR</h4><ol>
+<li><p>x86 架构：</p>
+<p>寄存器之间 / 寄存器和内存见可以使用 MOV 指令 ；</p>
+<p>允许直接操作内存单元上的数据。</p>
+</li>
+<li><p>ARM架构：</p>
+<p>寄存器之间传送数据使用 MOV / 寄存器和内存之间使用 LDR ( load ) 和 STR ( store )；</p>
+<p><img src="https://pic1.zhimg.com/80/v2-effe338f1536cce9bf286280cf021de4_1440w.jpg" alt="img"></p>
+<p>内存单元上的数据不允许被直接操作，必须先放到寄存器中。</p>
+</li>
+</ol>
+<h4 id="LTM-STM"><a href="#LTM-STM" class="headerlink" title="LTM / STM"></a>LTM / STM</h4><p>一次加载 / 存储多个寄存器</p>
+<h4 id="LTP-STP-armv8-x64"><a href="#LTP-STP-armv8-x64" class="headerlink" title="LTP / STP ( armv8 x64 )"></a>LTP / STP ( armv8 x64 )</h4><p>一次加载 / 存储<strong>最多两个</strong>寄存器</p>
+<p>避免产生分散的突发传输( LTM / STM )，高效利用双 pipeline 特性。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/62ea9cfecf80">https://www.jianshu.com/p/62ea9cfecf80</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -235,7 +326,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
+        <time title="修改时间：2021-09-22 05:41:27" itemprop="dateModified" datetime="2021-09-22T05:41:27+00:00">2021-09-22</time>
       </span>
 
   
@@ -1203,7 +1294,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-09-16 03:15:50" itemprop="dateModified" datetime="2021-09-16T03:15:50+00:00">2021-09-16</time>
+        <time title="修改时间：2021-09-22 05:41:27" itemprop="dateModified" datetime="2021-09-22T05:41:27+00:00">2021-09-22</time>
       </span>
 
   

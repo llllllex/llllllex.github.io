@@ -23,20 +23,20 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"ryotrix.dev","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Terminal Tips常用系统命令123456shutdown -r now &#x2F;&#x2F; 重启shutdown now    &#x2F;&#x2F; 关机pmset -g                   &#x2F;&#x2F; 显示电源管理设置信息sudo pmset displaysleep 15 &#x2F;&#x2F; 设置显示器无活动15分钟后关闭sudo pmset sleep 30        &#x2F;&#x2F; 计算机无活动30分钟后休眠    快">
+<meta name="description" content="Runloop学习笔记处理的时间类型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="terminalTips">
-<meta property="og:url" content="https://ryotrix.dev/2021/04/06/terminalTips/index.html">
+<meta property="og:title" content="RunLoop学习笔记">
+<meta property="og:url" content="https://ryotrix.dev/2021/09/22/RunLoop%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Terminal Tips常用系统命令123456shutdown -r now &#x2F;&#x2F; 重启shutdown now    &#x2F;&#x2F; 关机pmset -g                   &#x2F;&#x2F; 显示电源管理设置信息sudo pmset displaysleep 15 &#x2F;&#x2F; 设置显示器无活动15分钟后关闭sudo pmset sleep 30        &#x2F;&#x2F; 计算机无活动30分钟后休眠    快">
+<meta property="og:description" content="Runloop学习笔记处理的时间类型">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-06T03:16:22.000Z">
-<meta property="article:modified_time" content="2021-04-06T03:16:39.553Z">
+<meta property="article:published_time" content="2021-09-22T11:56:22.000Z">
+<meta property="article:modified_time" content="2021-09-22T05:41:27.781Z">
 <meta property="article:author" content="Lex">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://ryotrix.dev/2021/04/06/terminalTips/">
+<link rel="canonical" href="https://ryotrix.dev/2021/09/22/RunLoop%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
 
 <script class="page-configurations">
@@ -48,7 +48,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>terminalTips | Hexo</title>
+<title>RunLoop学习笔记 | Hexo</title>
   
 
 
@@ -156,7 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Terminal-Tips"><span class="nav-number">1.</span> <span class="nav-text">Terminal Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">常用系统命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.2.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-sudo-%E5%BF%AB%E9%80%9F%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">使用 sudo 快速执行上一条命令</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Runloop%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Runloop学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E7%9A%84%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">处理的时间类型</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/04/06/terminalTips/">
+    <link itemprop="mainEntityOfPage" href="https://ryotrix.dev/2021/09/22/RunLoop%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          terminalTips
+          RunLoop学习笔记
         </h1>
 
         <div class="post-meta-container">
@@ -235,7 +235,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-04-06 03:16:22 / 修改时间：03:16:39" itemprop="dateCreated datePublished" datetime="2021-04-06T03:16:22+00:00">2021-04-06</time>
+      <time title="创建时间：2021-09-22 11:56:22 / 修改时间：05:41:27" itemprop="dateCreated datePublished" datetime="2021-09-22T11:56:22+00:00">2021-09-22</time>
     </span>
 
   
@@ -248,19 +248,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Terminal-Tips"><a href="#Terminal-Tips" class="headerlink" title="Terminal Tips"></a>Terminal Tips</h1><h2 id="常用系统命令"><a href="#常用系统命令" class="headerlink" title="常用系统命令"></a>常用系统命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now // 重启</span><br><span class="line">shutdown now    // 关机</span><br><span class="line"></span><br><span class="line">pmset -g                   // 显示电源管理设置信息</span><br><span class="line">sudo pmset displaysleep 15 // 设置显示器无活动15分钟后关闭</span><br><span class="line">sudo pmset sleep 30        // 计算机无活动30分钟后休眠</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
-<li>Command + L：清空一行</li>
-<li>Command + K：清空全部</li>
+        <h1 id="Runloop学习笔记"><a href="#Runloop学习笔记" class="headerlink" title="Runloop学习笔记"></a>Runloop学习笔记</h1><h2 id="处理的时间类型"><a href="#处理的时间类型" class="headerlink" title="处理的时间类型"></a>处理的时间类型</h2><ol>
+<li></li>
 </ol>
-<h2 id="使用-sudo-快速执行上一条命令"><a href="#使用-sudo-快速执行上一条命令" class="headerlink" title="使用 sudo 快速执行上一条命令"></a>使用 sudo 快速执行上一条命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo !!</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果由于你忘了使用sudo而导致命令行返回一个错误，只需输入sudo !!就可以用sudo来执行上一条指令。</p>
-</blockquote>
 
     </div>
 
@@ -274,14 +264,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/04/06/macOSTips/" rel="prev" title="macOSTips">
-                  <i class="fa fa-chevron-left"></i> macOSTips
+                <a href="/2021/09/16/iOS%E5%BC%80%E5%8F%91-%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%A1%86%E6%9E%B6/" rel="prev" title="iOS开发-系统和框架">
+                  <i class="fa fa-chevron-left"></i> iOS开发-系统和框架
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/04/06/App-Store-%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E7%BD%91%E5%9D%80/" rel="next" title="App Store 隐私政策网址">
-                  App Store 隐私政策网址 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
