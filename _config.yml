@@ -30,7 +30,7 @@ url: "https://ryotrix.dev" # the base hostname & protocol for your site, e.g. ht
 github_username:  jekyll
 
 # Build settings
-theme: jekyll-theme-chirpy
+theme: jekyll-theme-minima
 plugins:
   - jekyll-feed
 
